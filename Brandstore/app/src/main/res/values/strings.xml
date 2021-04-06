@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Brand store</string>
+    <string name="app_name">SafeCar</string>
+    <string name="rentcar">Rent Car</string>
+    <string name="addcar">Add Car</string>
+    <string name="rentdriver">Rent Driver</string>
+    <string name="adddriver">Add Driver</string>
+    <string name="notification">Notification</string>
+    <string name="dnotification">Dnotification</string>
+    <string name="updatecar">Update Car</string>
+    <string name="updatedriver">Update Driver</string>
+    <string name="about">About</string>
+    <string name="online_rental_service">Online Rental Service</string>
+    <string name="draweron">drawn</string>
+    <string name="drawerf">drawf</string>
+    <string name="daweroff">drawff</string>
+    <string name="safe">SAFE CAR</string>
+
 </resources>

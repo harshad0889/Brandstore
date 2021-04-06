@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F10A0A"
+        android:padding="2dp"
+
+        android:fitsSystemWindows="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="LOGIN"
+            android:textColor="#E6E2E2"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="45dp"
+        android:layout_gravity="center_horizontal"
+        android:text="BRAND STORE"
+        android:fontFamily="sans-serif-medium"
+        android:shadowColor="@color/orange"
+        android:textColor="#C61C1C"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="text"
+        android:id="@+id/usernamelog"
+        android:hint="   username"
+        android:layout_gravity="center_horizontal"
+        android:drawableLeft="@drawable/username"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"
+        android:textSize="18dp"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="text"
+        android:id="@+id/passwordlog"
+        android:drawableLeft="@drawable/lock"
+        android:hint="    password"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"
+        android:textSize="18dp"/>
+
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/joinbtn"
+        android:ems="10"
+        android:onClick="addRecord"
+        android:text="loign"
+        android:textColor="#fff"
+        android:elevation="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:text="OR"
+        android:textColor="#938C8C"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/verify_phone"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/joinbtn"
+        android:ems="10"
+
+        android:text="LOGIN WITH OTP"
+        android:textColor="#fff"
+        android:elevation="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="130dp"
+        android:text="New User?"
+        android:textColor="#938C8C"
+        android:layout_gravity="center_horizontal"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/sign_up"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/joinbtn"
+            android:ems="10"
+            android:onClick="addRecord"
+            android:text="sign up"
+            android:elevation="10dp"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
