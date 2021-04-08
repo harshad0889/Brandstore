@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Brand Store</string>
+    <string name="addproduct">Add Product</string>
+    <string name="updateproduct">Update product </string>
+    <string name="addsale">Add sale</string>
+    <string name="stocks">Stocks</string>
+    <string name="addshipment">Add shipment</string>
+    <string name="logout">Logout</string>
+    <string name="updatecar">Update Car</string>
+    <string name="updatedriver">Update Driver</string>
+    <string name="about">About</string>
+    <string name="online_rental_service">Online Rental Service</string>
+    <string name="draweron">drawn</string>
+    <string name="drawerf">drawf</string>
+    <string name="daweroff">drawff</string>
+    <string name="brand">BRAND STORE</string>
+
+</resources>

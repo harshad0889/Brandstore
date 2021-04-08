@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:background="@color/lightwhite"
+        android:gravity="center">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F10A0A"
+            android:padding="2dp"
+
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:id="@+id/left_arrow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/left_arrow"
+                android:maxWidth="25dp"
+
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+
+                android:textStyle="italic" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:text="ADD PRODUCTS"
+                android:textColor="#E6E2E2"
+                android:layout_gravity="center_horizontal"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <EditText
+            android:id="@+id/p_name"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:ems="8"
+            android:hint="  Product name"
+            android:inputType="textPersonName"
+            android:elevation="5dp"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/P_category"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint="  category"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:ems="8"
+            android:elevation="5dp"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="  Product description"
+            android:inputType=""
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+
+            android:elevation="5dp"
+            android:textSize="18dp"
+            android:id="@+id/P_desc"/>
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="  choose size"
+            android:inputType=""
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+
+            android:elevation="5dp"
+            android:textSize="18dp"
+            android:id="@+id/P_size"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType=""
+            android:id="@+id/A_price"
+            android:hint="  Actual price"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:ems="8"
+            android:elevation="5dp"/>
+
+
+        <EditText
+            android:id="@+id/of_price"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:hint="  Offer price"
+            android:inputType="phone"
+            android:elevation="5dp"
+
+            android:textSize="18dp" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="  choose sale"
+            android:inputType=""
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+
+            android:elevation="5dp"
+            android:textSize="18dp"
+            android:id="@+id/P_sale"/>
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType="phone"
+            android:id="@+id/P_Offer"
+            android:hint="  Offer"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:ems="8"
+            android:elevation="5dp"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="85dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/white"
+                android:maxWidth="25dp"
+
+                android:text="Add Image"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+
+                android:textStyle="italic" />
+
+
+            <Button
+                android:id="@+id/addimage"
+                android:layout_width="90dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:background="@drawable/joinbtn"
+                android:text="UPLOAD"
+
+
+                />
+
+
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <Button
+            android:id="@+id/add_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="25dp"
+            android:ems="10"
+            android:textStyle="bold"
+            android:background="@drawable/joinbtn"
+            android:text="ADD PRODUCT"
+            android:onClick="addRecord"
+            android:textColor="#fff"/>
+
+
+        <Button
+            android:id="@+id/p_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="230dp"
+            android:background="@drawable/joinbtn"
+            android:ems="10"
+            android:layout_marginBottom="10dp"
+            android:onClick="addRecord"
+            android:text="CANCEL"
+            android:textColor="#fff"
+            android:textStyle="bold" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</ScrollView>

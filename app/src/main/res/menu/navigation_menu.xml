@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/add_product"
+    android:icon="@drawable/add"
+    android:title="@string/addproduct" />
+
+    <item android:id="@+id/update_prod"
+        android:icon="@drawable/tag"
+        android:title="@string/updateproduct" />
+
+    <item android:id="@+id/add_sale"
+        android:icon="@drawable/tag"
+        android:title="Add sale" />
+
+    <item android:id="@+id/Stocks"
+        android:icon="@drawable/tag"
+        android:title="@string/stocks" />
+
+    <item android:id="@+id/add_shipment"
+        android:icon="@drawable/location"
+        android:title="@string/addshipment" />
+
+    <item android:id="@+id/logout"
+        android:icon="@drawable/tag"
+        android:title="@string/logout" />
+
+
+</menu>

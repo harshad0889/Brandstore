@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F10A0A"
+        android:padding="2dp"
+
+        android:fitsSystemWindows="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="  REGISTRATION "
+
+            android:textColor="#E6E2E2"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:text="       CREATE YOUR"
+
+        android:textColor="#252424"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="left"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:text="       ACCOUNT!"
+
+        android:textColor="#252424"
+        android:layout_marginTop="1dp"
+        android:layout_gravity="left"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:drawableLeft="@drawable/username"
+        android:ems="8"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+
+        android:hint="    username"
+        android:inputType="textPersonName"
+        android:textSize="18dp"
+        android:layout_marginTop="50dp"/>
+
+
+
+
+
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="phone"
+        android:id="@+id/phnno"
+        android:hint="    phone number"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18dp"
+        android:drawableLeft="@drawable/call"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"/>
+
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:hint="    password"
+        android:textSize="18dp"
+        android:drawableLeft="@drawable/lock"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"/>
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:id="@+id/cpassword"
+        android:hint="   Confirm password"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/lock"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"
+        android:textSize="18dp"/>
+
+    <Button
+        android:id="@+id/bt_register"
+        android:layout_width="262dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/joinbtn"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:onClick="addRecord"
+        android:text="Register"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+
+
+    <Button
+        android:id="@+id/bt_signin"
+        android:layout_width="262dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="125dp"
+        android:background="@drawable/joinbtn"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:onClick="addRecord"
+        android:text="SIGN IN"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+
+
+
+
+
+
+
+</LinearLayout>
