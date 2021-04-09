@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_5 = "address";
 
     //product details
-    public static final String TABLE_PRODUCT = "cartable";
+    public static final String TABLE_PRODUCT = "product_table";
     public static final String COL_pid = "pid";
     public static final String COL_pname = "pname";
     public static final String COL_pcat = "pcategory";
@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override

@@ -212,4 +212,12 @@ public class Add_product extends AppCompatActivity {
         startActivity(in);
         finish();
     }*/
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(getApplicationContext(), Home.class);
+        startActivity(in);
+        finish();
+    }
 }

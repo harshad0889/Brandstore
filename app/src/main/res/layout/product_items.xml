@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn"
+    android:elevation="5dp"
+
+    >
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imgFood"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:requiresFadingEdge="horizontal"
+        android:layout_margin="2dp"
+
+        android:background="@color/lightwhite"
+        android:layout_marginTop="5dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/off_Price"
+        android:layout_width="81dp"
+        android:layout_height="32dp"
+
+        android:layout_marginTop="185dp"
+
+
+
+
+        android:layout_marginStart="102dp"
+        android:text="Price"
+
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/dollar"
+        android:textSize="20sp"
+        android:elevation="5dp"
+        />
+
+    <TextView
+        android:id="@+id/act_Price"
+        android:layout_width="81dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="185dp"
+
+
+
+
+        android:layout_marginStart="2dp"
+        android:text="actual price"
+
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/tag"
+        android:textSize="20sp"
+        android:elevation="5dp"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/prod_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgFood"
+        android:layout_alignEnd="@+id/imgFood"
+        android:layout_alignRight="@+id/imgFood"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:text="Price"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/prod_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgFood"
+        android:layout_alignEnd="@+id/imgFood"
+        android:layout_alignRight="@+id/imgFood"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginRight="39dp"
+        android:text="Brand"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/prod_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="158dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="35dp"
+        android:text="name"
+
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgFood"
+        android:layout_alignEnd="@+id/imgFood"
+        android:layout_alignRight="@+id/imgFood"
+        android:layout_marginTop="214dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="Agency"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+    android:id="@+id/qty"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/imgFood"
+    android:layout_alignEnd="@+id/imgFood"
+    android:layout_alignRight="@+id/imgFood"
+    android:layout_marginTop="280dp"
+    android:layout_marginEnd="40dp"
+    android:layout_marginRight="40dp"
+    android:text="Kms"
+    android:textAlignment="center"
+    android:textColor="#ce1309"
+    android:textSize="17sp"
+    android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/p_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgFood"
+        android:layout_alignEnd="@+id/imgFood"
+        android:layout_alignRight="@+id/imgFood"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:text="offer"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+
+
+</RelativeLayout>

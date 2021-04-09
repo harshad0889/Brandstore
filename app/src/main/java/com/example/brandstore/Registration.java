@@ -72,7 +72,7 @@ public class Registration extends AppCompatActivity {
                     password.requestFocus();
                     password.setError("please enter your password");
                 }
-                else if (password != c_password) {
+                else if (!s_pass.equals(s_cpass)) {
                     password.requestFocus();
                     password.setError(" password miss match");
                 }

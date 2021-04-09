@@ -49,52 +49,27 @@ public class Home extends AppCompatActivity {
                 switch (id){
 
                     case R.id.add_product:
+                        Intent add = new Intent(Home.this, Add_product.class);
+                        startActivity(add);
+                        finish();
+                        return true;
+
+
+                    case R.id.update_prod:
+                        Intent r = new Intent(Home.this, product_view.class);
+                         startActivity(r);
+                        finish();
+                        return true;
+
+
+
+
+                    case R.id.add_sale:
                         Intent main = new Intent(Home.this, Add_product.class);
                         startActivity(main);
                         finish();
-                        return true;
-                   /* case R.id.addcar:
-                        Intent main = new Intent(Home.this, Addcar.class);
-                        startActivity(main);
-                        finish();
-                        Toast.makeText(Home.this, "added car", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.rentdriver:
-                        Toast.makeText(Home.this, "rented driver", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.adddriver:
-                        Intent intent= new Intent(Home.this,Adddriver.class);
-                        startActivity(intent);
-                        finish();
-                        Toast.makeText(Home.this, "added driver", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.notification:
-                        Intent s = new Intent(Home.this, notifview.class);
-                        startActivity(s);
-                        finish();
-                        Toast.makeText(Home.this, "noti car", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.dnotification:
-                        Intent d = new Intent(Home.this, notifdriview.class);
-                        startActivity(d);
-                        finish();
-                        Toast.makeText(Home.this, "noti car", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.updatecar:
-                        Intent m = new Intent(Home.this, Carview2.class);
-                        startActivity(m);
-                        finish();
-                        Toast.makeText(Home.this, "updated car", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.updatedriver:
-                        Intent r = new Intent(Home.this, Driverview2.class);
-                        startActivity(r);
-                        finish();
-                        Toast.makeText(Home.this, "update driver", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.about:
-                        Toast.makeText(Home.this, "about", Toast.LENGTH_SHORT).show();
-                        return true;*/
+
+
 
                 }
 
@@ -117,5 +92,12 @@ public class Home extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(getApplicationContext(), Home.class);
+        startActivity(in);
+        finish();
     }
 }
