@@ -34,6 +34,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
    // public static final String COL_cuid = "_id";
 
 
+    //sale details
+    public static final String TABLE_SALE = "sale_table";
+    public static final String COL_sid = "sid";
+    public static final String COL_stitle = "sale_title";
+    public static final String COL_sdesc = "sale_desc";
+    public static final String COL_siv = "siv";
+
+    //category details
+    public static final String TABLE_CATEGORY = "cate_table";
+    public static final String COL_catid = "ctid";
+    public static final String COL_ctname = "cat_name";
+    public static final String COL_ctiv = "ctiv";
+
+
 //user registration table
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_NAME + "("
             + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -55,9 +69,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_iv + " BLOB " + ")";
 
 
+    //sale table
+    private String CREATE_SALE_TABLE = "CREATE TABLE " + TABLE_SALE + "("
+            + COL_sid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COL_stitle + " TEXT,"
+            + COL_sdesc + " TEXT,"
+            + COL_siv + " BLOB " + ")";
+
+    //category table
+    private String CREATE_CATEGORY_TABLE = "CREATE TABLE " + TABLE_CATEGORY + "("
+            + COL_catid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COL_ctname + " TEXT,"
+            + COL_ctiv + " BLOB " + ")";
+
+
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -65,6 +93,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_PRODUCT_TABLE);
+        db.execSQL(CREATE_SALE_TABLE);
+        db.execSQL(CREATE_CATEGORY_TABLE);
 
     }
 
@@ -73,6 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SALE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
 
 
 
@@ -101,7 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //INSERT CAR DATA
 
-    public boolean insertcardata(String cname, String c_cat, String cdesc, String
+    public boolean insert_prod_data(String cname, String c_cat, String cdesc, String
             csize, String cact_price, String cof_price, String csale, String coff,
                                  byte[] newentryimg) {
 
@@ -124,6 +156,95 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
 
+    }
+
+
+
+    //**************update product data*************************
+
+
+    public int updateproduct(String prodid,String cname, String c_cat, String cdesc, String
+            csize, String cact_price, String cof_price, String csale, String coff,
+                             byte[] newentryimg) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_pname, cname);
+        contentValues.put(COL_pcat, c_cat);
+        contentValues.put(COL_pdesc, cdesc);
+        contentValues.put(COL_psize, csize);
+        contentValues.put(COL_paprice, cact_price);
+        contentValues.put(COL_pofprice, cof_price);
+        contentValues.put(COL_psale, csale);
+        contentValues.put(COL_poff, coff);
+        contentValues.put(COL_iv, newentryimg);
+        int i = db.update(TABLE_PRODUCT, contentValues, COL_pid + " = " + prodid, null);
+        return i;
+
+    }
+
+
+
+    //******************prod image************
+
+    public byte[] prodImage(String _id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] col=new String[]{COL_iv};  // your column which data u want to retrive if id is same
+        Cursor c=db.query(TABLE_PRODUCT, col, COL_pid+"="+_id,null, null, null, null);
+        if (c.moveToFirst()) {
+            byte[] blob = c.getBlob(c.getColumnIndex(COL_iv));
+            c.close();
+            return blob;
+        }
+        c.close();
+        return null;
+    }
+
+
+    //***************INSERT SALE DATA*********************
+    public boolean insert_sale_data(String stitle, String sdesc, byte[] siv) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_stitle, stitle);
+        contentValues.put(COL_sdesc, sdesc);
+        contentValues.put(COL_siv, siv);
+
+        long result = db.insert(TABLE_SALE, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+
+    }
+
+
+
+
+    //***************INSERT CATEGORY DATA*********************
+    public boolean add_cate(String ctname, byte[] ctiv) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_ctname, ctname);
+
+        contentValues.put(COL_ctiv, ctiv);
+
+        long result = db.insert(TABLE_CATEGORY, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+
+    }
+
+    //*****************PRODUCT LIST*******************
+    public Cursor prodlist() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT  , null);
+
+        return cursor;
     }
 
 public UserModel Authenticate(UserModel userModel) {

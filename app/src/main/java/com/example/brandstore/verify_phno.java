@@ -92,7 +92,7 @@ public class verify_phno extends AppCompatActivity {
 
                 } else {
 
-                    Toast.makeText(verify_phno.this, "Invalid mobile number or password.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(verify_phno.this, "Invalid username or password.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

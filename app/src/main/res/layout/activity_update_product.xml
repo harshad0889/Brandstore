@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="ADD PRODUCT"
+                android:text="UPDATE PRODUCT"
                 android:textColor="#E6E2E2"
                 android:layout_gravity="center_horizontal"
                 android:textSize="30dp"
@@ -49,6 +49,19 @@
         </androidx.appcompat.widget.Toolbar>
 
 
+        <EditText
+            android:id="@+id/p_id"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+
+            android:background="@drawable/btn"
+            android:ems="8"
+            android:hint="  Product id"
+            android:inputType="textPersonName"
+            android:elevation="5dp"
+            android:textSize="18dp"
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/p_name"
@@ -62,19 +75,6 @@
             android:inputType="textPersonName"
             android:elevation="5dp"
             android:textSize="18dp" />
-        <EditText
-            android:id="@+id/pid"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-
-            android:background="@drawable/btn"
-            android:ems="8"
-            android:hint="  Product id"
-            android:inputType="textPersonName"
-            android:elevation="5dp"
-            android:textSize="18dp"
-            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/P_category"
@@ -205,34 +205,34 @@
             android:layout_height="wrap_content"
             >
 
-        <Button
-            android:id="@+id/add_product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="25dp"
-            android:ems="10"
-            android:textStyle="bold"
-            android:background="@drawable/joinbtn"
-            android:text="ADD PRODUCT"
-            android:onClick="addRecord"
-            android:textColor="#fff"/>
+            <Button
+                android:id="@+id/update_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="25dp"
+                android:ems="10"
+                android:textStyle="bold"
+                android:background="@drawable/joinbtn"
+                android:text="UPDATE "
+                android:onClick="addRecord"
+                android:textColor="#fff"/>
 
 
-        <Button
-            android:id="@+id/p_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="230dp"
-            android:background="@drawable/joinbtn"
-            android:ems="10"
-            android:layout_marginBottom="10dp"
-            android:onClick="addRecord"
-            android:text="CANCEL"
-            android:textColor="#fff"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/del_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="230dp"
+                android:background="@drawable/joinbtn"
+                android:ems="10"
+                android:layout_marginBottom="10dp"
+                android:onClick="addRecord"
+                android:text="DELETE"
+                android:textColor="#fff"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 

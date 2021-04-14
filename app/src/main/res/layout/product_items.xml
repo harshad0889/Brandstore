@@ -134,7 +134,7 @@
         android:visibility="gone"/>
 
     <TextView
-    android:id="@+id/qty"
+    android:id="@+id/p_sale"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@+id/imgFood"
@@ -148,6 +148,25 @@
     android:textColor="#ce1309"
     android:textSize="17sp"
     android:visibility="gone"/>
+
+
+    <TextView
+        android:id="@+id/p_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgFood"
+        android:layout_alignEnd="@+id/imgFood"
+        android:layout_alignRight="@+id/imgFood"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Kms"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+
 
     <TextView
         android:id="@+id/p_off"

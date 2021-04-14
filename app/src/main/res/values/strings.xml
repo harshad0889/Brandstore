@@ -6,11 +6,11 @@
     <string name="stocks">Stocks</string>
     <string name="addshipment">Add shipment</string>
     <string name="logout">Logout</string>
-    <string name="updatecar">Update Car</string>
+    <string name="sale"> Sale</string>
     <string name="updatedriver">Update Driver</string>
-    <string name="about">About</string>
+    <string name="addcat">Add category</string>
     <string name="online_rental_service">Online Rental Service</string>
-    <string name="draweron">drawn</string>
+    <string name="view_product">view product</string>
     <string name="drawerf">drawf</string>
     <string name="daweroff">drawff</string>
     <string name="brand">BRAND STORE</string>

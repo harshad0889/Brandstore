@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,33 +22,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Add_product extends AppCompatActivity {
-
+public class update_product extends AppCompatActivity {
 
     DatabaseHelper db;
-    EditText prod_name,prod_category,prod_desc,size,sale,actual_amount,offer_amount,Offer;
+    EditText prod_name,prod_category,prod_desc,size,sale,actual_amount,offer_amount,Offer,pid;
     TextView carowner;
-    Button add_product,cancel,addimage;
+    Button update,delete,addimage;
     final int REQUEST_CODE_GALLERY = 999;
     SharedPreferences sp;
     ListView lv_category;
     ImageView iv;
 
-    String  pname,pcategory,pdesc,psize,act_price,off_price,psale,poffer;
+    String  pname,pcategory,pdesc,psize,act_price,off_price,psale,poffer,prodid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
-
+        setContentView(R.layout.activity_update_product);
 
         db = new DatabaseHelper(this);
         prod_name = (EditText) findViewById(R.id.p_name);
+        pid = (EditText) findViewById(R.id.p_id);
         prod_category = (EditText) findViewById(R.id.P_category);
         prod_desc = (EditText) findViewById(R.id.P_desc);
         size = (EditText) findViewById(R.id.P_size);
@@ -57,12 +53,11 @@ public class Add_product extends AppCompatActivity {
         actual_amount = (EditText) findViewById(R.id.A_price);
         offer_amount= findViewById(R.id.of_price);
         Offer =  findViewById(R.id.P_Offer);
-        add_product =  findViewById(R.id.add_product);
-        cancel= findViewById(R.id.p_cancel);
-        addimage =  findViewById(R.id.addimage);
+        update =  findViewById(R.id.update_product);
+        delete= findViewById(R.id.del_product);
+
         addimage= findViewById(R.id.addimage);
         iv = findViewById(R.id.iv);
-
 
 
         lv_category = findViewById(R.id.lvcat);
@@ -77,12 +72,10 @@ public class Add_product extends AppCompatActivity {
         data.add("Boxers");
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,data);
         lv_category.setAdapter(adapter);
-        AlertDialog.Builder builder = new AlertDialog.Builder(Add_product.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(update_product.this);
         builder.setCancelable(true);
         builder.setView(lv_category);
         final  AlertDialog dialog = builder.create();
-
-
 
         prod_category.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +96,7 @@ public class Add_product extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions
-                        (Add_product.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+                        (update_product.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
@@ -112,9 +105,39 @@ public class Add_product extends AppCompatActivity {
             }
         });
 
-        add_product.setOnClickListener(new View.OnClickListener() {
+
+
+
+        Intent intent = getIntent();
+        String spid = intent.getStringExtra("pid");
+        String sname= intent.getStringExtra("pname");
+        String scat= intent.getStringExtra("pcat");
+        String sdesc= intent.getStringExtra("pdesc");
+        String ssize= intent.getStringExtra("psize");
+        String sacprice= intent.getStringExtra("pactprice");
+        String sofprice= intent.getStringExtra("pofprice");
+        String ssale= intent.getStringExtra("psale");
+        String soff= intent.getStringExtra("poff");
+
+
+        pid.setText(spid);
+        prod_name.setText(sname);
+        prod_category.setText(scat);
+        prod_desc.setText(sdesc);
+        size.setText(ssize);
+        actual_amount.setText(sacprice);
+        offer_amount.setText(sofprice);
+        sale.setText(ssale);
+        Offer.setText(soff);
+        byte[] bytes = db.prodImage(spid);
+        iv.setImageBitmap(getImage(bytes));
+
+
+
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                prodid = pid.getText().toString();
                 pname = prod_name.getText().toString();
                 pcategory = prod_category.getText().toString();
                 pdesc = prod_desc.getText().toString();
@@ -124,7 +147,7 @@ public class Add_product extends AppCompatActivity {
                 psale = sale.getText().toString();
                 poffer = Offer.getText().toString();
                 //caddcar = addcar.getText().toString();
-               //ccarreset = carreset.getText().toString();
+                //ccarreset = carreset.getText().toString();
 
 
                 if (prod_name.length() == 0) {
@@ -157,12 +180,12 @@ public class Add_product extends AppCompatActivity {
                 } else {
 
 
-                    Toast.makeText(Add_product.this, "Product added succesfully ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(update_product.this, "Product updated succesfully ", Toast.LENGTH_LONG).show();
                     byte[] newentryimg = imageViewToByte(iv);
 
-                    Addproduct(pname, pcategory, pdesc, psize, act_price, off_price, psale, poffer, newentryimg);
+                    updateprod(prodid,pname, pcategory, pdesc, psize, act_price, off_price, psale, poffer, newentryimg);
 
-                    Intent r = new Intent(Add_product.this, Home.class);
+                    Intent r = new Intent(update_product.this, Home.class);
                     startActivity(r);
                     finish();
 
@@ -171,11 +194,11 @@ public class Add_product extends AppCompatActivity {
                 }
             }
 
-            private void Addproduct (String cname, String c_cat, String cdesc, String
-                    csize, String cact_price, String cof_price, String csale, String coff,
-                                  byte[] newentryimg){
+            private void updateprod(String prodid,String pname, String pcategory, String pdesc, String
+                    psize, String act_price, String off_price, String psale, String poffer,
+                                    byte[] newentryimg){
 
-                boolean insertcardata = db.insert_prod_data(cname, c_cat, cdesc, csize, cact_price, cof_price, csale, coff, newentryimg);
+                int insertproduct = db.updateproduct(prodid,pname, pcategory, pdesc, psize, act_price, off_price, psale, poffer, newentryimg);
             }
             private byte[] imageViewToByte (ImageView iv){
 
@@ -186,38 +209,10 @@ public class Add_product extends AppCompatActivity {
                 return byteArray;
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
-        Uri imageuri = data.getData();
-        try {
-            InputStream is = getContentResolver().openInputStream(imageuri);
-
-            Bitmap bitmap = BitmapFactory.decodeStream(is);
-            iv.setImageBitmap(bitmap);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
 
     }
+    public static Bitmap getImage(byte[] image) {
 
-   /* @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
-        startActivity(in);
-        finish();
-    }*/
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
-        startActivity(in);
-        finish();
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 }

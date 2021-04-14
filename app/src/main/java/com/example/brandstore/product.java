@@ -5,20 +5,37 @@ public class product {
     private String p_name;
     private String a_price;
     private String o_price;
-    private String qty;
+    private String p_sale;
     private String p_desc;
     private String p_off;
     private String p_category;
+    private String p_size;
     private byte[] image;
 
 
+    public String getP_sale() {
+        return p_sale;
+    }
 
-    public product(int pid, String p_name, String a_price, String o_price, String qty, String p_desc, String p_off, String p_category, byte[] image) {
+    public void setP_sale(String p_sale) {
+        this.p_sale = p_sale;
+    }
+
+    public String getP_size() {
+        return p_size;
+    }
+
+    public void setP_size(String p_size) {
+        this.p_size = p_size;
+    }
+
+    public product(int pid, String p_name, String a_price, String o_price, String p_sale, String p_desc, String p_size , String p_off, String p_category, byte[] image) {
         this.pid = pid;
         this.p_name = p_name;
         this.a_price = a_price;
         this.o_price = o_price;
-        this.qty = qty;
+        this.p_sale = p_sale;
+        this.p_size = p_size;
         this.p_desc = p_desc;
         this.p_off = p_off;
         this.p_category = p_category;
@@ -59,11 +76,11 @@ public class product {
     }
 
     public String getQty() {
-        return qty;
+        return p_sale;
     }
 
     public void setQty(String qty) {
-        this.qty = qty;
+        this.p_sale = qty;
     }
 
     public String getP_desc() {

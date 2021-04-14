@@ -17,6 +17,27 @@
 
 
         <include layout="@layout/appbar" />
+
+        <GridView
+            android:id="@+id/gv_product2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="50dp"
+            android:background="@color/white"
+
+
+            android:fadingEdge="vertical"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:stretchMode="columnWidth"
+            android:columnWidth="90dp"
+            android:padding="5dp"
+            android:verticalSpacing="10dp"
+
+            >
+        </GridView>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

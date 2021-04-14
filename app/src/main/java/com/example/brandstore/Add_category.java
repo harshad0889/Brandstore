@@ -23,12 +23,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class Add_sale extends AppCompatActivity {
+public class Add_category extends AppCompatActivity {
+
 
     DatabaseHelper db;
-    EditText sale_title,sale_desc;
+    EditText cate_name;
     TextView carowner;
-    Button add_sale,cancel,addimage;
+    Button add_cat,cancel,addimage;
     final int REQUEST_CODE_GALLERY = 999;
     SharedPreferences sp;
     ListView lv_category;
@@ -37,23 +38,21 @@ public class Add_sale extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_sale);
+        setContentView(R.layout.activity_add_category);
 
         db = new DatabaseHelper(this);
-        sale_title = (EditText) findViewById(R.id.sale_title);
-        sale_desc = (EditText) findViewById(R.id.sale_desc);
-        add_sale =  findViewById(R.id.add_sale);
+        cate_name = (EditText) findViewById(R.id.cat_name);
+        add_cat =  findViewById(R.id.add_cat);
         cancel= findViewById(R.id.p_cancel);
         addimage =  findViewById(R.id.addimage);
         iv = findViewById(R.id.iv);
-
 
 
         addimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions
-                        (Add_sale.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+                        (Add_category.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
@@ -63,43 +62,37 @@ public class Add_sale extends AppCompatActivity {
             }
         });
 
-        //*******************ADD SALE BUTTON CLICK****************
-        add_sale.setOnClickListener(new View.OnClickListener() {
+
+        add_cat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String stitle = sale_title.getText().toString();
-                String sdesc= sale_desc.getText().toString();
+                String ctname = cate_name.getText().toString();
 
 
-                if (sale_title.length() == 0) {
-                    sale_title.requestFocus();
-                    sale_title.setError("please enter sale name");
-                } else if (sale_desc.length() == 0) {
-                    sale_desc.requestFocus();
-                    sale_desc.setError("please enter sale desc ");
-                }else {
+
+                if (cate_name.length() == 0) {
+                    cate_name.requestFocus();
+                    cate_name.setError("please enter category name");
+                } else {
 
 
 
                     byte[] newentryimg = imageViewToByte(iv);
 
-                    add_sale(stitle, sdesc, newentryimg);
-                    Toast.makeText(Add_sale.this, "sale added succesfully ", Toast.LENGTH_LONG).show();
+                    add_cate(ctname, newentryimg);
+                    Toast.makeText(Add_category.this, "category added succesfully ", Toast.LENGTH_LONG).show();
 
-                    Intent r = new Intent(Add_sale.this, Home.class);
+                    Intent r = new Intent(Add_category.this, Home.class);
                     startActivity(r);
                     finish();
 
                 }
-
             }
-            private void add_sale(String stitle, String sdesc,
-                                     byte[] newentryimg) {
+            private void add_cate(String ctname,
+                                  byte[] newentryimg) {
 
-                boolean insertsaledata = db.insert_sale_data(stitle, sdesc, newentryimg);
+                boolean insert_cate = db.add_cate(ctname,  newentryimg);
             }
-
 
 
             private byte[] imageViewToByte (ImageView iv){
@@ -112,6 +105,11 @@ public class Add_sale extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

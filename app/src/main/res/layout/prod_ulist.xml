@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/person2"
+        android:id="@+id/uimgcar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:id="@+id/p_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="183dp"
+
+        android:layout_marginTop="99dp"
+        android:layout_marginRight="-99dp"
+        android:text="product description"
+        android:textAlignment="center"
+        android:textColor="#403F3F"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/p_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/p_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="39dp"
+
+        android:layout_marginStart="183dp"
+        android:layout_marginRight="-110dp"
+        android:text="product name"
+        android:textAlignment="center"
+        android:textColor="#101010"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/p_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uimgcar"
+        android:layout_alignEnd="@+id/uimgcar"
+        android:layout_alignRight="@+id/uimgcar"
+        android:layout_marginTop="158dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/p_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uimgcar"
+        android:layout_alignEnd="@+id/uimgcar"
+        android:layout_alignRight="@+id/uimgcar"
+        android:layout_marginTop="214dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="Agency"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/p_acprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uimgcar"
+        android:layout_alignEnd="@+id/uimgcar"
+        android:layout_alignRight="@+id/uimgcar"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Kms"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+
+
+    <TextView
+        android:id="@+id/p_ofprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uimgcar"
+        android:layout_alignEnd="@+id/uimgcar"
+        android:layout_alignRight="@+id/uimgcar"
+        android:layout_marginTop="391dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:text="phno"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/p_sale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uimgcar"
+        android:layout_alignEnd="@+id/uimgcar"
+        android:layout_alignRight="@+id/uimgcar"
+        android:layout_marginTop="449dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
+        android:text="location"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/p_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/uimgcar"
+        android:layout_alignEnd="@+id/uimgcar"
+        android:layout_alignRight="@+id/uimgcar"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:text="email"
+        android:textAlignment="center"
+        android:textColor="#ce1309"
+        android:textSize="17sp"
+        android:visibility="gone"/>
+
+
+
+</RelativeLayout>

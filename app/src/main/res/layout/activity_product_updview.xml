@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
-
+    tools:context=".product_updview">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="  PRODUCTS "
+            android:text="  UPDATE PRODUCT "
 
             android:textColor="#E6E2E2"
             android:layout_gravity="center_horizontal"
@@ -27,46 +26,13 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:text="  BROWSE CATEGORY "
-
-        android:textColor="#373535"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15dp"
-        android:layout_marginTop="70dp"
-        android:textStyle="bold" />
-
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
-      android:layout_marginTop="90dp"
-      android:orientation="vertical"
-
-      >
-
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/rv_categoreis"
-       android:orientation="horizontal"
-       android:scrollbars="horizontal"
-
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-
-   </androidx.recyclerview.widget.RecyclerView>
-
-  </LinearLayout>
 
     <GridView
-        android:id="@+id/gv_product"
+        android:id="@+id/gv_uprod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
 
+        android:layout_marginTop="50dp"
         android:background="@color/white"
 
 
@@ -81,14 +47,10 @@
 
         >
 
-        
+
 
 
     </GridView>
-
-
-
-
 
 
 </RelativeLayout>

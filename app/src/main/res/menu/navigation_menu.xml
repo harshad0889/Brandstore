@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
 <item android:id="@+id/add_product"
     android:icon="@drawable/add"
     android:title="@string/addproduct" />
@@ -8,13 +9,20 @@
         android:icon="@drawable/tag"
         android:title="@string/updateproduct" />
 
+    <item android:id="@+id/view_product"
+        android:icon="@drawable/tag"
+        android:title="@string/view_product" />
+
     <item android:id="@+id/add_sale"
         android:icon="@drawable/tag"
         android:title="Add sale" />
-
-    <item android:id="@+id/Stocks"
+    <item android:id="@+id/sales"
         android:icon="@drawable/tag"
-        android:title="@string/stocks" />
+        android:title="@string/sale" />
+
+    <item android:id="@+id/add_cat"
+        android:icon="@drawable/tag"
+        android:title="@string/addcat" />
 
     <item android:id="@+id/add_shipment"
         android:icon="@drawable/location"

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="  PRODUCTS "
+            android:text="  SALE "
 
             android:textColor="#E6E2E2"
             android:layout_gravity="center_horizontal"
@@ -27,53 +27,20 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:text="  BROWSE CATEGORY "
-
-        android:textColor="#373535"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15dp"
-        android:layout_marginTop="70dp"
-        android:textStyle="bold" />
-
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
-      android:layout_marginTop="90dp"
-      android:orientation="vertical"
-
-      >
-
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/rv_categoreis"
-       android:orientation="horizontal"
-       android:scrollbars="horizontal"
-
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-
-   </androidx.recyclerview.widget.RecyclerView>
-
-  </LinearLayout>
 
     <GridView
-        android:id="@+id/gv_product"
+        android:id="@+id/gv_sale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
 
+        android:layout_marginTop="50dp"
         android:background="@color/white"
 
 
         android:fadingEdge="vertical"
         android:gravity="center"
         android:horizontalSpacing="10dp"
-        android:numColumns="2"
+        android:numColumns="1"
         android:stretchMode="columnWidth"
         android:columnWidth="90dp"
         android:padding="5dp"
@@ -81,11 +48,10 @@
 
         >
 
-        
+
 
 
     </GridView>
-
 
 
 

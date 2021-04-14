@@ -46,7 +46,7 @@ public class productListAdapter extends BaseAdapter {
 
     private class ViewHolder{
         ImageView imageView;
-        TextView p_id, p_name,a_price,o_price,qty,p_desc,p_off,p_category;
+        TextView p_id, p_name,a_price,o_price,p_sale,p_desc,p_off,p_category,p_size;
     }
 
     @Override
@@ -65,10 +65,11 @@ public class productListAdapter extends BaseAdapter {
             holder.p_name = (TextView) row.findViewById(R.id.prod_name);
             holder.a_price = (TextView) row.findViewById(R.id.act_Price);
             holder.o_price = (TextView) row.findViewById(R.id.off_Price);
-            holder.qty = (TextView) row.findViewById(R.id.qty);
+            holder.p_sale = (TextView) row.findViewById(R.id.p_sale);
             holder.p_desc = (TextView) row.findViewById(R.id.prod_desc);
             holder.p_off = (TextView) row.findViewById(R.id.p_off);
             holder.p_category = (TextView) row.findViewById(R.id.category);
+            holder.p_size = (TextView) row.findViewById(R.id.p_size);
 
             row.setTag(holder);
         }
@@ -83,7 +84,8 @@ public class productListAdapter extends BaseAdapter {
         holder.p_name.setText(prod.getP_name());
         holder.a_price.setText(prod.getA_price());
         holder.o_price.setText(prod.getO_price());
-        holder.qty.setText(prod.getQty());
+        holder.p_sale.setText(prod.getP_sale());
+        holder.p_size.setText(prod.getP_size());
         holder.p_desc.setText(prod.getP_desc());
         holder.p_off.setText(prod.getP_off());
         holder.p_category.setText(prod.getP_category());
