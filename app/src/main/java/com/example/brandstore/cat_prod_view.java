@@ -1,12 +1,10 @@
 package com.example.brandstore;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,36 +13,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class product_view extends AppCompatActivity {
-
-    GridView gridView;
-    RecyclerView rV_cat;
+public class cat_prod_view extends AppCompatActivity {
+    GridView gvcat_prodview;
     ArrayList<product> list;
-    ArrayList<category> catlists;
+
     productListAdapter adapter = null;
-    catlistAadapter adapter2 = null;
+
     DatabaseHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_view);
-
+        setContentView(R.layout.activity_cat_prod_view);
         db=new DatabaseHelper(this);
-        gridView =  findViewById(R.id.gv_product);
-        rV_cat =  findViewById(R.id.rv_categoreis);
+        gvcat_prodview =  findViewById(R.id.gv_cat_product);
+
 
         list = new ArrayList<>();
         adapter = new productListAdapter(this, R.layout.product_items, list);
-        gridView.setAdapter(adapter);
+        gvcat_prodview.setAdapter(adapter);
+
+        Intent intent = getIntent();
+
+       // String catid = intent.getStringExtra("catid");
+        String spname= intent.getStringExtra("catname");
+
+       // Bitmap bitmap = intent.getParcelableExtra("catimage");
 
 
-
-
-
-        Cursor cursor = db.getData("SELECT * FROM product_table");
+        Cursor cursor = db.getData("SELECT * FROM product_table WHERE pcategory ="+ '"'+spname+'"');
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -58,12 +57,12 @@ public class product_view extends AppCompatActivity {
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image));
+            list.add(new product( pid,  p_name,p_category,p_desc, p_size,a_price, p_sale,   image));
         }
         adapter.notifyDataSetChanged();
 
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gvcat_prodview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView tvid = view.findViewById(R.id.prod_id);
@@ -87,7 +86,7 @@ public class product_view extends AppCompatActivity {
                 String size = p_size.getText().toString();
 
 
-                Intent s = new Intent(product_view.this,p_grid_selecteditem.class);
+                Intent s = new Intent(cat_prod_view.this,p_grid_selecteditem.class);
                 s.putExtra("pid",pid);
                 s.putExtra("p_price",sa_price);
                 s.putExtra("p_desc",p_desc);
@@ -102,42 +101,5 @@ public class product_view extends AppCompatActivity {
         });
 
 
-
-
-        // for recycler view
-        catlists = new ArrayList<>();
-        catlistAadapter catadapter = new catlistAadapter(product_view.this, catlists);
-        rV_cat.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        rV_cat.setAdapter(catadapter);
-
-
-        Cursor cursor2 = db.getData("SELECT * FROM cate_table");
-
-        while (cursor2.moveToNext()) {
-            int cat_id = cursor2.getInt(0);
-            String cat_name = cursor2.getString(1);
-            byte[] img = cursor2.getBlob(2);
-
-            catlists.add(new category(cat_id, cat_name, img));
-        }
-
-        //rV_cat.setHasFixedSize(true);
-        //catlistAadapter catadapter = new catlistAadapter(product_view.this, catlists);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-       // rV_cat.setAdapter(catadapter);
-       // catadapter.notifyDataSetChanged();
-
-
-
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
-        startActivity(in);
-        finish();
     }
 }

@@ -29,7 +29,7 @@ public class product {
         this.p_size = p_size;
     }
 
-    public product(int pid, String p_name, String a_price, String o_price, String p_sale, String p_desc, String p_size , String p_off, String p_category, byte[] image) {
+    public product(int pid, String p_name,String p_category,String p_desc,String p_size , String a_price,  String p_sale,     byte[] image) {
         this.pid = pid;
         this.p_name = p_name;
         this.a_price = a_price;

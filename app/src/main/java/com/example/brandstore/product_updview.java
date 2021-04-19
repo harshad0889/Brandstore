@@ -53,12 +53,12 @@ public class product_updview extends AppCompatActivity {
             String p_desc = cursor.getString(3);
             String p_size = cursor.getString(4);
             String a_price = cursor.getString(5);
-            String o_price = cursor.getString(6);
-            String p_off = cursor.getString(8);
-            String p_sale = cursor.getString(7);
-            byte[] image = cursor.getBlob(9);
+           // String o_price = cursor.getString(6);
+            //String p_off = cursor.getString(8);
+            String p_sale = cursor.getString(6);
+            byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name,a_price,  o_price,p_sale, p_category, p_desc, p_size, p_off, image));
+            list.add(new product( pid,  p_name,a_price,p_sale, p_category, p_desc, p_size,  image));
         }
         adapter.notifyDataSetChanged();
 
@@ -91,9 +91,9 @@ public class product_updview extends AppCompatActivity {
                 String sp_desc = tv_desc.getText().toString();
                 String sp_size = tv_size.getText().toString();
                 String sp_actprice = tv_actprice.getText().toString();
-                String sp_offprice = tv_offprice.getText().toString();
+                //String sp_offprice = tv_offprice.getText().toString();
                 String sp_sale = tv_sale.getText().toString();
-                String sp_off = tv_off.getText().toString();
+               // String sp_off = tv_off.getText().toString();
 
                 Intent s = new Intent(product_updview.this,update_product.class);
                 s.putExtra("pid",sp_id);
@@ -102,9 +102,9 @@ public class product_updview extends AppCompatActivity {
                 s.putExtra("pdesc",sp_desc);
                 s.putExtra("psize",sp_size);
                 s.putExtra("pactprice",sp_actprice);
-                s.putExtra("pofprice",sp_offprice);
+                //s.putExtra("pofprice",sp_offprice);
                 s.putExtra("psale",sp_sale);
-                s.putExtra("poff",sp_off);
+                //s.putExtra("poff",sp_off);
 
                 startActivity(s);
 

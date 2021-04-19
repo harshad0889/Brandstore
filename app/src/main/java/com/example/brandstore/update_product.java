@@ -183,7 +183,7 @@ public class update_product extends AppCompatActivity {
                     Toast.makeText(update_product.this, "Product updated succesfully ", Toast.LENGTH_LONG).show();
                     byte[] newentryimg = imageViewToByte(iv);
 
-                    updateprod(prodid,pname, pcategory, pdesc, psize, act_price, off_price, psale, poffer, newentryimg);
+                    updateprod(prodid,pname, pcategory, pdesc, psize, act_price, psale,  newentryimg);
 
                     Intent r = new Intent(update_product.this, Home.class);
                     startActivity(r);
@@ -195,10 +195,10 @@ public class update_product extends AppCompatActivity {
             }
 
             private void updateprod(String prodid,String pname, String pcategory, String pdesc, String
-                    psize, String act_price, String off_price, String psale, String poffer,
+                    psize, String act_price,  String psale,
                                     byte[] newentryimg){
 
-                int insertproduct = db.updateproduct(prodid,pname, pcategory, pdesc, psize, act_price, off_price, psale, poffer, newentryimg);
+                int insertproduct = db.updateproduct(prodid,pname, pcategory, pdesc, psize, act_price,  psale, newentryimg);
             }
             private byte[] imageViewToByte (ImageView iv){
 

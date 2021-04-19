@@ -42,32 +42,28 @@
 
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:drawableLeft="@drawable/dollar"
+        android:drawableLeft="@drawable/rupees"
         android:textSize="20sp"
         android:elevation="5dp"
+        android:visibility="gone"
         />
+
 
     <TextView
         android:id="@+id/act_Price"
-        android:layout_width="81dp"
+        android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_marginTop="185dp"
-
-
-
-
         android:layout_marginStart="2dp"
-        android:text="actual price"
 
+
+        android:layout_marginTop="185dp"
+        android:drawableLeft="@drawable/rupees"
+
+        android:elevation="5dp"
+        android:text="actual price"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:drawableLeft="@drawable/tag"
-        android:textSize="20sp"
-        android:elevation="5dp"
-        />
-
-
-
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/prod_id"
@@ -89,17 +85,17 @@
         android:id="@+id/prod_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgFood"
-        android:layout_alignEnd="@+id/imgFood"
-        android:layout_alignRight="@+id/imgFood"
-        android:layout_marginTop="106dp"
+        android:layout_below="@+id/act_Price"
+
+
         android:layout_marginEnd="39dp"
         android:layout_marginRight="39dp"
-        android:text="Brand"
+        android:text="desc"
         android:textAlignment="center"
-        android:textColor="#ce1309"
+        android:textColor="@color/black"
         android:textSize="17sp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/prod_name"
@@ -114,24 +110,24 @@
 
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="16sp"
         />
 
     <TextView
         android:id="@+id/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgFood"
-        android:layout_alignEnd="@+id/imgFood"
-        android:layout_alignRight="@+id/imgFood"
-        android:layout_marginTop="214dp"
+        android:layout_below="@+id/prod_desc"
+
+
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
-        android:text="Agency"
+        android:text="cat"
         android:textAlignment="center"
-        android:textColor="#ce1309"
+        android:textColor="@color/black"
         android:textSize="17sp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+       />
 
     <TextView
     android:id="@+id/p_sale"

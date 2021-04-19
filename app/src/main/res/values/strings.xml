@@ -7,12 +7,15 @@
     <string name="addshipment">Add shipment</string>
     <string name="logout">Logout</string>
     <string name="sale"> Sale</string>
-    <string name="updatedriver">Update Driver</string>
+    <string name="cart">cart </string>
     <string name="addcat">Add category</string>
-    <string name="online_rental_service">Online Rental Service</string>
+    <string name="home">home</string>
     <string name="view_product">view product</string>
-    <string name="drawerf">drawf</string>
-    <string name="daweroff">drawff</string>
+    <string name="profile">profile</string>
+    <string name="categories">categories</string>
     <string name="brand">BRAND STORE</string>
+    <string name="orders">orders</string>
+    <string name="about">about</string>
+
 
 </resources>

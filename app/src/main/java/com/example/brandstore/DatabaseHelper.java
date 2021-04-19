@@ -48,6 +48,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_ctiv = "ctiv";
 
 
+    //cart details
+    public static final String TABLE_CART = "cart_table";
+    public static final String COL_cartid = "cart_id";
+    public static final String COL_prodid = "pid";
+    public static final String COL_uid = "_id";
+    public static final String COL_qty = "qty";
+
+    public static final String COL_cart_psize = "cart_psize";
+
+
+
+
 //user registration table
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_NAME + "("
             + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -63,9 +75,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_pdesc + " TEXT,"
             + COL_psize + " TEXT,"
             + COL_paprice + " INTEGER,"
-            + COL_pofprice + " INTEGER,"
+           // + COL_pofprice + " INTEGER,"
             + COL_psale + " TEXT,"
-            + COL_poff + " INTEGER,"
+           // + COL_poff + " INTEGER,"
             + COL_iv + " BLOB " + ")";
 
 
@@ -83,6 +95,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_ctiv + " BLOB " + ")";
 
 
+    //cart table
+    private String CREATE_CART_TABLE = "CREATE TABLE " + TABLE_CART + "("
+            + COL_cartid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COL_prodid + " INTEGER,"
+            + COL_uid + " INTEGER,"
+            + COL_qty + " INTEGER,"
+            + COL_cart_psize + " TEXT,"
+            + " FOREIGN KEY ("+COL_prodid+") REFERENCES "+TABLE_PRODUCT+" ("+COL_pid+"),"
+            + " FOREIGN KEY ("+COL_uid+") REFERENCES "+TABLE_NAME+" ("+COL_1+"));";
+
+
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -95,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_PRODUCT_TABLE);
         db.execSQL(CREATE_SALE_TABLE);
         db.execSQL(CREATE_CATEGORY_TABLE);
+        db.execSQL(CREATE_CART_TABLE);
 
     }
 
@@ -105,6 +129,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SALE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CART);
+
 
 
 
@@ -131,10 +157,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    //INSERT cart DATA******************** add to cart**********
+
+    public boolean insert_to_cart(String spid, String uid, String qty, String size) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_prodid, spid);
+        contentValues.put(COL_uid, uid);
+        contentValues.put(COL_qty, qty);
+        contentValues.put(COL_cart_psize, size);
+
+        long result = db.insert(TABLE_CART, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+
+    }
+
     //INSERT CAR DATA
 
     public boolean insert_prod_data(String cname, String c_cat, String cdesc, String
-            csize, String cact_price, String cof_price, String csale, String coff,
+            csize, String cact_price,  String csale,
                                  byte[] newentryimg) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -145,9 +190,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_pdesc, cdesc);
         contentValues.put(COL_psize, csize);
         contentValues.put(COL_paprice, cact_price);
-        contentValues.put(COL_pofprice, cof_price);
+       // contentValues.put(COL_pofprice, cof_price);
         contentValues.put(COL_psale, csale);
-        contentValues.put(COL_poff, coff);
+       // contentValues.put(COL_poff, coff);
         contentValues.put(COL_iv, newentryimg);
 
         long result = db.insert(TABLE_PRODUCT, null, contentValues);
@@ -164,7 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public int updateproduct(String prodid,String cname, String c_cat, String cdesc, String
-            csize, String cact_price, String cof_price, String csale, String coff,
+            csize, String cact_price,  String csale,
                              byte[] newentryimg) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -174,9 +219,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_pdesc, cdesc);
         contentValues.put(COL_psize, csize);
         contentValues.put(COL_paprice, cact_price);
-        contentValues.put(COL_pofprice, cof_price);
+        //contentValues.put(COL_pofprice, cof_price);
         contentValues.put(COL_psale, csale);
-        contentValues.put(COL_poff, coff);
+        //contentValues.put(COL_poff, coff);
         contentValues.put(COL_iv, newentryimg);
         int i = db.update(TABLE_PRODUCT, contentValues, COL_pid + " = " + prodid, null);
         return i;

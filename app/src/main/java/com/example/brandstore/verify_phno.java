@@ -73,6 +73,7 @@ public class verify_phno extends AppCompatActivity {
 
                 String s_username = usernamelog.getText().toString();
                 String s_password = passlog.getText().toString();
+                String s_admin = "admin";
                 //Authenticate User
                 UserModel currentUser = MyDB.Authenticate(new UserModel(s_username, s_password));
 
@@ -85,12 +86,20 @@ public class verify_phno extends AppCompatActivity {
                     editor.putString("uid", currentUser.user_id);
                     editor.putString("username",currentUser.username);
                     editor.commit();
-                    Intent goToDash = new Intent(verify_phno.this, Home.class);
+                    Intent goToDash = new Intent(verify_phno.this, Home2.class);
                     startActivity(goToDash);
                     finish();
                     Toast.makeText(verify_phno.this, " Login Successful!", Toast.LENGTH_SHORT).show();
 
-                } else {
+                }
+                else if (s_username.equals(s_admin) && s_password.equals(s_admin))
+                {
+                    Intent go = new Intent(verify_phno.this, Home.class);
+                    startActivity(go);
+                    finish();
+                    Toast.makeText(verify_phno.this, " Login admin!", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
                     Toast.makeText(verify_phno.this, "Invalid username or password.", Toast.LENGTH_SHORT).show();
                 }
