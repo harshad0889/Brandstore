@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -35,11 +39,33 @@ public class sale_view extends AppCompatActivity {
             int sid = cursor.getInt(0);
             String s_title = cursor.getString(1);
             String s_desc = cursor.getString(2);
-            byte[] image = cursor.getBlob(3);
+            String prod_name = cursor.getString(3);
+            String sdate = cursor.getString(4);
+            String edate = cursor.getString(5);
+            byte[] image = cursor.getBlob(7);
 
-            list.add(new sale( sid,  s_title,s_desc, image));
+            list.add(new sale( sid, s_title,s_desc, prod_name,  sdate,  edate, image));
         }
         adapter.notifyDataSetChanged();
+
+
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView pname = view.findViewById(R.id.s_pname);
+
+                String p_name = pname.getText().toString();
+
+
+                Intent s = new Intent(sale_view.this,sale_product_view.class);
+                s.putExtra("spname",p_name);
+
+
+
+                startActivity(s);
+            }
+        });
     }
     @Override
     public void onBackPressed() {

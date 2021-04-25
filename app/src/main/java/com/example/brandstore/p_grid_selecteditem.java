@@ -16,10 +16,11 @@ import android.widget.Toast;
 import static com.example.brandstore.update_product.getImage;
 
 public class p_grid_selecteditem extends AppCompatActivity {
-    TextView pid,pname,category,price,desc,qty,size,userid;
+    TextView pid,pname,category,price,desc,qty,size,userid,qty_value;
     ImageView img_prod;
+    int qtyv = 1;
     DatabaseHelper db;
-    Button add_cart,chat2;
+    Button add_cart,chat2,inc_bt,dec_bt,add_whishlist;
     SharedPreferences sd;
     String uid,username;
 
@@ -41,10 +42,14 @@ public class p_grid_selecteditem extends AppCompatActivity {
         desc = (TextView)findViewById(R.id.p_desc);
         qty = (TextView)findViewById(R.id.qty);
         size = (TextView)findViewById(R.id.size);
+        qty_value= findViewById(R.id.tv_qty_value);
+        qty_value.setText(String.valueOf(qtyv));
+        dec_bt= findViewById(R.id.dec);
+        inc_bt= findViewById(R.id.inc);
 
         img_prod = findViewById(R.id.img_prod);
         add_cart = findViewById(R.id.add_cart);
-       // carid = findViewById(R.id.carid);
+        add_whishlist = findViewById(R.id.add_whishlist);
        // carreview = findViewById(R.id.car_review);
         //chat1 = findViewById(R.id.chat);
         //tb = findViewById(R.id.appbar);
@@ -80,7 +85,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
             public void onClick(View view) {
                String spid = pid.getText().toString();
                 String suid = userid.getText().toString();
-                String sp_qty = qty.getText().toString();
+                String sp_qty = qty_value.getText().toString();
                 String s_psize = size.getText().toString();
 
                 db.insert_to_cart(spid, suid, sp_qty, s_psize);
@@ -90,6 +95,52 @@ public class p_grid_selecteditem extends AppCompatActivity {
             }
         });
 
+        //***********add whishlist button click
+
+
+        add_whishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String spid = pid.getText().toString();
+                String suid = userid.getText().toString();
+                //String sp_qty = qty_value.getText().toString();
+               // String s_psize = size.getText().toString();
+
+                db.insert_to_wishlist(spid, suid);
+                Toast.makeText(p_grid_selecteditem.this, "Product added to wishlist ", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        inc_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (qtyv < 5){
+                    qtyv++;
+                    qty_value.setText(String.valueOf(qtyv));
+                } else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Limit of 5 products only",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+
+
+        });
+        dec_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decrement();
+            }
+
+
+        });
+
+
+
 
 
 
@@ -97,5 +148,23 @@ public class p_grid_selecteditem extends AppCompatActivity {
     }
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+   public void increment(){
+        if (qtyv < 5){
+            qtyv++;
+            qty_value.setText(String.valueOf(qtyv));
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Limit of 5 products only",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+    void decrement(){
+        if (qtyv > 1){
+            qtyv--;
+            qty_value.setText(String.valueOf(qtyv));
+        }
     }
 }

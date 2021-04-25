@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F10A0A"
+            android:background="@color/orange"
             android:padding="2dp"
 
             android:fitsSystemWindows="true">
@@ -57,7 +57,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
             android:ems="8"
-            android:hint="  Sale title"
+            android:hint="  category name"
             android:inputType="textPersonName"
             android:elevation="5dp"
             android:textSize="18dp" />

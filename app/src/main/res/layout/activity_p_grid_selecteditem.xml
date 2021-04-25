@@ -49,7 +49,26 @@
 
                 android:textColor="#675E5E"
 
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                android:visibility="gone"/>
+            <TextView
+
+                android:layout_width="140dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="290dp"
+                android:layout_marginEnd="53dp"
+                android:layout_marginRight="40dp"
+
+
+                android:text="SIZE CHART:"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="#675E5E"
+
+                android:textSize="22sp"
+               />
 
 
             <TextView
@@ -61,13 +80,80 @@
                 android:layout_marginEnd="53dp"
                 android:layout_marginRight="40dp"
 
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="sans-serif-condensed"
                 android:hint="size chart"
                 android:textAlignment="center"
 
                 android:textColor="#6E6D6D"
 
                 android:textSize="22sp" />
+
+            <TextView
+
+                android:layout_width="140dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="390dp"
+                android:layout_marginEnd="53dp"
+                android:layout_marginRight="40dp"
+
+
+                android:text="QUANTITY:"
+                android:textStyle="bold"
+                android:textAlignment="center"
+
+                android:textColor="#675E5E"
+
+                android:textSize="22sp"
+                />
+
+            <Button
+                android:id="@+id/dec"
+                android:layout_width="48dp"
+                android:layout_height="23dp"
+                android:textColor="@android:color/black"
+                android:background="@color/white"
+                android:text="-"
+                android:elevation="20dp"
+                android:textSize="12sp"
+
+
+
+                android:layout_marginTop="390dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="150dp"
+                android:fontStyle="italic"
+
+                />
+            <TextView
+                android:id="@+id/tv_qty_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="390dp"
+                android:layout_marginBottom="10dp"
+                android:fontStyle="italic"
+                android:textSize="18dp"
+                android:layout_toEndOf="@+id/dec"
+                />
+            <Button
+                android:id="@+id/inc"
+                android:layout_width="48dp"
+                android:layout_height="23dp"
+                android:textColor="@android:color/black"
+                android:background="@color/white"
+                android:elevation="20dp"
+                android:text="+"
+                android:textSize="12sp"
+                android:layout_toEndOf="@+id/tv_qty_value"
+                android:layout_toRightOf="@+id/tv_qty_value"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="390dp"
+                android:layout_marginBottom="10dp"
+                android:fontStyle="italic"
+               />
 
             <TextView
                 android:id="@+id/p_id"
@@ -83,6 +169,7 @@
                 android:textAlignment="center"
 
                 android:textSize="23sp"
+                android:visibility="gone"
                  />
             <TextView
                 android:id="@+id/u_id"
@@ -98,6 +185,7 @@
                 android:textAlignment="center"
 
                 android:textSize="23sp"
+                android:visibility="gone"
                  />
 
 
@@ -107,12 +195,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="33dp"
-                android:layout_marginTop="460dp"
+                android:layout_marginTop="530dp"
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="53dp"
                 android:text="this section includes details of product above.....       "
                 android:textColor="#423F3F"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 android:textStyle="normal" />
 
             <TextView
@@ -127,7 +215,7 @@
 
                 android:hint="p_name"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="26sp" />
 
 
 
@@ -152,20 +240,27 @@
                 android:layout_height="5dp"
                 android:layout_marginStart="33dp"
 
-                android:layout_marginTop="380dp"
+                android:layout_marginTop="470dp"
                 android:layout_marginEnd="0dp"
 
                 android:layout_marginRight="0dp"
                 android:background="@drawable/hline"
 
                 android:textStyle="bold" />
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="480dp"
+
+                android:backgroundTint="@color/black" />
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
-                android:layout_marginTop="420dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="490dp"
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="43dp"
                 android:text="PRODUCT DESCRIPTION  "
@@ -181,9 +276,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="33dp"
                 android:layout_marginTop="620dp"
-                android:layout_marginEnd="41dp"
-                android:layout_marginRight="43dp"
+
+
                 android:text="quantity"
+                android:fontFamily="serif-monospace"
                 android:textColor="#424040"
                 android:textSize="23sp"
                 android:textStyle="normal" />
@@ -196,8 +292,9 @@
                 android:layout_marginTop="620dp"
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="43dp"
-                android:text="items left       "
+                android:text=" items left       "
                 android:textColor="#424040"
+                android:fontFamily="serif-monospace"
                 android:textSize="23sp"
                 android:textStyle="normal" />
 
@@ -227,12 +324,29 @@
         </RelativeLayout>
     </ScrollView>
 
+
     <Button
-        android:id="@+id/add_cart"
-        android:layout_width="match_parent"
+        android:id="@+id/add_whishlist"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="680dp"
         android:layout_marginStart="10dp"
+
+        android:ems="10"
+        android:textStyle="bold"
+        android:background="@color/orange"
+        android:text="ADD TO WISHLIST"
+
+        android:textColor="#fff"/>
+
+    <Button
+        android:id="@+id/add_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="680dp"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/add_whishlist"
+
 
         android:ems="10"
         android:textStyle="bold"

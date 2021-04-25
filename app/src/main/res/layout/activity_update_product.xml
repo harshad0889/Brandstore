@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F10A0A"
+            android:background="@color/orange"
             android:padding="2dp"
 
             android:fitsSystemWindows="true">
@@ -134,7 +134,8 @@
             android:inputType="phone"
             android:elevation="5dp"
 
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:visibility="gone"/>
 
         <EditText
             android:layout_width="250dp"
@@ -158,7 +159,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
             android:ems="8"
-            android:elevation="5dp"/>
+            android:elevation="5dp"
+            android:visibility="gone"/>
 
 
         <LinearLayout
@@ -203,15 +205,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             >
 
             <Button
                 android:id="@+id/update_product"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="25dp"
+                android:layout_margin="5dp"
+
                 android:ems="10"
                 android:textStyle="bold"
                 android:background="@drawable/joinbtn"
@@ -232,7 +234,8 @@
                 android:onClick="addRecord"
                 android:text="DELETE"
                 android:textColor="#fff"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone"/>
         </RelativeLayout>
 
 

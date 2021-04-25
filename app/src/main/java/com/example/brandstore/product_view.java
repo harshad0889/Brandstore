@@ -1,6 +1,11 @@
 package com.example.brandstore;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +33,9 @@ public class product_view extends AppCompatActivity {
     ArrayList<category> catlists;
     productListAdapter adapter = null;
     catlistAadapter adapter2 = null;
+    private NavigationView nv;
+    private DrawerLayout dl;
+    private Toolbar tb;
     DatabaseHelper db;
 
     @Override
@@ -34,7 +45,10 @@ public class product_view extends AppCompatActivity {
 
         db=new DatabaseHelper(this);
         gridView =  findViewById(R.id.gv_product);
+        dl = findViewById(R.id.drawer);
+        nv = findViewById(R.id.nav);
         rV_cat =  findViewById(R.id.rv_categoreis);
+        tb=findViewById(R.id.appbar);
 
         list = new ArrayList<>();
         adapter = new productListAdapter(this, R.layout.product_items, list);
@@ -102,6 +116,66 @@ public class product_view extends AppCompatActivity {
         });
 
 
+        setSupportActionBar(tb);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.menuicon);
+
+
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id){
+
+                    case R.id.add_product:
+                        Intent add = new Intent(product_view.this, Add_product.class);
+                        startActivity(add);
+                        finish();
+                        return true;
+
+                    case R.id.sales:
+                        Intent s = new Intent(product_view.this, sale_view.class);
+                        startActivity(s);
+                        finish();
+                        return true;
+
+
+                    case R.id.add_sale:
+                        Intent g = new Intent(product_view.this, Add_sale.class);
+                        startActivity(g);
+                        finish();
+                        return true;
+
+                    case R.id.update_prod:
+                        Intent r = new Intent(product_view.this, product_updview.class);
+                        startActivity(r);
+                        finish();
+                        return true;
+
+                    case R.id.view_product:
+                        Intent u = new Intent(product_view.this, product_view.class);
+                        startActivity(u);
+                        finish();
+                        return true;
+
+
+
+
+                    case R.id.add_cat:
+                        Intent main = new Intent(product_view.this, Add_category.class);
+                        startActivity(main);
+                        finish();
+
+
+
+                }
+
+                return true;
+            }
+        });
+
+
 
 
         // for recycler view
@@ -131,6 +205,19 @@ public class product_view extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+
+            case android.R.id.home:
+                dl.openDrawer(GravityCompat.START);
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

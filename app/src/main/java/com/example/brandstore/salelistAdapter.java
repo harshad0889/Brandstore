@@ -43,7 +43,7 @@ public class salelistAdapter extends BaseAdapter {
 
     private class ViewHolder{
         ImageView imageView;
-        TextView sid, s_title,s_desc;
+        TextView sid, s_title,s_desc,pname,sdate,edate;
     }
 
 
@@ -59,9 +59,13 @@ public class salelistAdapter extends BaseAdapter {
 
 
             holder.sid = (TextView) row.findViewById(R.id.s_id);
-            holder.imageView = (ImageView) row.findViewById(R.id.imgFood);
-            holder.s_title = (TextView) row.findViewById(R.id.sale_title);
+            holder.s_title = (TextView) row.findViewById(R.id.s_title);
             holder.s_desc = (TextView) row.findViewById(R.id.sale_desc);
+            holder.pname = (TextView) row.findViewById(R.id.s_pname);
+            holder.sdate = (TextView) row.findViewById(R.id.sdate);
+            holder.edate = (TextView) row.findViewById(R.id.edate);
+            holder.imageView = (ImageView) row.findViewById(R.id.imgFood);
+
 
 
             row.setTag(holder);
@@ -76,6 +80,9 @@ public class salelistAdapter extends BaseAdapter {
         holder.sid.setText(Integer.toString(s.getSid()));
         holder.s_title.setText(s.getS_title());
         holder.s_desc.setText(s.getS_desc());
+        holder.pname.setText(s.getProd_name());
+        holder.sdate.setText(s.getSdate());
+        holder.edate.setText(s.getEdate());
 
 
 

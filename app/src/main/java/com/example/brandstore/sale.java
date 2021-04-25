@@ -4,13 +4,19 @@ public class sale {
     private int sid;
     private String s_title;
     private String s_desc;
+    private String prod_name;
+    private String sdate;
+    private String edate;
     private byte[] image;
 
 
-    public sale(int sid, String s_title, String s_desc, byte[] image) {
+    public sale(int sid, String s_title, String s_desc, String prod_name, String sdate, String edate, byte[] image) {
         this.sid = sid;
         this.s_title = s_title;
         this.s_desc = s_desc;
+        this.prod_name = prod_name;
+        this.sdate = sdate;
+        this.edate = edate;
         this.image = image;
     }
 
@@ -39,6 +45,30 @@ public class sale {
         this.s_desc = s_desc;
     }
 
+    public String getProd_name() {
+        return prod_name;
+    }
+
+    public void setProd_name(String prod_name) {
+        this.prod_name = prod_name;
+    }
+
+    public String getSdate() {
+        return sdate;
+    }
+
+    public void setSdate(String sdate) {
+        this.sdate = sdate;
+    }
+
+    public String getEdate() {
+        return edate;
+    }
+
+    public void setEdate(String edate) {
+        this.edate = edate;
+    }
+
     public byte[] getImage() {
         return image;
     }
@@ -46,6 +76,4 @@ public class sale {
     public void setImage(byte[] image) {
         this.image = image;
     }
-
-
 }

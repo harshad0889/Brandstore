@@ -88,17 +88,17 @@ public class Home2 extends AppCompatActivity {
                         selectedfrag = new cat_fragment();
                         break;
 
-                    case R.id.profile_nav:
-                        return true;
+                    case R.id.sale_nav:
+                        selectedfrag = new sale_fragment();
+                        break;
 
                     case R.id.cart_nav:
                         selectedfrag = new cart_fragment();
                         break;
 
-                    case R.id.sign_out:
-                        Intent intent = new Intent(getApplicationContext(), verify_phno.class);
-
-                        startActivity(intent);
+                    case R.id.profile:
+                        selectedfrag = new viewprofile_fragment();
+                        break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_cotainer,selectedfrag).commit();
                 return true;

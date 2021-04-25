@@ -114,6 +114,57 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="products"
+            android:id="@+id/prod_list"
+            >
+
+        </TextView>
+
+
+        <Button
+            android:id="@+id/choose_prod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="45dp"
+            android:ems="10"
+            android:textStyle="bold"
+            android:background="@drawable/joinbtn"
+            android:text="CHOOSE PRODUCTS"
+            android:onClick="addRecord"
+            android:textColor="#fff"/>
+
+        <EditText
+            android:id="@+id/start_date"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:drawableRight="@drawable/cal"
+            android:hint="   sale starts "
+            android:focusableInTouchMode="false"
+
+            />
+        <EditText
+            android:id="@+id/end_date"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="20dp"
+            android:drawableRight="@drawable/cal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:hint="   sale ends "
+            android:focusableInTouchMode="false"
+
+            />
+
 
 
         <RelativeLayout

@@ -6,22 +6,30 @@
     android:background="@drawable/btn"
     android:elevation="5dp"
 
+    android:layout_margin="20dp"
+
     >
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/imgFood"
+
+        android:backgroundTint="#80FFFFFF"
+        android:backgroundTintMode="src_over"
+        android:alpha="0.5"
+
+        android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:padding="10dp"
-        android:requiresFadingEdge="horizontal"
-        android:layout_margin="5dp"
 
-        android:background="@color/lightwhite"
-        android:layout_marginTop="5dp"
+
+
+
+        android:background="#FFFFFF"
+
 
         />
 
@@ -32,38 +40,100 @@
         android:id="@+id/sale_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="145dp"
 
 
 
 
-        android:layout_marginStart="180dp"
+        android:layout_marginStart="20dp"
         android:text="prod description"
 
         android:textAlignment="center"
-        android:textColor="#6E6868"
+        android:textColor="#090303"
         android:drawableLeft="@drawable/tag"
         android:fontFamily="monospace"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:elevation="5dp"
         />
 
 
     <TextView
-        android:id="@+id/sale_title"
+        android:id="@+id/sdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+
+
+        android:layout_marginTop="175dp"
+        android:drawableLeft="@drawable/cal"
+
+        android:elevation="5dp"
+        android:fontFamily="monospace"
+        android:text="sdate"
+        android:textAlignment="center"
+        android:textColor="#090303"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+
+    <TextView
+        android:id="@+id/edate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+
+
+        android:layout_marginTop="175dp"
+        android:drawableLeft="@drawable/cal"
+
+        android:elevation="5dp"
+        android:fontFamily="monospace"
+        android:text="edate"
+        android:textAlignment="center"
+        android:textColor="#090303"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+
+    <TextView
+        android:id="@+id/s_pname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="190dp"
+
+        android:layout_marginStart="15dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
 
-        android:text="name"
+        android:text="pname"
+
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="34sp" />
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/s_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:fontFamily="sans-serif-medium"
+
+        android:text="title"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/s_id"

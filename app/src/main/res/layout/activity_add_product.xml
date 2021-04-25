@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="false">
+    android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F10A0A"
+            android:background="@color/orange"
             android:padding="2dp"
 
             android:fitsSystemWindows="true">
@@ -59,6 +59,7 @@
             android:background="@drawable/btn"
             android:ems="8"
             android:hint="  Product name"
+            android:drawableLeft="@drawable/transa_space"
             android:inputType="textPersonName"
             android:elevation="5dp"
             android:textSize="18dp" />
@@ -84,6 +85,8 @@
             android:hint="  category"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
+            android:drawableLeft="@drawable/transa_space"
+            android:focusableInTouchMode="false"
             android:ems="8"
             android:elevation="5dp"
             android:inputType="textPersonName"/>
@@ -91,6 +94,7 @@
         <EditText
             android:layout_width="250dp"
             android:layout_height="70dp"
+            android:drawableLeft="@drawable/transa_space"
             android:hint="  Product description"
             android:inputType=""
             android:layout_marginTop="20dp"
@@ -105,6 +109,7 @@
             android:hint="  choose size"
             android:inputType=""
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/transa_space"
             android:background="@drawable/btn"
 
             android:elevation="5dp"
@@ -120,6 +125,7 @@
             android:textSize="18dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
+            android:drawableLeft="@drawable/transa_space"
             android:ems="8"
             android:elevation="5dp"/>
 
@@ -134,16 +140,18 @@
             android:inputType="phone"
             android:elevation="5dp"
 
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:visibility="gone"/>
 
         <EditText
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:hint="  choose sale"
+            android:hint="  quantity"
             android:inputType=""
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
 
+            android:drawableLeft="@drawable/transa_space"
             android:elevation="5dp"
             android:textSize="18dp"
             android:id="@+id/P_sale"/>
@@ -158,14 +166,15 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
             android:ems="8"
-            android:elevation="5dp"/>
+            android:elevation="5dp"
+            android:visibility="gone"/>
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp">
 
             <ImageView
@@ -203,11 +212,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:padding="2dp"
+            android:layout_marginRight="5dp"
+
             >
 
         <Button
             android:id="@+id/add_product"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -222,10 +235,10 @@
 
         <Button
             android:id="@+id/p_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="230dp"
+            android:layout_marginStart="210dp"
             android:background="@drawable/joinbtn"
             android:ems="10"
             android:layout_marginBottom="10dp"

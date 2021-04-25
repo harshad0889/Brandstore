@@ -47,6 +47,7 @@
         android:layout_height="match_parent"
 
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="100dp"
         android:background="@color/white"
 
 
@@ -55,11 +56,67 @@
         android:gravity="center"
         android:horizontalSpacing="10dp"
         android:numColumns="1"
-        android:padding="5dp"
+
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
 
         />
+    <TextView
+        android:id="@+id/total_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="CART TOTAL :"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="580dp"
+       />
+    <TextView
+        android:id="@+id/tv_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Rs.500"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="580dp"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginStart="5dp"
+        android:layout_toRightOf="@id/total_tag"
+         />
+    <TextView
+        android:id="@+id/price_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Price details"
+        android:textStyle="normal"
+        android:textColor="@color/blue"
+        android:textSize="12sp"
+        android:layout_marginTop="610dp"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginStart="10dp"
+
+        />
+
+    <Button
+        android:id="@+id/place_ord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:duplicateParentState="true"
+        android:layout_centerHorizontal="true"
+        android:background="#F44336"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="630dp"
+        android:paddingRight="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Proceed to Buy"
+        android:visibility="visible"/>
 
 
 </RelativeLayout>

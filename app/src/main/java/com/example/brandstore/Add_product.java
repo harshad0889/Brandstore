@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,12 @@ public class Add_product extends AppCompatActivity {
 
     String  pname,pcategory,pdesc,psize,act_price,off_price,psale,poffer;
 
+    private SimpleCursorAdapter adapter;
+
+   // final String[] from = new String[]{db.COL_ctname};
+
+    //final int[] to = new int[]{R.id.duid};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,19 +71,30 @@ public class Add_product extends AppCompatActivity {
         addimage= findViewById(R.id.addimage);
         iv = findViewById(R.id.iv);
 
+//"SELECT  DISTINCT cat_name from cate_table"
 
 
-        lv_category = findViewById(R.id.lvcat);
+        List<String> names = new ArrayList<>();
+        Cursor cursor = db.getData("SELECT  DISTINCT cat_name from cate_table");
+        if(cursor != null){
+            while(cursor.moveToNext()){
+                names.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_ctname)));
+
+            }
+        }
+
+
+                lv_category = findViewById(R.id.lvcat);
         lv_category = new ListView(this);
         List<String> data = new ArrayList<>();
-        data.add("Shirts");
-        data.add("Jeans");
-        data.add("Tshirts");
-        data.add("pants");
-        data.add("Belts");
-        data.add("Wallets");
-        data.add("Boxers");
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,data);
+        data.add("SHIRTS");
+        data.add("JEANS");
+        data.add("T SHIRTS");
+        data.add("PANTS");
+        data.add("BELTS");
+        data.add("WALLETS");
+        data.add("BOXERS");
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,names);
         lv_category.setAdapter(adapter);
         AlertDialog.Builder builder = new AlertDialog.Builder(Add_product.this);
         builder.setCancelable(true);
@@ -143,18 +162,12 @@ public class Add_product extends AppCompatActivity {
                     actual_amount.requestFocus();
                     actual_amount.setError("please enter  actual amount");
 
-                } else if (offer_amount.length() == 0) {
-                    offer_amount.requestFocus();
-                    offer_amount.setError("please enter  offer amount");
                 }
                 else if (sale.length() == 0) {
                     sale.requestFocus();
                     sale.setError("please enter  sale");
                 }
-                else if (Offer.length() == 0) {
-                    Offer.requestFocus();
-                    Offer.setError("please enter  offer");
-                } else {
+               else {
 
 
                     Toast.makeText(Add_product.this, "Product added succesfully ", Toast.LENGTH_LONG).show();

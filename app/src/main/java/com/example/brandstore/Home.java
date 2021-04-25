@@ -95,10 +95,16 @@ public class Home extends AppCompatActivity {
                         finish();
                         return true;
 
-
                     case R.id.sales:
                         Intent s = new Intent(Home.this, sale_view.class);
                         startActivity(s);
+                        finish();
+                        return true;
+
+
+                    case R.id.add_sale:
+                        Intent g = new Intent(Home.this, Add_sale.class);
+                        startActivity(g);
                         finish();
                         return true;
 
@@ -120,6 +126,11 @@ public class Home extends AppCompatActivity {
                     case R.id.add_cat:
                         Intent main = new Intent(Home.this, Add_category.class);
                         startActivity(main);
+                        finish();
+
+                    case R.id.logout:
+                        Intent m = new Intent(Home.this, verify_phno.class);
+                        startActivity(m);
                         finish();
 
 

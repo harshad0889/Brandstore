@@ -6,30 +6,30 @@
     android:title="@string/addproduct" />
 
     <item android:id="@+id/update_prod"
-        android:icon="@drawable/tag"
+        android:icon="@drawable/edit"
         android:title="@string/updateproduct" />
 
     <item android:id="@+id/view_product"
-        android:icon="@drawable/tag"
+        android:icon="@drawable/products"
         android:title="@string/view_product" />
 
     <item android:id="@+id/add_sale"
-        android:icon="@drawable/tag"
+        android:icon="@drawable/add_sale"
         android:title="Add sale" />
     <item android:id="@+id/sales"
         android:icon="@drawable/tag"
         android:title="@string/sale" />
 
     <item android:id="@+id/add_cat"
-        android:icon="@drawable/tag"
+        android:icon="@drawable/ic_category"
         android:title="@string/addcat" />
 
     <item android:id="@+id/add_shipment"
-        android:icon="@drawable/location"
+        android:icon="@drawable/shipment"
         android:title="@string/addshipment" />
 
     <item android:id="@+id/logout"
-        android:icon="@drawable/tag"
+        android:icon="@drawable/ic_signout"
         android:title="@string/logout" />
 
 

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,23 +15,25 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class cat_prod_view extends AppCompatActivity {
+public class sale_product_view extends AppCompatActivity {
     GridView gvcat_prodview;
     ArrayList<product> list;
     private NavigationView nv;
+    TextView title;
 
     productListAdapter adapter = null;
 
     DatabaseHelper db;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cat_prod_view);
+        setContentView(R.layout.activity_sale_product_view);
+
+
         db=new DatabaseHelper(this);
-        gvcat_prodview =  findViewById(R.id.gv_cat_product);
-        nv = findViewById(R.id.nav);
+        gvcat_prodview =  findViewById(R.id.gv_sale_product);
+         title = findViewById(R.id.title);
 
 
         list = new ArrayList<>();
@@ -41,13 +42,15 @@ public class cat_prod_view extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-       // String catid = intent.getStringExtra("catid");
-        String spname= intent.getStringExtra("catname");
+        // String catid = intent.getStringExtra("catid");
+        String spname= intent.getStringExtra("spname");
+       // title.setText(spname);
+        String spnames = "casual shirts";
 
-       // Bitmap bitmap = intent.getParcelableExtra("catimage");
+        // Bitmap bitmap = intent.getParcelableExtra("catimage");
 
 
-        Cursor cursor = db.getData("SELECT * FROM product_table WHERE pcategory ="+ '"'+spname+'"');
+        Cursor cursor = db.getData("SELECT * FROM product_table WHERE pname ="+ '"'+spname+'"');
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -56,8 +59,8 @@ public class cat_prod_view extends AppCompatActivity {
             String p_desc = cursor.getString(3);
             String p_size = cursor.getString(4);
             String a_price = cursor.getString(5);
-           // String o_price = cursor.getString(6);
-           // String p_off = cursor.getString(8);
+            // String o_price = cursor.getString(6);
+            // String p_off = cursor.getString(8);
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
@@ -90,7 +93,7 @@ public class cat_prod_view extends AppCompatActivity {
                 String size = p_size.getText().toString();
 
 
-                Intent s = new Intent(cat_prod_view.this,p_grid_selecteditem.class);
+                Intent s = new Intent(sale_product_view.this,p_grid_selecteditem.class);
                 s.putExtra("pid",pid);
                 s.putExtra("p_price",sa_price);
                 s.putExtra("p_desc",p_desc);
@@ -106,4 +109,5 @@ public class cat_prod_view extends AppCompatActivity {
 
 
     }
+
 }

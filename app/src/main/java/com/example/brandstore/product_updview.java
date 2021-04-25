@@ -58,7 +58,7 @@ public class product_updview extends AppCompatActivity {
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name,a_price,p_sale, p_category, p_desc, p_size,  image));
+            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image));
         }
         adapter.notifyDataSetChanged();
 

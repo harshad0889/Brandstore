@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.brandstore">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/carlogo"
@@ -9,6 +12,13 @@
         android:roundIcon="@drawable/carlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".whishlist"></activity>
+        <activity android:name=".my_orders" />
+        <activity android:name=".razorpay" />
+        <activity android:name=".phonepesample" />
+        <activity android:name=".gpay_sample" />
+        <activity android:name=".choose_payment" />
+        <activity android:name=".sale_product_view" />
         <activity android:name=".p_grid_selecteditem" />
         <activity android:name=".cust_category" />
         <activity android:name=".Home2" />

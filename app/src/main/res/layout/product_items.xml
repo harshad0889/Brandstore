@@ -63,7 +63,8 @@
         android:text="actual price"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/prod_id"

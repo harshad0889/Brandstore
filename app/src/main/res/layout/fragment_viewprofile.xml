@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/tv_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="16dp"
+        android:text="My Profile"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textSize="32sp" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/tv_Title"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/tv_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:gravity="center_horizontal" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_myorder"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/cv_profile"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/tv_my_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Orders"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:gravity="center_horizontal" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_aboutus"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/cv_myorder"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/tv_aboutus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About Us"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:gravity="center_horizontal" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_whishlist"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/cv_aboutus"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/tv_whishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="whishlist"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:gravity="center_horizontal" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_signout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/cv_whishlist"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/tv_signout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:gravity="center_horizontal" />
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

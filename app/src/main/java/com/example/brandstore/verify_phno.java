@@ -94,7 +94,7 @@ public class verify_phno extends AppCompatActivity {
                 }
                 else if (s_username.equals(s_admin) && s_password.equals(s_admin))
                 {
-                    Intent go = new Intent(verify_phno.this, Home.class);
+                    Intent go = new Intent(verify_phno.this, product_view.class);
                     startActivity(go);
                     finish();
                     Toast.makeText(verify_phno.this, " Login admin!", Toast.LENGTH_SHORT).show();

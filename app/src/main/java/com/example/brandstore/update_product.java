@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -59,6 +60,16 @@ public class update_product extends AppCompatActivity {
         addimage= findViewById(R.id.addimage);
         iv = findViewById(R.id.iv);
 
+        List<String> names = new ArrayList<>();
+        Cursor cursor = db.getData("SELECT  DISTINCT cat_name from cate_table");
+        if(cursor != null){
+            while(cursor.moveToNext()){
+                names.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_ctname)));
+
+            }
+        }
+
+
 
         lv_category = findViewById(R.id.lvcat);
         lv_category = new ListView(this);
@@ -70,7 +81,7 @@ public class update_product extends AppCompatActivity {
         data.add("Belts");
         data.add("Wallets");
         data.add("Boxers");
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,data);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,names);
         lv_category.setAdapter(adapter);
         AlertDialog.Builder builder = new AlertDialog.Builder(update_product.this);
         builder.setCancelable(true);
@@ -126,9 +137,9 @@ public class update_product extends AppCompatActivity {
         prod_desc.setText(sdesc);
         size.setText(ssize);
         actual_amount.setText(sacprice);
-        offer_amount.setText(sofprice);
+       // offer_amount.setText(sofprice);
         sale.setText(ssale);
-        Offer.setText(soff);
+       // Offer.setText(soff);
         byte[] bytes = db.prodImage(spid);
         iv.setImageBitmap(getImage(bytes));
 
@@ -143,9 +154,9 @@ public class update_product extends AppCompatActivity {
                 pdesc = prod_desc.getText().toString();
                 psize = size.getText().toString();
                 act_price = actual_amount.getText().toString();
-                off_price = offer_amount.getText().toString();
+                //off_price = offer_amount.getText().toString();
                 psale = sale.getText().toString();
-                poffer = Offer.getText().toString();
+               // poffer = Offer.getText().toString();
                 //caddcar = addcar.getText().toString();
                 //ccarreset = carreset.getText().toString();
 
@@ -166,18 +177,12 @@ public class update_product extends AppCompatActivity {
                     actual_amount.requestFocus();
                     actual_amount.setError("please enter  actual amount");
 
-                } else if (offer_amount.length() == 0) {
-                    offer_amount.requestFocus();
-                    offer_amount.setError("please enter  offer amount");
                 }
                 else if (sale.length() == 0) {
                     sale.requestFocus();
                     sale.setError("please enter  sale");
                 }
-                else if (Offer.length() == 0) {
-                    Offer.requestFocus();
-                    Offer.setError("please enter  offer");
-                } else {
+                else {
 
 
                     Toast.makeText(update_product.this, "Product updated succesfully ", Toast.LENGTH_LONG).show();
