@@ -79,14 +79,44 @@
 
 
     <EditText
+    android:layout_width="250dp"
+    android:layout_height="40dp"
+    android:inputType="phone"
+    android:id="@+id/phnno"
+    android:hint="    phone number"
+    android:layout_gravity="center_horizontal"
+    android:textSize="18dp"
+    android:drawableLeft="@drawable/call"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/btn"
+    android:elevation="10dp"
+    android:ems="8"
+    android:padding="10dp"/>
+
+    <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:inputType="phone"
-        android:id="@+id/phnno"
-        android:hint="    phone number"
+        android:id="@+id/address"
+        android:hint="    Address"
         android:layout_gravity="center_horizontal"
         android:textSize="18dp"
-        android:drawableLeft="@drawable/call"
+        android:drawableLeft="@drawable/address"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="phone"
+        android:id="@+id/pin"
+        android:hint="    PIN"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18dp"
+        android:drawableLeft="@drawable/pincode"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn"
         android:elevation="10dp"

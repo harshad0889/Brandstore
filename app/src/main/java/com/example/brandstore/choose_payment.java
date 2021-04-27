@@ -5,13 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class choose_payment extends AppCompatActivity {
         RadioGroup payment;
@@ -21,6 +25,9 @@ public class choose_payment extends AppCompatActivity {
         SharedPreferences sp;
         String uid,username,delivery_charge,order_status,p_mode,quantity;
         DatabaseHelper db;
+        Cursor cursor;
+        int order_id;
+        ArrayList<String> cartList;
 
 
 @Override
@@ -34,6 +41,9 @@ protected void onCreate(Bundle savedInstanceState) {
          quantity = "5";
          order_status="packed";
 
+         cartList = new ArrayList<>();
+         cartList = getIntent().getStringArrayListExtra("cart_id's");
+
     db = new DatabaseHelper(this);
 
 
@@ -43,7 +53,6 @@ protected void onCreate(Bundle savedInstanceState) {
         upi = findViewById(R.id.rad_upi);
        cod  = findViewById(R.id.rad_COD);
         sub_total  = findViewById(R.id.sub_total);
-
 
 
     Intent intent = getIntent();
@@ -88,7 +97,16 @@ protected void onCreate(Bundle savedInstanceState) {
 
             private void addorder (String uid,String total_amt,String delivery_charge,String quantity,String order_status,String p_mode){
 
-                boolean insertcardata = db.insert_order_data(uid,total_amt,delivery_charge,quantity,order_status,p_mode);
+                long insertcardata = db.insert_order_data(uid,total_amt,delivery_charge,quantity,order_status,p_mode);
+                Log.e( "orderId: ", String.valueOf(insertcardata));
+                for (int i=0;i<cartList.size();i++)
+                {
+                    String cart_id = cartList.get(i);
+                    Log.e( "cart_id: ", cart_id );
+                     //db.getData2(String.format("UPDATE cart_table SET order_id= '%d' WHERE cart_id = %s",insertcardata,cart_id));
+                     int updatecart = db.update_cart(String.valueOf(insertcardata),cart_id);
+
+                }
             }
         });
 

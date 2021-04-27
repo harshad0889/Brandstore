@@ -30,6 +30,7 @@ public class cart_fragment extends Fragment {
     GridView gv_cart;
     ArrayList<cart> cartlist;
     cart_fragment cartfragment;
+    ArrayList<String> cart_ids;
 
 
     SharedPreferences sp;
@@ -73,6 +74,7 @@ public class cart_fragment extends Fragment {
         Cart_total = view.findViewById(R.id.tv_total);
         ArrayList<cart> cartlist;
         cartlist = new ArrayList<>();
+        cart_ids = new ArrayList<>();
         final Context context;
         adapter = new cartlistAdapter(getContext(), R.layout.cart_item, cartlist);
         gv_cart.setAdapter(adapter);
@@ -91,6 +93,7 @@ public class cart_fragment extends Fragment {
                 String total_amount = Cart_total.getText().toString();
                 Intent in = new Intent(getContext(),choose_payment.class);
                 in.putExtra("tot",total_amount);
+                in.putStringArrayListExtra("cart_id's", cart_ids);
                 startActivity(in);
                 Toast.makeText(getContext(), "Product added succesfully ", Toast.LENGTH_LONG).show();
 
@@ -104,15 +107,17 @@ public class cart_fragment extends Fragment {
         cartlist.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(1);
-            String p_name = cursor.getString(6);
-            String price = cursor.getString(10);
-            String p_desc = cursor.getString(8);
+            String cart_id = cursor.getString(0);
+            String p_name = cursor.getString(8);
+            String price = cursor.getString(12);
+            String p_desc = cursor.getString(10);
             String p_qty = cursor.getString(3);
 
             String uid = cursor.getString(2);
-            byte[] image = cursor.getBlob(12);
+            byte[] image = cursor.getBlob(14);
 
-            cartlist.add(new cart( pid,  p_name, price, p_desc,p_qty,uid,  image));
+            cartlist.add(new cart( pid,cart_id,  p_name, price, p_desc,p_qty,uid,  image));
+            cart_ids.add(cart_id);
         }
         adapter.notifyDataSetChanged();
 

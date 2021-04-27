@@ -18,8 +18,8 @@ public class Registration extends AppCompatActivity {
     EditText password;
 
     EditText phnno;
-    EditText c_password;
-    String s_name,s_phn, s_cpass, s_pass;
+    EditText c_password,address,pin;
+    String s_name,s_phn, s_cpass, s_pass,s_address,s_pin;
 
     Button btnreg,reset;
     DatabaseHelper MyDB;
@@ -39,6 +39,8 @@ public class Registration extends AppCompatActivity {
         phnno = (EditText) findViewById(R.id.phnno);
         password = (EditText) findViewById(R.id.password);
         c_password = (EditText) findViewById(R.id.cpassword);
+        address = (EditText) findViewById(R.id.address);
+        pin = (EditText) findViewById(R.id.pin);
         btnreg = (Button) findViewById(R.id.bt_register);
 
 
@@ -51,6 +53,8 @@ public class Registration extends AppCompatActivity {
                 s_phn = phnno.getText().toString();
                 s_pass = password.getText().toString();
                 s_cpass = c_password.getText().toString();
+                s_address = address.getText().toString();
+                s_pin = pin.getText().toString();
 
                 if (username.length() == 0) {
                     username.requestFocus();
@@ -76,9 +80,17 @@ public class Registration extends AppCompatActivity {
                     password.requestFocus();
                     password.setError(" password miss match");
                 }
+                else if (address.length() == 0) {
+                    address.requestFocus();
+                    address.setError("please enter your address");
+                } else if (pin.length() == 0) {
+                    pin.requestFocus();
+                    pin.setError("please enter your pincode");
+
+                }
                 else {
 
-                    MyDB.insertdata(s_name, s_phn, s_pass);
+                    MyDB.insertdata(s_name, s_phn,s_address,s_pin, s_pass);
 
                     Toast.makeText(Registration.this, "User created successfully! Please Login ", Toast.LENGTH_LONG).show();
 

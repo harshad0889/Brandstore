@@ -1,11 +1,8 @@
 package com.example.brandstore;
 
-public class cart {
-
-
+public class wish {
 
     private int pid;
-    private String cart_id;
     private String p_name;
     private String a_price;
     private String p_desc;
@@ -14,7 +11,6 @@ public class cart {
     private String uid;
     private String total_amount;
     private byte[] image;
-
 
     public int getPid() {
         return pid;
@@ -88,23 +84,15 @@ public class cart {
         this.image = image;
     }
 
-    public String getCart_id() {
-        return cart_id;
-    }
-
-    public void setCart_id(String cart_id) {
-        this.cart_id = cart_id;
-    }
-
-    public cart(int pid, String cart_id, String p_name, String a_price, String p_desc, String p_qty, String uid, byte[] image) {
+    public wish(int pid, String p_name, String a_price, String p_desc, String p_size, String p_qty, String uid,  byte[] image) {
         this.pid = pid;
         this.p_name = p_name;
         this.a_price = a_price;
         this.p_desc = p_desc;
-        this.cart_id = cart_id;
+        this.p_size = p_size;
         this.p_qty = p_qty;
         this.uid = uid;
-        this.total_amount = total_amount;
+
         this.image = image;
     }
 }

@@ -124,9 +124,10 @@ public class Home extends AppCompatActivity {
 
 
                     case R.id.add_cat:
-                        Intent main = new Intent(Home.this, Add_category.class);
-                        startActivity(main);
+                        Intent ma = new Intent(Home.this, Add_category.class);
+                        startActivity(ma);
                         finish();
+                        return true;
 
                     case R.id.logout:
                         Intent m = new Intent(Home.this, verify_phno.class);

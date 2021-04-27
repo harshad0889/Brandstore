@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    Cursor cursor;
 
     public static final String DATABASE_NAME = "BRAND.db";
     public static final String TABLE_NAME = "registrationtable";
@@ -18,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_3 = "phone";
     public static final String COL_4 = "password";
     public static final String COL_5 = "address";
+    public static final String COL_6 = "pin";
 
     //product details
     public static final String TABLE_PRODUCT = "product_table";
@@ -59,8 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_prodid = "pid";
     public static final String COL_uid = "_id";
     public static final String COL_qty = "qty";
+    public static final String COL_oid = "order_id";
 
     public static final String COL_cart_psize = "cart_psize";
+    public static final String COL_cart_status = "cart_status";
 
 
     //whislist details
@@ -77,12 +81,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_ORDER = "order_table";
     public static final String COL_ordid = "order_id";
     public static final String COL_ouid = "_id";
+    public static final String COL_cart_id = "cart_id";
     public static final String COL_total = "total";
     public static final String COL_delviery_amt = "delivery_amt";
     public static final String COL_quantity = "quantity";
     public static final String COL_ostatus = "status";
     public static final String COL_pmode = "pay_mode";
     public static final String COL_odate = "odate";
+  //  public static final String COL_opname = "pname";
+  //  public static final String COL_oprice = "oprice";
+  // public static final String COL_opqty = "odate";
 
 
 
@@ -93,7 +101,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_2 + " TEXT,"
             + COL_3 + " TEXT,"
-            + COL_4 + " TEXT " + ")";
+            + COL_4 + " TEXT, "
+        + COL_5 + " TEXT,"
+        + COL_6 + " TEXT" + ")";
 
 // add product == PRODUCT TABLE
     private String CREATE_PRODUCT_TABLE = "CREATE TABLE " + TABLE_PRODUCT + "("
@@ -132,13 +142,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_cartid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_prodid + " INTEGER,"
             + COL_uid + " INTEGER,"
+            //+ COL_oid + " INTEGER,"
             + COL_qty + " INTEGER,"
             + COL_cart_psize + " TEXT,"
+            + COL_cart_status + " TEXT,"
+            + COL_oid + " INTEGER,"
+            + " FOREIGN KEY ("+COL_oid+") REFERENCES "+TABLE_ORDER+" ("+COL_ordid+"),"
             + " FOREIGN KEY ("+COL_prodid+") REFERENCES "+TABLE_PRODUCT+" ("+COL_pid+"),"
             + " FOREIGN KEY ("+COL_uid+") REFERENCES "+TABLE_NAME+" ("+COL_1+"));";
 
 
-    //cart table
+    //wishlist table
     private String CREATE_WISHLIST_TABLE = "CREATE TABLE " + TABLE_WISHLIST + "("
             + COL_wish_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_product_id + " INTEGER,"
@@ -153,6 +167,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_ordid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_ouid + " INTEGER,"
             + COL_total + " INTEGER,"
+           // + COL_opname + " TEXT,"
+           // + COL_oprice + " TEXT,"
+          //  + COL_opqty + " INTEGER,"
             + COL_delviery_amt + " TEXT,"
             + COL_quantity + " TEXT,"
             + COL_ostatus + " TEXT,"
@@ -197,13 +214,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //INSERT USER DATA
 
-    public boolean insertdata(String username, String phone, String password) {
+    public boolean insertdata(String username, String phone,String address,String pin, String password) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, username);
         contentValues.put(COL_3, phone);
         contentValues.put(COL_4, password);
+        contentValues.put(COL_5, address);
+        contentValues.put(COL_6, pin);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
@@ -281,9 +300,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    //INSERT PRODUCT DATA
+    //INSERT ORDER DATA
 
-    public boolean insert_order_data(String uid,String total_amt,String delivery_charge,String quantity,String order_status,String p_mode) {
+    public Long insert_order_data(String uid,String total_amt,String delivery_charge,String quantity,String order_status,String p_mode) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -299,11 +318,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long result = db.insert(TABLE_ORDER, null, contentValues);
         if (result == -1)
-            return false;
+            return result;
         else
-            return true;
+
+            return result;
 
     }
+
+
+
 
 
     //**************update product data*************************
@@ -326,6 +349,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_iv, newentryimg);
         int i = db.update(TABLE_PRODUCT, contentValues, COL_pid + " = " + prodid, null);
         return i;
+
+    }
+
+
+    //*************update cart************
+
+    //public int update_cart(String )
+    public int update_cart(String order_id, String cart_id) {
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_oid, order_id);
+        //contentValues.put(COL_pcat, c_cat);
+        int i = db.update(TABLE_CART, contentValues, COL_cart_id + " = " + cart_id, null);
+        return  i;
 
     }
 
@@ -446,6 +485,10 @@ public UserModel Authenticate(UserModel userModel) {
         return database.rawQuery(sql, null);
     }
 
+    public Cursor getData2(String sql){
+        SQLiteDatabase database = getWritableDatabase();
+        return database.rawQuery(sql, null);
+    }
 
     public int remove_item(String spid,String uid) {
 
@@ -456,4 +499,17 @@ public UserModel Authenticate(UserModel userModel) {
         int i = db.delete(TABLE_CART, COL_uid + " = " + uid + " AND " + COL_prodid + "=" + spid,null );
         return i;
     }
+
+
+    public int remove_item2(String spid,String uid) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_wuid, uid);
+        contentValues.put(COL_product_id, spid);
+        int i = db.delete(TABLE_WISHLIST, COL_wuid + " = " + uid + " AND " + COL_product_id + "=" + spid,null );
+        return i;
+    }
+
+
 }

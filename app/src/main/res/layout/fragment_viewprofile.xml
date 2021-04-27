@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:padding="16dp"
+        android:textAllCaps="true"
         android:text="My Profile"
         android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:textSize="32sp" />
+
+        android:textSize="28sp" />
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_profile"
         android:layout_width="match_parent"
@@ -27,10 +28,12 @@
             android:id="@+id/tv_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
+            android:text="  Edit Profile"
+            android:drawableLeft="@drawable/person2"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
+            android:textAllCaps="true"
+
+            android:textSize="28sp"
             android:gravity="center_horizontal" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -45,10 +48,11 @@
             android:id="@+id/tv_my_orders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Orders"
+            android:text="  My Orders"
+            android:drawableLeft="@drawable/shipment"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
+            android:textAllCaps="true"
+            android:textSize="28sp"
             android:gravity="center_horizontal" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -63,10 +67,11 @@
             android:id="@+id/tv_aboutus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About Us"
+            android:text="  About Us"
+            android:drawableLeft="@drawable/tag"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
+            android:textAllCaps="true"
+            android:textSize="28sp"
             android:gravity="center_horizontal" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -81,17 +86,18 @@
             android:id="@+id/tv_whishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="whishlist"
+            android:text="  whishlist"
+            android:drawableLeft="@drawable/ic_shopping_cart"
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
+            android:textAllCaps="true"
+            android:textSize="28sp"
             android:gravity="center_horizontal" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_signout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/cv_whishlist"
         android:layout_marginStart="10dp"
@@ -100,11 +106,13 @@
             android:id="@+id/tv_signout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Out"
+            android:text="  Sign Out"
+            android:drawableLeft="@drawable/ic_signout"
+
             android:textAlignment="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
-            android:gravity="center_horizontal" />
+            android:textAllCaps="true"
+            android:textSize="24sp"
+             />
     </androidx.cardview.widget.CardView>
 
 

@@ -8,7 +8,6 @@
 
     >
 
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -63,22 +62,6 @@
         android:fontFamily="sans-serif-medium"
 
         android:text="name"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/cart_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="340dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:fontFamily="sans-serif-medium"
-
-        android:text="cart id"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -164,7 +147,8 @@
         android:text="total amount"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone"/>
 
 
 
@@ -175,6 +159,17 @@
         android:layout_marginStart="20dp"
         android:id="@+id/remove"
         android:text="remove"
+        >
+
+    </Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_toRightOf="@id/remove"
+        android:layout_marginStart="40dp"
+        android:id="@+id/add_cart"
+        android:text="ADD TO CART"
         >
 
     </Button>
