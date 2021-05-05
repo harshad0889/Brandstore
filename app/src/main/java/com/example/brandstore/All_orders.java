@@ -15,7 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class my_orders extends AppCompatActivity {
+public class All_orders extends AppCompatActivity {
+
     GridView gridView;
 
     ArrayList<order> myorders;
@@ -27,10 +28,9 @@ public class my_orders extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_orders);
-
+        setContentView(R.layout.activity_all_orders);
         db=new DatabaseHelper(this);
-        gridView =  findViewById(R.id.gv_myorders);
+        gridView =  findViewById(R.id.gv_allorders);
         sp = getSharedPreferences("user_details", Context.MODE_PRIVATE);
         uid = sp.getString("uid",null);
         username  = sp.getString("username",null);
@@ -40,7 +40,7 @@ public class my_orders extends AppCompatActivity {
         adapter = new MyorderlistAdapter(this, R.layout.myorder_item, myorders);
         gridView.setAdapter(adapter);
 
-        Cursor cursor = db.getData(String.format("SELECT * from (SELECT * from order_table join registrationtable where order_table._id = registrationtable._id and  registrationtable._id =%s) as x JOIN ( SELECT * from cart_table join product_table where cart_table.pid = product_table.pid and _id=%s) as y WHERE  x.order_id = y.order_id",uid,uid));
+        Cursor cursor = db.getData(String.format("SELECT * from (SELECT * from order_table join registrationtable where order_table._id = registrationtable._id ) as x JOIN ( SELECT * from cart_table join product_table where cart_table.pid = product_table.pid ) as y WHERE  x.order_id = y.order_id"));
         myorders.clear();
         while (cursor.moveToNext()) {
             int order_id = cursor.getInt(0);
@@ -51,7 +51,7 @@ public class my_orders extends AppCompatActivity {
             String o_date = cursor.getString(7);
             String username = cursor.getString(9);
             String phone = cursor.getString(10);
-             String address = cursor.getString(12);
+            String address = cursor.getString(12);
             String pin = cursor.getString(13);
             int cart_id = cursor.getInt(14);
             int pid = cursor.getInt(15);
@@ -67,9 +67,6 @@ public class my_orders extends AppCompatActivity {
             myorders.add(new order(  order_id,  uid,  delivery_amt,  status,  pay_mode,  o_date,  username,  phone,  address,  pin,  cart_id,  pid,  qty, cart_psize,  p_name,  p_cat,  price,  image,  total));
         }
         adapter.notifyDataSetChanged();
-
-
-
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -93,7 +90,7 @@ public class my_orders extends AppCompatActivity {
                 TextView price = (TextView) view.findViewById(R.id.price);
                 TextView total = (TextView) view.findViewById(R.id.tot);
 
-               // ImageView ivimage = view.findViewById(R.id.imgFood);
+                // ImageView ivimage = view.findViewById(R.id.imgFood);
 
 
 
@@ -118,7 +115,7 @@ public class my_orders extends AppCompatActivity {
 
 
 
-                Intent s = new Intent(my_orders.this,myorders_selected.class);
+                Intent s = new Intent(All_orders.this,Allorders_selected.class);
                 s.putExtra("sorder_id",sorder_id);
                 s.putExtra("suid",suid);
                 s.putExtra("sdel_amt",sdel_amt);

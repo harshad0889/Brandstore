@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".my_orders">
+    tools:context=".View_stocks">
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,20 +18,31 @@
             android:layout_height="wrap_content"
 
 
-            android:text="  MY ORDERS "
+            android:text=" Stocks.. "
 
             android:textColor="#E6E2E2"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left"
             android:textSize="30dp"
             android:textStyle="bold" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add stocks"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/joinbtn"
+            android:id="@+id/add_stocks"/>
 
     </androidx.appcompat.widget.Toolbar>
-    <GridView
-        android:id="@+id/gv_myorders"
-        android:layout_marginTop="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </GridView>
+    <ListView
+        android:id="@+id/lv_stocks"
+        android:elevation="5dp"
+
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        android:layout_marginTop="60dp"/>
 
 </RelativeLayout>

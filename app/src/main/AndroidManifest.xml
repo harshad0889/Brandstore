@@ -12,7 +12,14 @@
         android:roundIcon="@drawable/carlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".whishlist"></activity>
+        <activity android:name=".View_stocks"></activity>
+        <activity android:name=".Add_review" />
+        <activity android:name=".Allorders_selected" />
+        <activity android:name=".All_orders" />
+        <activity android:name=".myorders_selected" />
+        <activity android:name=".upadate_profile" />
+        <activity android:name=".search_activity" />
+        <activity android:name=".whishlist" />
         <activity android:name=".my_orders" />
         <activity android:name=".razorpay" />
         <activity android:name=".phonepesample" />

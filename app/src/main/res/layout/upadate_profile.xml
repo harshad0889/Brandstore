@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="  REGISTRATION "
+            android:text="  UPDATE PROFILE "
 
             android:textColor="#E6E2E2"
             android:layout_gravity="center_horizontal"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="       CREATE YOUR"
+        android:text="       UPDATE YOUR"
 
         android:textColor="#252424"
         android:layout_marginTop="15dp"
@@ -79,19 +79,19 @@
 
 
     <EditText
-    android:layout_width="250dp"
-    android:layout_height="40dp"
-    android:inputType="phone"
-    android:id="@+id/phnno"
-    android:hint="    phone number"
-    android:layout_gravity="center_horizontal"
-    android:textSize="18dp"
-    android:drawableLeft="@drawable/call"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/btn"
-    android:elevation="10dp"
-    android:ems="8"
-    android:padding="10dp"/>
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="phone"
+        android:id="@+id/phnno"
+        android:hint="    phone number"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18dp"
+        android:drawableLeft="@drawable/call"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn"
+        android:elevation="10dp"
+        android:ems="8"
+        android:padding="10dp"/>
 
     <EditText
         android:layout_width="250dp"
@@ -137,7 +137,8 @@
         android:background="@drawable/btn"
         android:elevation="10dp"
         android:ems="8"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:visibility="gone"/>
     <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
@@ -151,10 +152,11 @@
         android:elevation="10dp"
         android:ems="8"
         android:padding="10dp"
-        android:textSize="18dp"/>
+        android:textSize="18dp"
+        android:visibility="gone"/>
 
     <Button
-        android:id="@+id/bt_register"
+        android:id="@+id/bt_update"
         android:layout_width="262dp"
         android:layout_height="36dp"
         android:layout_marginTop="35dp"
@@ -162,7 +164,7 @@
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:onClick="addRecord"
-        android:text="Register"
+        android:text="UPDATE"
         android:textColor="#fff"
         android:textStyle="bold" />
 
@@ -179,7 +181,8 @@
         android:onClick="addRecord"
         android:text="SIGN IN"
         android:textColor="#fff"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone"/>
 
 
 

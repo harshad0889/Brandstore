@@ -1,13 +1,16 @@
 package com.example.brandstore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -91,6 +94,23 @@ public class sale_fragment extends Fragment {
             list.add(new sale( sid,  s_title,s_desc, prod_name,  sdate,  edate, image));
         }
         adapter.notifyDataSetChanged();
+
+        gridview_sale.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView pname = view.findViewById(R.id.s_pname);
+
+                String p_name = pname.getText().toString();
+
+
+                Intent s = new Intent(getContext(),sale_product_view.class);
+                s.putExtra("spname",p_name);
+
+
+
+                startActivity(s);
+            }
+        });
     }
 
 }

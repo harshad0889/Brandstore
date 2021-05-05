@@ -1,19 +1,13 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -55,13 +49,13 @@ public class whishlist extends AppCompatActivity {
         wishlist.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(1);
-            String p_name = cursor.getString(4);
-            String price = cursor.getString(8);
-            String p_desc = cursor.getString(6);
-            String p_qty = cursor.getString(9);
-            String p_size = cursor.getString(7);
+            String p_name = cursor.getString(6);
+            String price = cursor.getString(10);
+            String p_desc = cursor.getString(8);
+            String p_qty = cursor.getString(3);
+            String p_size = cursor.getString(4);
             String uid = cursor.getString(2);
-            byte[] image = cursor.getBlob(10);
+            byte[] image = cursor.getBlob(12);
 
             wishlist.add(new wish( pid,  p_name, price, p_desc,p_size,p_qty,uid,  image));
         }

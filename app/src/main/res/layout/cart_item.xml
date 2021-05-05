@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginStart="150dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
@@ -135,14 +135,30 @@
 
 
     <TextView
-        android:id="@+id/qty"
+        android:id="@+id/tv_Qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="80dp"
+
+        android:fontFamily="sans-serif-medium"
+
+        android:text="Qty: "
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_Qty"
+        android:layout_marginStart="8dp"
+
+
+        android:layout_marginTop="80dp"
+
         android:fontFamily="sans-serif-medium"
 
         android:text="qty"
@@ -164,15 +180,49 @@
         android:text="total amount"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="80dp"
+
+
+        android:fontFamily="sans-serif-medium"
+
+        android:text="size: "
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="80dp"
+
+
+        android:fontFamily="sans-serif-medium"
+
+        android:text="size"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
 
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:layout_marginStart="20dp"
+        android:drawableLeft="@drawable/ic_baseline_delete_24"
         android:id="@+id/remove"
         android:text="remove"
         >

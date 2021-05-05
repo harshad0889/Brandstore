@@ -179,6 +179,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/gst_val"
 
 
                 android:text="  5% "

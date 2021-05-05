@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class cart_fragment extends Fragment {
     cartlistAdapter adapter = null;
@@ -72,7 +67,7 @@ public class cart_fragment extends Fragment {
         db2 = new DatabaseHelper(getContext());
         gv_cart = view.findViewById(R.id.gv_cart_frag1);
         Cart_total = view.findViewById(R.id.tv_total);
-        ArrayList<cart> cartlist;
+        final ArrayList<cart> cartlist;
         cartlist = new ArrayList<>();
         cart_ids = new ArrayList<>();
         final Context context;
@@ -89,13 +84,24 @@ public class cart_fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                if (cartlist.size()== 0){
+                    Toast.makeText(getContext(), "cart is empty ", Toast.LENGTH_LONG).show();
+                }else {
 
-                String total_amount = Cart_total.getText().toString();
-                Intent in = new Intent(getContext(),choose_payment.class);
-                in.putExtra("tot",total_amount);
-                in.putStringArrayListExtra("cart_id's", cart_ids);
-                startActivity(in);
-                Toast.makeText(getContext(), "Product added succesfully ", Toast.LENGTH_LONG).show();
+
+                    String total_amount = Cart_total.getText().toString();
+                    Intent in = new Intent(getContext(), choose_payment.class);
+                    in.putExtra("tot", total_amount);
+                    in.putStringArrayListExtra("cart_id's", cart_ids);
+                    startActivity(in);
+                    Toast.makeText(getContext(), "Product added succesfully ", Toast.LENGTH_LONG).show();
+
+                    final Toast toast = new Toast(getContext());
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    View custom_view = getLayoutInflater().inflate(R.layout.custom_toast, null);
+                    toast.setView(custom_view);
+                    toast.show();
+                }
 
             }
 
@@ -103,7 +109,7 @@ public class cart_fragment extends Fragment {
 
 
 
-         Cursor cursor = db2.getData(String.format("SELECT * FROM cart_table JOIN product_table on  cart_table.pid = product_table.pid WHERE _id ='%s'",uid));
+         Cursor cursor = db2.getData(String.format("SELECT * FROM cart_table JOIN product_table on  cart_table.pid = product_table.pid WHERE _id ='%s' AND order_id ISNULL",uid));
         cartlist.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(1);
@@ -112,11 +118,11 @@ public class cart_fragment extends Fragment {
             String price = cursor.getString(12);
             String p_desc = cursor.getString(10);
             String p_qty = cursor.getString(3);
-
+            String p_size = cursor.getString(4);
             String uid = cursor.getString(2);
             byte[] image = cursor.getBlob(14);
 
-            cartlist.add(new cart( pid,cart_id,  p_name, price, p_desc,p_qty,uid,  image));
+            cartlist.add(new cart( pid,cart_id,  p_name, price, p_desc,p_qty,uid,  image,p_size));
             cart_ids.add(cart_id);
         }
         adapter.notifyDataSetChanged();

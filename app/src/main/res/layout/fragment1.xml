@@ -26,19 +26,43 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
+
+
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/cartlogo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="8dp"
+
+        android:background="@drawable/cart_icon_2"
+        android:maxWidth="25dp"
+
+
+
+        android:textColor="@color/white"
+        android:textSize="20dp"
+
+        android:textStyle="italic" />
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="5dp"
+        android:id="@+id/search_tv"
+        android:elevation="5dp"
+        android:background="@drawable/btn"
 
 
-        android:text="  BROWSE CATEGORY "
+        android:text="  search "
 
-        android:textColor="#373535"
-        android:layout_gravity="center_horizontal"
-        android:textSize="15dp"
-        android:layout_marginTop="70dp"
-        android:textStyle="bold" />
+        android:textColor="#E6E2E2"
+        android:drawableLeft="@drawable/search"
+
+        android:textSize="22sp"
+         />
 
 
 
@@ -47,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:background="@color/white"
 
 

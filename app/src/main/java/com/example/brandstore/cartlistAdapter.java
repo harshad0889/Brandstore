@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static android.content.Context.MODE_PRIVATE;
-
 public class cartlistAdapter extends BaseAdapter {
     private Context context;
     private  int layout;
@@ -55,7 +53,7 @@ public class cartlistAdapter extends BaseAdapter {
     static class ViewHolder{
 
         ImageView imageView;
-        TextView p_id, p_name,a_price,p_qty,p_desc,uid,total_cprice,tot,cart_id;
+        TextView p_id, p_name,a_price,p_qty,p_desc,uid,total_cprice,tot,cart_id,size;
         Button rmv,pl_ord;
     }
 
@@ -86,6 +84,8 @@ public class cartlistAdapter extends BaseAdapter {
             holder.pl_ord = (Button) row.findViewById(R.id.place_ord);
             holder.tot = (TextView) row.findViewById(R.id.tot);
             holder.cart_id = (TextView) row.findViewById(R.id.cart_id);
+            holder.size = (TextView) row.findViewById(R.id.size);
+
 
 
 
@@ -105,6 +105,7 @@ public class cartlistAdapter extends BaseAdapter {
         holder.p_qty.setText(carts.getP_qty());
         holder.uid.setText(carts.getUid());
         holder.p_desc.setText(carts.getP_desc());
+        holder.size.setText(carts.getP_size());
 
        // getPrice();
         totalPrice = getPrice();

@@ -1,12 +1,5 @@
 package com.example.brandstore;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,7 +10,13 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -117,6 +116,18 @@ public class Home extends AppCompatActivity {
                     case R.id.view_product:
                         Intent u = new Intent(Home.this, product_view.class);
                         startActivity(u);
+                        finish();
+                        return true;
+
+                    case R.id.orders:
+                        Intent o = new Intent(Home.this, All_orders.class);
+                        startActivity(o);
+                        finish();
+                        return true;
+
+                    case R.id.stocks:
+                        Intent sr = new Intent(Home.this, View_stocks.class);
+                        startActivity(sr);
                         finish();
                         return true;
 

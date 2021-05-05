@@ -1,9 +1,5 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -25,11 +21,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -122,10 +121,10 @@ public class Add_sale extends AppCompatActivity {
 
 
         List<String> names = new ArrayList<>();
-        Cursor cursor = db.getData("SELECT pname from product_table");
+        Cursor cursor = db.getData("SELECT DISTINCT pcategory from product_table");
         if(cursor != null){
             while(cursor.moveToNext()){
-                names.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_pname)));
+                names.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_pcat)));
 
             }
         }

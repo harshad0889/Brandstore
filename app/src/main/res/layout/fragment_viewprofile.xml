@@ -5,23 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/la_top"
+        android:background="#E4082D6E">
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageprofile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+
+        android:src="@drawable/carlogo"
+        android:layout_marginTop="20dp"
+
+        app:riv_oval="true"
+        />
+
     <TextView
-        android:id="@+id/tv_Title"
+        android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:padding="16dp"
-        android:textAllCaps="true"
         android:text="My Profile"
-        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
 
-        android:textSize="28sp" />
+
+        android:textSize="22sp" />
+    </RelativeLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_profile"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="40dp"
-        android:layout_below="@+id/tv_Title"
+        android:layout_below="@+id/la_top"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp">
         <TextView
@@ -86,7 +106,7 @@
             android:id="@+id/tv_whishlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="  whishlist"
+            android:text="  wishlist"
             android:drawableLeft="@drawable/ic_shopping_cart"
             android:textAlignment="center"
             android:textAllCaps="true"

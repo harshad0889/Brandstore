@@ -72,7 +72,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_wish_id = "wish_id";
     public static final String COL_product_id = "pid";
     public static final String COL_wuid = "_id";
-    //public static final String COL_qty = "qty";
+    public static final String COL_wqty = "qty";
+    public static final String COL_wsize = "size";
 
    // public static final String COL_cart_psize = "cart_psize";
 
@@ -91,6 +92,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   //  public static final String COL_opname = "pname";
   //  public static final String COL_oprice = "oprice";
   // public static final String COL_opqty = "odate";
+
+
+    //table car review
+
+    public static final String TABLE_REVIEW = "REVIEW";
+    public static final String COL_rid = "_id";
+    public static final String COL_pro_id = "pid";
+    public static final String COL_user = "user";
+    public static final String COL_review = "review";
+    public static final String COL_rating = "rating";
+
+
+    //table stocks
+
+    public static final String TABLE_STOCKS = "STOCKS";
+    public static final String stock_id = "s_id";
+    public static final String p_category = "pcat";
+    public static final String stock = "stock";
+    public static final String s_date = "s_date";
+
+
 
 
 
@@ -157,6 +179,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_wish_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_product_id + " INTEGER,"
             + COL_wuid + " INTEGER,"
+            + COL_wqty + " INTEGER,"
+            + COL_wsize + " TEXT,"
             + " FOREIGN KEY ("+COL_product_id+") REFERENCES "+TABLE_PRODUCT+" ("+COL_pid+"),"
             + " FOREIGN KEY ("+COL_wuid+") REFERENCES "+TABLE_NAME+" ("+COL_1+"));";
 
@@ -177,6 +201,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_odate + " date default CURRENT_TIMESTAMP,"
             + " FOREIGN KEY ("+COL_ouid+") REFERENCES "+TABLE_NAME+" ("+COL_1+"))";
 
+
+
+    //create table  review
+
+    private String CREATE_REVIEW = "CREATE TABLE " + TABLE_REVIEW + "("
+            + COL_rid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COL_pro_id + " TEXT,"
+            + COL_user + " TEXT,"
+            + COL_rating + " TEXT,"
+            + COL_review + " TEXT" + ")";
+
+
+    //user stocksd table
+    private String CREATE_STOCKS_TABLE = "CREATE TABLE " + TABLE_STOCKS + "("
+            + stock_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + p_category + " TEXT,"
+            + stock + " TEXT,"
+            + s_date + " date default CURRENT_DATE "+ ")";
+
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -191,6 +234,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_CART_TABLE);
         db.execSQL(CREATE_ORDER_TABLE);
         db.execSQL(CREATE_WISHLIST_TABLE);
+        db.execSQL(CREATE_REVIEW);
+        db.execSQL(CREATE_STOCKS_TABLE);
 
     }
 
@@ -204,6 +249,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CART);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WISHLIST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REVIEW);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STOCKS);
 
 
 
@@ -255,12 +302,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //INSERT WISHLIST DATA******************** add to cart**********
 
-    public boolean insert_to_wishlist(String spid, String uid) {
+    public boolean insert_to_wishlist(String spid, String uid,String qty,String size) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_product_id, spid);
         contentValues.put(COL_wuid, uid);
+        contentValues.put(COL_wqty, qty);
+        contentValues.put(COL_wsize, size);
 
 
         long result = db.insert(TABLE_WISHLIST, null, contentValues);
@@ -512,4 +561,79 @@ public UserModel Authenticate(UserModel userModel) {
     }
 
 
+    public int update_user_data(String s_name, String s_phn, String s_address, String s_pin,String uid) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, s_name);
+        contentValues.put(COL_3, s_phn);
+        contentValues.put(COL_5, s_address);
+        contentValues.put(COL_6, s_pin);
+        int i = db.update(TABLE_NAME, contentValues, COL_1 + " = " + uid, null);
+        return  i;
+
+
+    }
+    //insert  review data
+    public boolean p_review(String pro_id, String username, String review,String rating) {
+
+
+
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COL_pro_id, pro_id);
+            contentValues.put(COL_user, username);
+            contentValues.put(COL_review, review);
+            contentValues.put(COL_rating, rating);
+
+
+
+
+            long result = db.insert(TABLE_REVIEW, null, contentValues);
+            if (result == -1)
+                return false;
+            else
+                return true;
+
+
+    }
+
+
+    //****************review list***********
+    public Cursor review_list(String _id) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_REVIEW + " WHERE " + COL_pro_id + " = '" + _id + "'", null);
+
+        return cursor;
+    }
+
+    public boolean insert_stocks(String ps_cat, String stock_qty) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(p_category, ps_cat);
+        contentValues.put(stock, stock_qty);
+
+
+
+
+
+        long result = db.insert(TABLE_STOCKS, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+
+
+    }
+//stocks list
+    public Cursor stocklist(String sdate) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor curso = db.rawQuery("SELECT rowid _id, * FROM " + TABLE_STOCKS + " WHERE " + s_date + " = '" + sdate + "'" , null);
+
+        return curso;
+    }
 }

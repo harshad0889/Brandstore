@@ -1,7 +1,5 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -50,7 +50,7 @@ public class sale_product_view extends AppCompatActivity {
         // Bitmap bitmap = intent.getParcelableExtra("catimage");
 
 
-        Cursor cursor = db.getData("SELECT * FROM product_table WHERE pname ="+ '"'+spname+'"');
+        Cursor cursor = db.getData("SELECT * FROM product_table WHERE pcategory ="+ '"'+spname+'"');
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);

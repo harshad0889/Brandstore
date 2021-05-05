@@ -96,7 +96,7 @@ public class cart {
         this.cart_id = cart_id;
     }
 
-    public cart(int pid, String cart_id, String p_name, String a_price, String p_desc, String p_qty, String uid, byte[] image) {
+    public cart(int pid, String cart_id, String p_name, String a_price, String p_desc, String p_qty, String uid, byte[] image,String p_size) {
         this.pid = pid;
         this.p_name = p_name;
         this.a_price = a_price;
@@ -106,5 +106,6 @@ public class cart {
         this.uid = uid;
         this.total_amount = total_amount;
         this.image = image;
+        this.p_size = p_size;
     }
 }

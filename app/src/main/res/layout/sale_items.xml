@@ -62,7 +62,7 @@
         android:id="@+id/sdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
+        android:layout_marginStart="110dp"
 
 
         android:layout_marginTop="175dp"
@@ -71,6 +71,25 @@
         android:elevation="5dp"
         android:fontFamily="monospace"
         android:text="sdate"
+        android:textAlignment="center"
+        android:textColor="#090303"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+
+
+        android:layout_marginTop="175dp"
+        android:drawableLeft="@drawable/cal"
+
+        android:elevation="5dp"
+        android:fontFamily="monospace"
+        android:text="TO"
         android:textAlignment="center"
         android:textColor="#090303"
         android:textSize="14sp"

@@ -1,7 +1,5 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 public class choose_payment extends AppCompatActivity {
@@ -27,6 +27,7 @@ public class choose_payment extends AppCompatActivity {
         DatabaseHelper db;
         Cursor cursor;
         int order_id;
+        //String s_total = null;
         ArrayList<String> cartList;
 
 
@@ -58,8 +59,18 @@ protected void onCreate(Bundle savedInstanceState) {
     Intent intent = getIntent();
 
     final String total_amt = intent.getStringExtra("tot");
-    pay.setText("PAY "+total_amt);
+
     total_amount.setText(total_amt);
+    String per = "100";
+    String gst = "5";
+    Double s_total = 0.0;
+
+     s_total = Double.parseDouble(total_amt) + (Double.parseDouble(total_amt) * Double.parseDouble(gst)/Double.parseDouble(per));
+             //(Double.parseDouble(total_amt) * Double.parseDouble(per));
+    Log.e(s_total + "", "=");
+
+    sub_total.setText(String.valueOf(s_total));
+    pay.setText("PAY "+String.valueOf(s_total));
 
 
 

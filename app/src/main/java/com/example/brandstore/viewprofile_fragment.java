@@ -3,21 +3,15 @@ package com.example.brandstore;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import java.util.ArrayList;
 
 public class viewprofile_fragment extends Fragment {
     cartlistAdapter adapter = null;
@@ -27,7 +21,7 @@ public class viewprofile_fragment extends Fragment {
     SharedPreferences sp;
     String uid,username;
 
-    TextView edit_profile,my_orders,tv_signout,whishlist;
+    TextView edit_profile,my_orders,tv_username,tv_signout,whishlist;
 
 
 
@@ -66,7 +60,9 @@ public class viewprofile_fragment extends Fragment {
         my_orders = view.findViewById(R.id.tv_my_orders);
         tv_signout = view.findViewById(R.id.tv_signout);
         whishlist = view.findViewById(R.id.tv_whishlist);
+        tv_username = view.findViewById(R.id.tv_username);
 
+        tv_username.setText(username);
 
         whishlist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +73,32 @@ public class viewprofile_fragment extends Fragment {
 
             }
         });
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getContext(),upadate_profile.class);
+                startActivity(in);
+            }
+        });
+
+        tv_signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent m = new Intent(getContext(), verify_phno.class);
+                startActivity(m);
+               // finish();
+            }
+        });
 
 
+        my_orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent m = new Intent(getContext(), my_orders.class);
+                startActivity(m);
+                // finish();
+            }
+        });
 
     }
 

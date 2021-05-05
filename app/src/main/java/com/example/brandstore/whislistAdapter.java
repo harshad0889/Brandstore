@@ -50,7 +50,7 @@ public class whislistAdapter extends BaseAdapter {
     static class ViewHolder{
 
         ImageView imageView;
-        TextView p_id, p_name,a_price,p_qty,p_desc,uid,total_cprice,tot;
+        TextView p_id, p_name,a_price,p_qty,p_desc,uid,total_cprice,size,tot;
         Button rmv,pl_ord,add_cart;
     }
 
@@ -83,6 +83,7 @@ public class whislistAdapter extends BaseAdapter {
             holder.add_cart = (Button) row.findViewById(R.id.add_cart);
             holder.pl_ord = (Button) row.findViewById(R.id.place_ord);
             holder.tot = (TextView) row.findViewById(R.id.tot);
+            holder.size = (TextView) row.findViewById(R.id.size);
 
 
 
@@ -101,6 +102,7 @@ public class whislistAdapter extends BaseAdapter {
         holder.p_qty.setText(wishs.getP_qty());
         holder.uid.setText(wishs.getUid());
         holder.p_desc.setText(wishs.getP_desc());
+        holder.size.setText(wishs.getP_size());
 
         // getPrice();
         holder.rmv.setOnClickListener(new View.OnClickListener() {

@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Rs.500"
+        android:text="Rs.00"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginTop="580dp"

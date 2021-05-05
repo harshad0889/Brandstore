@@ -12,7 +12,13 @@
     <item android:id="@+id/view_product"
         android:icon="@drawable/products"
         android:title="@string/view_product" />
+    <item android:id="@+id/orders"
+        android:icon="@drawable/allorders"
+        android:title="Orders" />
 
+    <item android:id="@+id/stocks"
+        android:icon="@drawable/time"
+        android:title="stocks" />
     <item android:id="@+id/add_sale"
         android:icon="@drawable/add_sale"
         android:title="Add sale" />
