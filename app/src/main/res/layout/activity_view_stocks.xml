@@ -33,16 +33,39 @@
             android:id="@+id/add_stocks"/>
 
     </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="pick date"
+        android:textColor="@color/black"
+        android:id="@+id/prod_list"
+        >
 
-    <ListView
-        android:id="@+id/lv_stocks"
-        android:elevation="5dp"
+    </TextView>
 
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <EditText
+        android:id="@+id/stock_date"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/btn"
+        android:drawableRight="@drawable/cal"
+        android:hint=" Choose date "
+        android:focusableInTouchMode="false"
 
+        />
 
-        android:layout_marginTop="60dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/joinbtn"
+        android:id="@+id/show_stocks"/>
 
 </RelativeLayout>
