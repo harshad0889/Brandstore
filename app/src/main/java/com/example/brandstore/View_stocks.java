@@ -25,7 +25,7 @@ public class View_stocks extends AppCompatActivity {
     private ListView listView;
     EditText pick_date;
 
-    private int mdate,mmonth,myear;
+    private int mdate,mmonth,myear,smonth,x=1;
 
     private SimpleCursorAdapter adapter7;
 
@@ -38,14 +38,14 @@ public class View_stocks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_stocks);
 
-        //db=new DatabaseHelper(this);
+        db=new DatabaseHelper(this);
         show_stock= findViewById(R.id.show_stocks);
         pick_date= findViewById(R.id.stock_date);
         add_stocks= findViewById(R.id.add_stocks);
         add_stocks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor cursor = db.getData("SELECT  pcategory, sum(psale) from product_table group by pcategory");
+                Cursor cursor = db.getData("SELECT DISTINCT  pcategory, sum(psale) from product_table group by pcategory");
 
 
                 while (cursor.moveToNext()) {
@@ -81,17 +81,18 @@ public class View_stocks extends AppCompatActivity {
             public void onClick(View view) {
                 final Calendar cal = Calendar.getInstance();
                 mdate = cal.get(Calendar.DATE);
-                mmonth = cal.get(Calendar.MONTH);
+                smonth = cal.get(Calendar.MONTH) + 1;
+                mmonth = smonth+x;
                 myear = cal.get(Calendar.YEAR);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(View_stocks.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        pick_date.setText(date+"-"+month+"-"+year);
+                        pick_date.setText(year+"-0"+month+"-0"+date);
 
 
                     }
                 },myear,mmonth,mdate);
-                datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
+                //datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
                 datePickerDialog.show();
 
 

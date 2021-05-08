@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginStart="150dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="420dp"
             android:layout_marginEnd="35dp"
             android:layout_marginRight="35dp"
             android:fontFamily="sans-serif-medium"
@@ -138,7 +138,7 @@
             android:layout_height="wrap_content"
 
             android:layout_marginStart="60dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="420dp"
             android:layout_marginEnd="35dp"
             android:layout_marginRight="35dp"
             android:fontFamily="sans-serif-medium"
@@ -435,8 +435,9 @@
             android:layout_marginEnd="35dp"
             android:layout_marginRight="35dp"
             android:fontFamily="sans-serif-medium"
+            android:drawableRight="@drawable/edit"
 
-            android:text="status"
+            android:text="status     "
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -456,6 +457,23 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="italic"
+
+            android:text="*You can update order status here:"
+            android:textAlignment="center"
+            android:textColor="#676565"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/p_mode"

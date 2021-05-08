@@ -5,16 +5,25 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Allorders_selected extends AppCompatActivity {
 
     DatabaseHelper db;
     String uid,username;
     SharedPreferences sd;
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +37,7 @@ public class Allorders_selected extends AppCompatActivity {
         TextView order_id = (TextView) findViewById(R.id.order_id);
         TextView uid = (TextView) findViewById(R.id.uid);
         TextView delivery_amt = (TextView) findViewById(R.id.del_amt);
-        TextView status = (TextView) findViewById(R.id.status);
+        final TextView status = (TextView) findViewById(R.id.status);
         TextView pay_mode = (TextView) findViewById(R.id.p_mode);
         TextView o_date = (TextView) findViewById(R.id.o_date);
         TextView username = (TextView) findViewById(R.id.u_name);
@@ -44,6 +53,7 @@ public class Allorders_selected extends AppCompatActivity {
         TextView p_cat = (TextView) findViewById(R.id.p_cat);
         TextView price = (TextView) findViewById(R.id.price);
         TextView total = (TextView) findViewById(R.id.tot);
+         listview =  findViewById(R.id.lv_status);
 
 
 
@@ -93,6 +103,45 @@ public class Allorders_selected extends AppCompatActivity {
 
         byte[] bytes = db.prodImage(s_pid);
         imageView.setImageBitmap(getImage(bytes));
+
+
+
+
+
+
+        listview = new ListView(this);
+        List<String> data = new ArrayList<>();
+        data.add("ORDERED");
+        data.add("PACKED");
+        data.add("SHIPPED");
+        data.add("DELIVERY EXPECTED");
+        data.add("DELIVERED");
+        data.add("RETURN REQUESTED");
+        data.add("RETURN ");
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,data);
+        listview.setAdapter(adapter);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Allorders_selected.this);
+        builder.setCancelable(true);
+        builder.setView(listview);
+        final  AlertDialog dialog = builder.create();
+
+
+
+
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        status.setText(adapter.getItem(i));
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
     }
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);

@@ -149,7 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_sprodname + " TEXT,"
             + COL_sdate + " TEXT,"
             + COL_edate + " TEXT,"
-            + COL_dtime + " date default CURRENT_TIMESTAMP, "
+            + COL_dtime + " date default CURRENT_DATE, "
             + COL_siv + " BLOB " + ")";
 
     //category table
@@ -198,7 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_quantity + " TEXT,"
             + COL_ostatus + " TEXT,"
             + COL_pmode + " TEXT,"
-            + COL_odate + " date default CURRENT_TIMESTAMP,"
+            + COL_odate + " date default CURRENT_DATE,"
             + " FOREIGN KEY ("+COL_ouid+") REFERENCES "+TABLE_NAME+" ("+COL_1+"))";
 
 
