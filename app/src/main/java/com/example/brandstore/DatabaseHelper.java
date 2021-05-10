@@ -290,6 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_uid, uid);
         contentValues.put(COL_qty, qtyv);
         contentValues.put(COL_cart_psize, size);
+        contentValues.put(COL_cart_status, "ORDERED");
 
         long result = db.insert(TABLE_CART, null, contentValues);
         if (result == -1)
@@ -635,5 +636,16 @@ public UserModel Authenticate(UserModel userModel) {
         Cursor curso = db.rawQuery("SELECT rowid _id, * FROM " + TABLE_STOCKS + " WHERE " + s_date + " = '" + sdate + "'" , null);
 
         return curso;
+    }
+
+    public int update_status(String scart_id,String order_id,String status)
+    { SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_cart_status, status);
+
+
+        int i = db.update(TABLE_CART, contentValues, COL_cartid + " = " + scart_id, null);
+        return  i;
+
     }
 }

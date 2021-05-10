@@ -46,7 +46,7 @@ public class All_orders extends AppCompatActivity {
             int order_id = cursor.getInt(0);
             int uid = cursor.getInt(1);
             String delivery_amt = cursor.getString(3);
-            String status = cursor.getString(5);
+            String status = cursor.getString(19);
             String pay_mode = cursor.getString(6);
             String o_date = cursor.getString(7);
             String username = cursor.getString(9);

@@ -441,6 +441,18 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="update"
+            android:textSize="8sp"
+            android:layout_marginTop="370dp"
+            android:id="@+id/bt_ustatus"
+
+            android:layout_marginStart="270dp"
+            >
+
+        </Button>
 
         <TextView
 

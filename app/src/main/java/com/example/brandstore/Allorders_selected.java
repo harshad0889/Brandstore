@@ -5,12 +5,15 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,7 @@ public class Allorders_selected extends AppCompatActivity {
     String uid,username;
     SharedPreferences sd;
     ListView listview;
+    Button bt_ustatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class Allorders_selected extends AppCompatActivity {
         sd = getSharedPreferences("user_details",MODE_PRIVATE);
         uid = sd.getString("uid",null);
         username  = sd.getString("username",null);
-        TextView order_id = (TextView) findViewById(R.id.order_id);
+        final TextView order_id = (TextView) findViewById(R.id.order_id);
         TextView uid = (TextView) findViewById(R.id.uid);
         TextView delivery_amt = (TextView) findViewById(R.id.del_amt);
         final TextView status = (TextView) findViewById(R.id.status);
@@ -44,7 +48,7 @@ public class Allorders_selected extends AppCompatActivity {
         TextView phone = (TextView) findViewById(R.id.phone);
         TextView address = (TextView) findViewById(R.id.address);
         TextView pin = (TextView) findViewById(R.id.pin);
-        TextView cart_id = (TextView) findViewById(R.id.cart_id);
+        final TextView cart_id = (TextView) findViewById(R.id.cart_id);
         TextView pid = (TextView)findViewById(R.id.pid);
         TextView qty = (TextView)findViewById(R.id.qty);
         ImageView imageView = (ImageView) findViewById(R.id.img_product);
@@ -142,6 +146,30 @@ public class Allorders_selected extends AppCompatActivity {
                 });
             }
         });
+
+        bt_ustatus =findViewById(R.id.bt_ustatus);
+        bt_ustatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String ustatus = status.getText().toString();
+                String scart_id = cart_id.getText().toString();
+                String sorder_id =order_id.getText().toString();
+                int update = db.update_status(scart_id,sorder_id,ustatus);
+
+                Toast.makeText(Allorders_selected.this, "status updated successfully! ", Toast.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, Toast.LENGTH_LONG);
+
+
+
+            }
+        });
+
     }
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
