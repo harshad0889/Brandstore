@@ -27,6 +27,10 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -520,7 +524,37 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_track"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="550dp"
+
+
+            android:fontFamily="sans-serif-black"
+
+            android:text="TRACK YOUR ORDER "
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+        <ListView
+            android:id="@+id/lv_status"
+            android:elevation="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@+id/tv_track"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:scrollbars="vertical"
+            android:smoothScrollbar="true"
+            android:scrollingCache="false"
+            android:layout_marginTop="0dp"/>
     </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

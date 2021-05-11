@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/btn"
     android:elevation="5dp"
+    android:layout_margin="6dp"
+    android:padding="10dp"
 
     >
 
@@ -33,7 +35,7 @@
         android:id="@+id/prod_name"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
 
 
 
@@ -42,33 +44,52 @@
         android:text="prod name"
 
 
-        android:textColor="#6E6868"
-        android:fontFamily="monospace"
+        android:textColor="#474646"
+        android:fontFamily="sans-serif-medium"
         android:textSize="16sp"
         android:elevation="5dp"
         />
 
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_ordeid"
+
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginRight="35dp"
+        android:fontFamily="sans-serif-medium"
+
+        android:text="order id:"
+        android:textAlignment="center"
+        android:textColor="#616060"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/order_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_ordeid"
 
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="35dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
 
         android:text="order id"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textColor="#636161"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/cart_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_marginStart="340dp"
         android:layout_marginTop="12dp"
@@ -85,20 +106,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="340dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="12dp"
+
+
         android:fontFamily="sans-serif-medium"
 
         android:text="date"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="10sp" />
     <TextView
         android:id="@+id/u_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_marginStart="340dp"
         android:layout_marginTop="52dp"
@@ -120,6 +142,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
+        android:visibility="gone"
 
         android:text="phon"
         android:textAlignment="center"
@@ -129,6 +152,7 @@
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_marginStart="340dp"
         android:layout_marginTop="92dp"
@@ -153,6 +177,7 @@
         android:layout_marginTop="8dp"
 
         android:fontFamily="sans-serif-medium"
+        android:visibility="gone"
 
         android:text="pid"
         android:textAlignment="center"
@@ -166,6 +191,7 @@
 
         android:layout_marginStart="300dp"
         android:layout_marginTop="37dp"
+        android:visibility="gone"
 
 
         android:fontFamily="sans-serif-medium"
@@ -179,6 +205,7 @@
         android:id="@+id/pin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_marginStart="300dp"
         android:layout_marginTop="57dp"
@@ -195,6 +222,7 @@
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_marginStart="150dp"
         android:layout_marginTop="70dp"
@@ -211,6 +239,7 @@
         android:id="@+id/c_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_marginStart="150dp"
         android:layout_marginTop="90dp"
@@ -235,6 +264,7 @@
     android:layout_marginEnd="35dp"
     android:layout_marginRight="35dp"
     android:fontFamily="sans-serif-medium"
+        android:visibility="gone"
 
     android:text="qty"
     android:textAlignment="center"
@@ -250,6 +280,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
+        android:visibility="gone"
 
         android:text="delamt"
         android:textAlignment="center"
@@ -260,11 +291,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="70dp"
+
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
 
         android:text="status"
         android:textAlignment="center"
@@ -280,6 +312,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
+        android:visibility="gone"
 
         android:text="pmode"
         android:textAlignment="center"
@@ -295,6 +328,7 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:fontFamily="sans-serif-medium"
+        android:visibility="gone"
 
         android:text="cat"
         android:textAlignment="center"
@@ -308,6 +342,7 @@
 
         android:layout_marginStart="300dp"
         android:layout_marginTop="120dp"
+        android:visibility="gone"
 
 
         android:fontFamily="sans-serif-medium"

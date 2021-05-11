@@ -29,7 +29,11 @@
         android:id="@+id/gv_myorders"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:elevation="5dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:padding="10dp">
 
     </GridView>
 

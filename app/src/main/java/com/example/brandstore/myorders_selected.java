@@ -2,10 +2,13 @@ package com.example.brandstore;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,13 @@ public class myorders_selected extends AppCompatActivity {
     DatabaseHelper db;
    String uid,username;
     SharedPreferences sd;
+
+    private ListView lv_status;
+    private SimpleCursorAdapter adapter2;
+
+    final String[] from = new String[]{db.s_cartid,db.s_status,db.s_date};
+
+    final int[] to = new int[]{R.id.cartid, R.id.status, R.id.s_date};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +106,20 @@ public class myorders_selected extends AppCompatActivity {
 
         byte[] bytes = db.prodImage(s_pid);
         imageView.setImageBitmap(getImage(bytes));
+
+        //listing of tracking details
+
+
+        String status_cart_id = cart_id.getText().toString();
+        Cursor cursor4 = db.status_list(status_cart_id);
+        //Log.e( "cursor",sp_id);
+
+        lv_status = findViewById(R.id.lv_status);
+
+        adapter2 = new SimpleCursorAdapter(this,R.layout.status_items, cursor4, from, to,0);
+        adapter2.notifyDataSetChanged();
+
+        lv_status.setAdapter(adapter2);
     }
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);

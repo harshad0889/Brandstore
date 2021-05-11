@@ -31,17 +31,20 @@ public class p_grid_selecteditem extends AppCompatActivity {
     DatabaseHelper db;
     Button add_cart,chat2,inc_bt,dec_bt,add_whishlist,go_to_cart;
     SharedPreferences sd;
-    String uid,username;
+    String uid,username,product_id;
     ListView list_size,list_size_shirts;
+    String wp_id;
+    String wu_id;
+
 
 
     private ListView listView;
     private LinearLayout lin;
     private SimpleCursorAdapter adapter4;
 
-    final String[] from = new String[]{db.COL_pro_id,db.COL_user,db.COL_review};
+    final String[] from = new String[]{db.COL_pro_id,db.COL_user,db.COL_rating,db.COL_review};
 
-    final int[] to = new int[]{R.id.prod_id2, R.id.user2, R.id.preview2};
+    final int[] to = new int[]{R.id.prod_id2, R.id.user2,R.id.rating, R.id.preview2};
 
 
     @Override
@@ -138,10 +141,12 @@ public class p_grid_selecteditem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String scat = category.getText().toString();
-                if (scat.equals("pants") || scat.equals("PANTS")){
+                if (scat.equals("pants") || scat.equals("PANTS") || scat.equals("JEANS")){
                     dialog.show();
 
-                }else if(scat.equals("shirts") || scat.equals("SHIRTS") ){
+                }else if(scat.equals("shirts") || scat.equals("SHIRTS") || scat.equals("T SHIRTS") ){
+                    dialog2.show();
+                }else{
                     dialog2.show();
                 }
 
@@ -176,7 +181,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String prod_id = intent.getStringExtra("pid");
+        final String prod_id = intent.getStringExtra("pid");
         String p_name= intent.getStringExtra("p_name");
         String p_price= intent.getStringExtra("p_price");
         String p_cat= intent.getStringExtra("p_cat");
@@ -197,6 +202,8 @@ public class p_grid_selecteditem extends AppCompatActivity {
 
         byte[] bytes = db.prodImage(prod_id);
         img_prod.setImageBitmap(getImage(bytes));
+
+        product_id = pid.getText().toString();
 
         //*************ADD CART BUTTON ONCLICK***************
         add_cart.setOnClickListener(new View.OnClickListener() {
@@ -229,23 +236,57 @@ public class p_grid_selecteditem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
+
+
+                    Cursor cursor2 = db.getData(String.format("SELECT pid,_id from wish_table where pid =%s and _id = %s ",prod_id,uid));
+               // Log.e("samp",   cursor2);
+
+
+
+                   /* while (cursor2.moveToNext()) {
+                        for (int i = 0; i < cursor2.getCount(); i++) {
+
+                            wp_id = cursor2.getString(0);
+                            wu_id = cursor2.getString(1);
+
+
+                            // add_stocks.setText(ps_cat);
+                        }
+                        Log.e("samp", wp_id + "," + wu_id);
+
+
+                    }*/
+
                 if (size.length() == 0) {
                     size.requestFocus();
                     size.setError("choose your size");
-                }else {
+
+                }
+                else if (cursor2.getCount() == 0) {
                     String spid = pid.getText().toString();
                     String suid = userid.getText().toString();
                     String sp_qty = qty_value.getText().toString();
-                     String s_psize = size.getText().toString();
+                    String s_psize = size.getText().toString();
 
-                    db.insert_to_wishlist(spid, suid,sp_qty,s_psize);
+                    db.insert_to_wishlist(spid, suid, sp_qty, s_psize);
                     Toast.makeText(p_grid_selecteditem.this, "Product added to wishlist ", Toast.LENGTH_LONG).show();
                     add_whishlist.setText("GO TO WISHLIST");
-                }
+
+                        }
+                else {
+                    Toast.makeText(p_grid_selecteditem.this, "already in wishlist ", Toast.LENGTH_LONG).show();
+
+                        }
 
 
             }
         });
+
+
+
+
 
         inc_bt.setOnClickListener(new View.OnClickListener() {
             @Override

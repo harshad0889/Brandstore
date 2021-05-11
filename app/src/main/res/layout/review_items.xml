@@ -10,31 +10,40 @@
         android:layout_marginTop="15dp"
         android:id="@+id/prod_id2"
         android:layout_marginStart="215dp"
+        android:visibility="gone"
         />
     <TextView
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:hint="user2"
+        android:drawableLeft="@drawable/person2"
+        android:gravity="center_vertical"
         android:id="@+id/user2"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         >
 
     </TextView>
+
     <TextView
+        android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="review"
-        android:id="@+id/rating"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="45dp"
-        />
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/user2"
+        android:drawableEnd="@drawable/star"
+        android:hint="" />
     <TextView
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="review"
         android:id="@+id/preview2"
-        android:layout_marginTop="90dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
         android:layout_marginStart="45dp"
         >
 

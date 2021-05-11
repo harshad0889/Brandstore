@@ -319,6 +319,7 @@
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="43dp"
                 android:focusable="false"
+                android:drawableRight="@drawable/edit"
                 android:text="Write a Review...       "
                 android:textColor="#424040"
                 android:textSize="23sp"

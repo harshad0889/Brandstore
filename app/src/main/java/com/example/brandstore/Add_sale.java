@@ -28,9 +28,11 @@ import androidx.core.app.ActivityCompat;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class Add_sale extends AppCompatActivity {
 
@@ -47,6 +49,7 @@ public class Add_sale extends AppCompatActivity {
     boolean[] checkeditems;
     String[] day = {"pants","shirts"};
     String sl_start,sl_end;
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,25 +73,46 @@ public class Add_sale extends AppCompatActivity {
 
 
 
+        //date picker dialogue
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayofmonth) {
+                myCalendar.set(Calendar.YEAR,year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,dayofmonth);
+                String Myformat = "dd MMMM YYYY";
+                SimpleDateFormat sdf = new SimpleDateFormat(Myformat, Locale.US);
+                s_start.setText(sdf.format(myCalendar.getTime()));
+
+
+            }
+        };
+
+        //date picker dialogue
+        final DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayofmonth) {
+                myCalendar.set(Calendar.YEAR,year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,dayofmonth);
+                String Myformat = "dd MMMM YYYY";
+                SimpleDateFormat sdf = new SimpleDateFormat(Myformat, Locale.US);
+                s_end.setText(sdf.format(myCalendar.getTime()));
+
+
+            }
+        };
+
         //date picker
 
         s_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar cal = Calendar.getInstance();
-                mdate = cal.get(Calendar.DATE);
-                mmonth = cal.get(Calendar.MONTH);
-                myear = cal.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_sale.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        s_start.setText(date+"-"+month+"-"+year);
+                new DatePickerDialog(Add_sale.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-
-                    }
-                },myear,mmonth,mdate);
-                datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
-                datePickerDialog.show();
+               // String Myformat = "dd MMMM YYYY";
+               // SimpleDateFormat sdf = new SimpleDateFormat(Myformat, Locale.US);
+               // s_start.setText(sdf.format(myCalendar.getTime()));
 
 
             }
@@ -99,20 +123,8 @@ public class Add_sale extends AppCompatActivity {
         s_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar cal = Calendar.getInstance();
-                mdate = cal.get(Calendar.DATE);
-                mmonth = cal.get(Calendar.MONTH);
-                myear = cal.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_sale.this, android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                        s_end.setText(date+"-"+month+"-"+year);
+                new DatePickerDialog(Add_sale.this,date2,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-
-                    }
-                },myear,mmonth,mdate);
-                datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
-                datePickerDialog.show();
 
 
             }

@@ -17,6 +17,8 @@ public class productListAdapter extends BaseAdapter {
     private Context context;
     private  int layout;
     private ArrayList<product> prodlist;
+    DatabaseHelper db;
+    String pname = "SHIRTS";
 
     public productListAdapter(Context context, int layout, ArrayList<product> prodlist) {
         this.context = context;
@@ -46,7 +48,7 @@ public class productListAdapter extends BaseAdapter {
 
     static class ViewHolder{
         ImageView imageView;
-        TextView p_id, p_name,a_price,o_price,p_sale,p_desc,p_off,p_category,p_size;
+        TextView p_id, p_name,a_price,o_price,p_sale,p_desc,p_off,p_category,p_size,off,off_sprice;
     }
 
     @Override
@@ -54,6 +56,7 @@ public class productListAdapter extends BaseAdapter {
 
         View row = view;
         ViewHolder holder = new ViewHolder();
+        db = new DatabaseHelper(context);
 
         if(row == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,12 +73,17 @@ public class productListAdapter extends BaseAdapter {
            // holder.p_off = (TextView) row.findViewById(R.id.p_off);
             holder.p_category = (TextView) row.findViewById(R.id.category);
             holder.p_size = (TextView) row.findViewById(R.id.p_size);
+            holder.off = (TextView) row.findViewById(R.id.off1);
+            holder.off_sprice = (TextView) row.findViewById(R.id.off_sprice);
 
             row.setTag(holder);
         }
         else {
             holder = (ViewHolder) row.getTag();
         }
+
+
+
 
         product prod = prodlist.get(position);
 
@@ -97,5 +105,8 @@ public class productListAdapter extends BaseAdapter {
         holder.imageView.setImageBitmap(bitmap);
 
         return row;
+
+
+       // Cursor cursor2 = db.getData(String.format("SELECT pname from sale_table where pname = 'SHIRTS'"));
     }
 }

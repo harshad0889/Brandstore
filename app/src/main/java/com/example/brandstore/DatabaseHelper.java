@@ -102,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_user = "user";
     public static final String COL_review = "review";
     public static final String COL_rating = "rating";
+    public static final String COL_rdate = "rdate";
 
 
     //table stocks
@@ -112,6 +113,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String stock = "stock";
     public static final String s_date = "s_date";
 
+
+
+    //table status
+
+    public static final String TABLE_STATUS = "STATUS";
+    public static final String status_id = "st_id";
+    public static final String s_status = "c_status";
+    public static final String sdate = "sdate";
+    public static final String s_cartid = "cartid";
 
 
 
@@ -210,6 +220,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_pro_id + " TEXT,"
             + COL_user + " TEXT,"
             + COL_rating + " TEXT,"
+            + COL_rdate + " date default CURRENT_DATE,"
             + COL_review + " TEXT" + ")";
 
 
@@ -218,7 +229,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + stock_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + p_category + " TEXT,"
             + stock + " TEXT,"
-            + s_date + " date default CURRENT_DATE "+ ")";
+            + s_date + " TEXT "+ ")";
+
+
+    //user status table
+    private String CREATE_STATUS_TABLE = "CREATE TABLE " + TABLE_STATUS + "("
+            + status_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + s_status + " TEXT,"
+            + s_cartid + " TEXT,"
+            + sdate + " date default CURRENT_DATE " + ")";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -236,6 +255,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_WISHLIST_TABLE);
         db.execSQL(CREATE_REVIEW);
         db.execSQL(CREATE_STOCKS_TABLE);
+        db.execSQL(CREATE_STATUS_TABLE);
 
     }
 
@@ -251,6 +271,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WISHLIST);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_REVIEW);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STOCKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATUS);
 
 
 
@@ -601,6 +622,33 @@ public UserModel Authenticate(UserModel userModel) {
     }
 
 
+
+
+    //
+    //insert  status data
+    public boolean insert_status(String cartid, String status) {
+
+
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(s_cartid, cartid);
+        contentValues.put(s_status, status);
+
+
+
+
+
+        long result = db.insert(TABLE_STATUS, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+
+
+    }
+
     //****************review list***********
     public Cursor review_list(String _id) {
         SQLiteDatabase db = getReadableDatabase();
@@ -610,11 +658,12 @@ public UserModel Authenticate(UserModel userModel) {
         return cursor;
     }
 
-    public boolean insert_stocks(String ps_cat, String stock_qty) {
+    public boolean insert_stocks(String ps_cat, String stock_qty,String date2) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(p_category, ps_cat);
         contentValues.put(stock, stock_qty);
+        contentValues.put(s_date, date2);
 
 
 
@@ -647,5 +696,14 @@ public UserModel Authenticate(UserModel userModel) {
         int i = db.update(TABLE_CART, contentValues, COL_cartid + " = " + scart_id, null);
         return  i;
 
+    }
+
+    public Cursor status_list(String sp_id) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT rowid _id,* FROM " + TABLE_STATUS + " WHERE " + s_cartid + " = '" + sp_id + "'", null);
+
+        return cursor;
     }
 }

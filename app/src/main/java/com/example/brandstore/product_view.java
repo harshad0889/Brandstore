@@ -74,6 +74,11 @@ public class product_view extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
 
+        //TextView category = (TextView) findViewById(R.id.category);
+        //String pname = category.getText().toString();
+        //Cursor cursor1 = db.getData(String.format("SELECT pname from sale_table where pname = %s",pname));
+        //Log.e("added", cursor1.toString());
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -159,6 +164,11 @@ public class product_view extends AppCompatActivity {
                     case R.id.view_product:
                         Intent u = new Intent(product_view.this, product_view.class);
                         startActivity(u);
+                        finish();
+                        return true;
+                    case R.id.stocks:
+                        Intent sr = new Intent(product_view.this, View_stocks.class);
+                        startActivity(sr);
                         finish();
                         return true;
 

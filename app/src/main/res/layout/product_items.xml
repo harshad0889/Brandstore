@@ -60,11 +60,62 @@
         android:drawableLeft="@drawable/rupees"
 
         android:elevation="5dp"
-        android:text="actual price"
+        android:text=" price"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp" />
+    <TextView
+        android:id="@+id/off_sprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+
+
+
+        android:layout_marginTop="200dp"
+
+
+        android:elevation="5dp"
+        android:text=" price"
+        android:textAlignment="center"
+        android:textColor="#8B8E8B"
+        android:textStyle="normal"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/off1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+
+
+        android:layout_marginTop="175dp"
+
+
+        android:elevation="5dp"
+        android:text=" off"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/off1"
+        android:layout_marginStart="2dp"
+
+
+        android:layout_marginTop="175dp"
+
+
+        android:elevation="5dp"
+        android:text=" OFF"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="10sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/prod_id"

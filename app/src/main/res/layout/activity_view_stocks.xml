@@ -25,12 +25,26 @@
             android:textSize="30dp"
             android:textStyle="bold" />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="add stocks"
-            android:layout_marginLeft="100dp"
-            android:background="@drawable/joinbtn"
+
+            android:layout_marginLeft="140dp"
+            android:background="@drawable/refresh"
+
+
+
             android:id="@+id/add_stocks"/>
+
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/refresh"
+            android:visibility="gone"
+
+            android:id="@+id/refresh_stocks"/>
 
     </androidx.appcompat.widget.Toolbar>
     <TextView
@@ -54,16 +68,19 @@
         android:layout_marginTop="200dp"
         android:background="@drawable/btn"
         android:drawableRight="@drawable/cal"
+        android:drawableLeft="@drawable/transa_space"
         android:hint=" Choose date "
         android:focusableInTouchMode="false"
 
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="show"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
         android:layout_marginTop="300dp"
         android:background="@drawable/joinbtn"
         android:id="@+id/show_stocks"/>

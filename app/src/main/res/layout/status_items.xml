@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="100dp">
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:text="cartid"
+        android:layout_marginTop="15dp"
+        android:id="@+id/cartid"
+        android:layout_marginStart="215dp"
+        android:visibility="gone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="status"
+        android:drawableLeft="@drawable/done"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:id="@+id/status"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        >
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:id="@+id/s_date"
+        android:textStyle="italic"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="25dp"
+        />
+
+
+</RelativeLayout>

@@ -2,22 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/btn"
     android:elevation="5dp"
+    android:padding="10dp"
 
     android:layout_margin="20dp"
 
     >
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         app:srcCompat="@mipmap/ic_launcher"
+
         android:id="@+id/imgFood"
 
         android:backgroundTint="#80FFFFFF"
-        android:backgroundTintMode="src_over"
+
         android:alpha="0.5"
 
         android:scaleType="centerCrop"
@@ -40,17 +42,17 @@
         android:id="@+id/sale_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="60dp"
 
 
 
 
-        android:layout_marginStart="20dp"
-        android:text="prod description"
+        android:layout_marginStart="150dp"
+        android:text=" desc"
 
         android:textAlignment="center"
-        android:textColor="#090303"
-        android:drawableLeft="@drawable/tag"
+        android:textColor="#4EBC01"
+
         android:fontFamily="monospace"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -62,11 +64,11 @@
         android:id="@+id/sdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="140dp"
 
 
-        android:layout_marginTop="175dp"
-        android:drawableLeft="@drawable/cal"
+        android:layout_marginTop="100dp"
+
 
         android:elevation="5dp"
         android:fontFamily="monospace"
@@ -74,7 +76,7 @@
         android:textAlignment="center"
         android:textColor="#090303"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="italic" />
 
 
     <TextView
@@ -84,12 +86,12 @@
         android:layout_marginStart="190dp"
 
 
-        android:layout_marginTop="175dp"
-        android:drawableLeft="@drawable/cal"
+        android:layout_marginTop="100dp"
+
 
         android:elevation="5dp"
         android:fontFamily="monospace"
-        android:text="TO"
+        android:text="-"
         android:textAlignment="center"
         android:textColor="#090303"
         android:textSize="14sp"
@@ -101,11 +103,10 @@
         android:id="@+id/edate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="210dp"
 
 
-        android:layout_marginTop="175dp"
-        android:drawableLeft="@drawable/cal"
+        android:layout_marginTop="100dp"
 
         android:elevation="5dp"
         android:fontFamily="monospace"
@@ -113,7 +114,7 @@
         android:textAlignment="center"
         android:textColor="#090303"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="italic" />
 
 
 
@@ -142,11 +143,11 @@
         android:layout_height="wrap_content"
         android:textAllCaps="true"
 
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="sans-serif-condensed"
 
         android:text="title"
         android:textStyle="bold"
