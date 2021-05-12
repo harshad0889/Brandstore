@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class p_grid_selecteditem extends AppCompatActivity {
-    TextView pid,pname,category,price,desc,qty,size,userid,qty_value,Review;
+    TextView pid,pname,category,price,desc,qty,size,userid,qty_value,Review,offer;
     ImageView img_prod;
     int qtyv = 1;
     DatabaseHelper db;
@@ -74,7 +74,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
 
         img_prod = findViewById(R.id.img_prod);
         add_cart = findViewById(R.id.add_cart);
-       // go_to_cart = findViewById(R.id.go_to_cart);
+        offer = findViewById(R.id.off);
         add_whishlist = findViewById(R.id.add_whishlist);
        lin = findViewById(R.id.reviews_lin);
         Review = findViewById(R.id.prod_review);
@@ -188,6 +188,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
         String p_desc= intent.getStringExtra("p_desc");
         String p_qty= intent.getStringExtra("p_sale");
         String p_size= intent.getStringExtra("size");
+        String off= intent.getStringExtra("off");
         Bitmap bitmap = intent.getParcelableExtra("bitmap");
 
 
@@ -197,7 +198,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
         category.setText(p_cat);
         desc.setText(p_desc);
         qty.setText(p_qty);
-       //  size.setText(p_size);
+        offer.setText(off);
         userid.setText(uid);
 
         byte[] bytes = db.prodImage(prod_id);

@@ -1,11 +1,5 @@
 package com.example.brandstore;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,10 +7,12 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 
-import com.example.brandstore.DatabaseHelper;
-import com.example.brandstore.R;
-import com.example.brandstore.product;
-import com.example.brandstore.productListAdapter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -49,7 +45,7 @@ public class Home2 extends AppCompatActivity {
        // gridView.setAdapter(adapter);
 
 
-        Cursor cursor = db2.getData("SELECT * FROM product_table");
+        Cursor cursor = db2.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -59,11 +55,11 @@ public class Home2 extends AppCompatActivity {
             String p_size = cursor.getString(4);
             String a_price = cursor.getString(5);
            // String o_price = cursor.getString(6);
-            //String p_off = cursor.getString(8);
+            String p_off = cursor.getString(10);
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name, p_category, p_desc,p_size,a_price,  p_sale,   image));
+            list.add(new product( pid,  p_name, p_category, p_desc,p_size,a_price,  p_sale,   image,p_off));
         }
        // adapter.notifyDataSetChanged();
 

@@ -3,6 +3,7 @@ package com.example.brandstore;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,10 +68,10 @@ public class productListAdapter extends BaseAdapter {
             holder.imageView = (ImageView) row.findViewById(R.id.imgFood);
             holder.p_name = (TextView) row.findViewById(R.id.prod_name);
             holder.a_price = (TextView) row.findViewById(R.id.act_Price);
-           // holder.o_price = (TextView) row.findViewById(R.id.off_Price);
+            holder.o_price = (TextView) row.findViewById(R.id.off_sprice);
             holder.p_sale = (TextView) row.findViewById(R.id.p_sale);
             holder.p_desc = (TextView) row.findViewById(R.id.prod_desc);
-           // holder.p_off = (TextView) row.findViewById(R.id.p_off);
+            holder.p_off = (TextView) row.findViewById(R.id.off1);
             holder.p_category = (TextView) row.findViewById(R.id.category);
             holder.p_size = (TextView) row.findViewById(R.id.p_size);
             holder.off = (TextView) row.findViewById(R.id.off1);
@@ -90,12 +91,31 @@ public class productListAdapter extends BaseAdapter {
 
         holder.p_id.setText(Integer.toString(prod.getPid()));
         holder.p_name.setText(prod.getP_name());
-        holder.a_price.setText(prod.getA_price());
-       // holder.o_price.setText(prod.getO_price());
+
+
+        double oprice = 0.0;
+        String offerprice = prod.getA_price();
+        String off = prod.getP_off();
+        if (off != null){
+
+            String per = "100";
+            Log.e("sample", offerprice + off);
+            oprice = (Double.parseDouble(offerprice) - (Double.parseDouble(offerprice) * Double.parseDouble(off)/Double.parseDouble(per)));
+        }else
+        {
+            off="0";
+        String per = "100";
+        Log.e("sample", offerprice + off);
+            oprice = (Double.parseDouble(offerprice) - (Double.parseDouble(offerprice) * Double.parseDouble(off)/Double.parseDouble(per)));
+        }
+       // oprice = (Double.parseDouble(offerprice) - (Double.parseDouble(offerprice) * Double.parseDouble(off)/Double.parseDouble(per)));
+
+        holder.a_price.setText(String.valueOf(oprice));
+        holder.o_price.setText(prod.getA_price());
         holder.p_sale.setText(prod.getP_sale());
-        holder.p_size.setText(prod.getP_size());
+        holder.p_size.setText(prod.getP_size() );
         holder.p_desc.setText(prod.getP_desc());
-       // holder.p_off.setText(prod.getP_off());
+        holder.p_off.setText(prod.getP_off());
         holder.p_category.setText(prod.getP_category());
 
 
@@ -107,6 +127,18 @@ public class productListAdapter extends BaseAdapter {
         return row;
 
 
+
+
        // Cursor cursor2 = db.getData(String.format("SELECT pname from sale_table where pname = 'SHIRTS'"));
+        //SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname
+        //this above code should be added or replaced in select * from product and try it
     }
+
 }
+
+
+   /* double oprice = 0.0;
+    String offerprice = prod.getA_price();
+    String off = prod.getP_off();
+    String per = "100";
+        oprice = oprice - (Double.parseDouble(offerprice) * Double.parseDouble(off)/Double.parseDouble(per));*/

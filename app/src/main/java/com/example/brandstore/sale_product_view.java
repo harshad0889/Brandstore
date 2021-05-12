@@ -50,7 +50,7 @@ public class sale_product_view extends AppCompatActivity {
         // Bitmap bitmap = intent.getParcelableExtra("catimage");
 
 
-        Cursor cursor = db.getData("SELECT * FROM product_table WHERE pcategory ="+ '"'+spname+'"');
+        Cursor cursor = db.getData("SELECT  * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE pcategory ="+ '"'+spname+'"');
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -60,11 +60,11 @@ public class sale_product_view extends AppCompatActivity {
             String p_size = cursor.getString(4);
             String a_price = cursor.getString(5);
             // String o_price = cursor.getString(6);
-            // String p_off = cursor.getString(8);
+            String p_off = cursor.getString(10);
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name,p_category,p_desc, p_size,a_price, p_sale,   image));
+            list.add(new product( pid,  p_name,p_category,p_desc, p_size,a_price, p_sale,   image,p_off));
         }
         adapter.notifyDataSetChanged();
 

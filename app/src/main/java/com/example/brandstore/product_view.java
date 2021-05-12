@@ -56,7 +56,7 @@ public class product_view extends AppCompatActivity {
 
 
 
-        Cursor cursor = db.getData("SELECT * FROM product_table");
+        Cursor cursor = db.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -66,11 +66,11 @@ public class product_view extends AppCompatActivity {
             String p_size = cursor.getString(4);
             String a_price = cursor.getString(5);
            // String o_price = cursor.getString(6);
-           // String p_off = cursor.getString(8);
+            String p_off = cursor.getString(10);
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image));
+            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image,p_off));
         }
         adapter.notifyDataSetChanged();
 
@@ -90,6 +90,8 @@ public class product_view extends AppCompatActivity {
                 TextView category = (TextView) view.findViewById(R.id.category);
                 TextView sale = (TextView) view.findViewById(R.id.p_sale);
                 TextView p_size = (TextView) view.findViewById(R.id.p_size);
+                TextView off = (TextView) view.findViewById(R.id.off1);
+                TextView offerprice = (TextView) view.findViewById(R.id.off_sprice);
 
                 ImageView ivimage = view.findViewById(R.id.imgFood);
 
@@ -102,6 +104,8 @@ public class product_view extends AppCompatActivity {
                 String p_cat = category.getText().toString();
                 String p_sale = sale.getText().toString();
                 String size = p_size.getText().toString();
+                String offer = off.getText().toString();
+                String offer_price = offerprice.getText().toString();
 
 
                 Intent s = new Intent(product_view.this,p_grid_selecteditem.class);
@@ -112,6 +116,8 @@ public class product_view extends AppCompatActivity {
                 s.putExtra("p_cat",p_cat);
                 s.putExtra("p_sale",p_sale);
                 s.putExtra("size",size);
+                s.putExtra("off",offer);
+                s.putExtra("offerprice",offer_price);
 
 
                 startActivity(s);

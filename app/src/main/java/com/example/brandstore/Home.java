@@ -52,7 +52,7 @@ public class Home extends AppCompatActivity {
 
 
 
-        Cursor cursor = db2.getData("SELECT * FROM product_table");
+        Cursor cursor = db2.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -62,11 +62,11 @@ public class Home extends AppCompatActivity {
             String p_size = cursor.getString(4);
             String a_price = cursor.getString(5);
            // String o_price = cursor.getString(6);
-           // String p_off = cursor.getString(8);
+            String p_off = cursor.getString(10);
             String p_sale = cursor.getString(6);
             byte[] image = cursor.getBlob(7);
 
-            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image));
+            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image,p_off));
         }
         adapter.notifyDataSetChanged();
 
