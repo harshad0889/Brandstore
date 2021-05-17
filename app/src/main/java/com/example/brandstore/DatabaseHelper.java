@@ -567,7 +567,7 @@ public UserModel Authenticate(UserModel userModel) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_uid, uid);
         contentValues.put(COL_prodid, spid);
-        int i = db.delete(TABLE_CART, COL_uid + " = " + uid + " AND " + COL_prodid + "=" + spid,null );
+        int i = db.delete(TABLE_CART, COL_uid + " = " + uid + " AND " + COL_prodid + "=" + spid + " AND " +  COL_oid + " ISNULL " ,null );
         return i;
     }
 

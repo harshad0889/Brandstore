@@ -140,8 +140,17 @@ public class my_orders extends AppCompatActivity {
 
 
 
+
+
                 startActivity(s);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(my_orders.this, Home2.class);
+        startActivity(in);
+        finish();
     }
 }

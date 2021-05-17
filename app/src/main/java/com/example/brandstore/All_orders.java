@@ -141,4 +141,11 @@ public class All_orders extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(All_orders.this, product_view.class);
+        startActivity(in);
+        finish();
+    }
 }

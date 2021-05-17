@@ -1,5 +1,6 @@
 package com.example.brandstore;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,9 +10,11 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -182,9 +185,51 @@ public class product_view extends AppCompatActivity {
 
 
                     case R.id.add_cat:
+
                         Intent main = new Intent(product_view.this, Add_category.class);
                         startActivity(main);
                         finish();
+
+
+                    case R.id.logout:
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(product_view.this);
+                        builder.setTitle("Cancel Order..");
+                        builder.setMessage("Do you want to cancel order?");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // Intent r = new Intent(myorders_selected.this, Home.class);
+                                // startActivity(r);
+                                // finish();
+
+                                //int update = db.update_status(scart_id,s_order_id,ustatus);
+                                //insert status table for list
+
+                                //db.insert_status(scart_id, ustatus);
+                                Toast.makeText(product_view.this, " order canceled! ", Toast.LENGTH_LONG).show();
+                                Intent m = new Intent(product_view.this, verify_phno.class);
+                                startActivity(m);
+                                finish();
+
+
+
+                            }
+                        });
+                        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(product_view.this, " not canceled! ", Toast.LENGTH_LONG).show();
+                                dialogInterface.dismiss();
+
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+
+
+
 
 
 
@@ -245,5 +290,38 @@ public class product_view extends AppCompatActivity {
         Intent in = new Intent(getApplicationContext(), Home.class);
         startActivity(in);
         finish();
+    }
+    public void alert(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Cancel Order..");
+        builder.setMessage("Do you want to cancel order?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Intent r = new Intent(myorders_selected.this, Home.class);
+                // startActivity(r);
+                // finish();
+
+                //int update = db.update_status(scart_id,s_order_id,ustatus);
+                //insert status table for list
+
+                //db.insert_status(scart_id, ustatus);
+                Toast.makeText(product_view.this, " order canceled! ", Toast.LENGTH_LONG).show();
+
+
+
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(product_view.this, " not canceled! ", Toast.LENGTH_LONG).show();
+                dialogInterface.dismiss();
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 }

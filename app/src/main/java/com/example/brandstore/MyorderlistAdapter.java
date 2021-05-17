@@ -85,6 +85,12 @@ public class MyorderlistAdapter extends BaseAdapter {
 
         order ord = orderlist.get(position);
 
+        //String stat = ord.getStatus();
+        if (ord.getStatus().equals("CANCELLED")){
+
+            holder.status.setTextColor(context.getResources().getColor(R.color.orange));
+        }
+
 
         holder.order_id.setText(Integer.toString(ord.getOrder_id()));
         holder.uid.setText(Integer.toString(ord.getUid()));
@@ -112,5 +118,9 @@ public class MyorderlistAdapter extends BaseAdapter {
         holder.imageView.setImageBitmap(bitmap);
 
         return row;
+        //status if cancelled button visibility is gone
+
+
+
     }
 }
