@@ -13,10 +13,10 @@
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageprofile"
         android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
 
-        android:src="@drawable/carlogo"
+        android:src="@drawable/user"
         android:layout_marginTop="20dp"
 
         app:riv_oval="true"

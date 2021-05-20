@@ -33,7 +33,7 @@ public class Allorders_selected extends AppCompatActivity {
     private ListView lv_status;
     private SimpleCursorAdapter adapter2;
 
-    final String[] from = new String[]{db.s_cartid,db.s_status,db.s_date};
+    final String[] from = new String[]{db.s_cartid,db.s_status,db.sdate};
 
     final int[] to = new int[]{R.id.cartid, R.id.status, R.id.s_date};
 

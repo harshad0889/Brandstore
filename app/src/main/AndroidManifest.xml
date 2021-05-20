@@ -12,7 +12,10 @@
         android:roundIcon="@drawable/carlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view_stocks2"></activity>
+        <activity android:name=".generate_bill"></activity>
+        <activity android:name=".sale_report2" />
+        <activity android:name=".Sale_report" />
+        <activity android:name=".view_stocks2" />
         <activity android:name=".View_stocks" />
         <activity android:name=".Add_review" />
         <activity android:name=".Allorders_selected" />

@@ -137,6 +137,27 @@
             android:textSize="14sp" />
 
 
+        <TextView
+            android:id="@+id/bill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="italic"
+
+            android:fontFamily="sans-serif-medium"
+
+            android:text="get your Bill "
+
+            android:textAlignment="center"
+            android:textColor="@color/darkblue"
+            android:textSize="14sp" />
+
+
 
         <Button
 
@@ -546,8 +567,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="510dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="400dp"
 
 
             android:fontFamily="sans-serif-medium"

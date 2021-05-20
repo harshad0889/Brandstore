@@ -2,6 +2,7 @@ package com.example.brandstore;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -20,7 +21,7 @@ public class cartlistAdapter extends BaseAdapter {
     private Context context;
     private  int layout;
     private ArrayList<cart> cartlist;
-    public static String totalPrice = null;
+    public static String totalPrice = null,quantity,p_qty;
     DatabaseHelper db2;
     SharedPreferences sp;
     cart_fragment cr;
@@ -123,14 +124,29 @@ public class cartlistAdapter extends BaseAdapter {
 
                 String prid= Integer.toString(carts.getPid());
                 String p_uid= carts.getUid();
+                String sp_qty = carts.getP_qty();
                 deleteitem(prid,p_uid);
                 Toast.makeText(context.getApplicationContext(),p_uid,Toast.LENGTH_SHORT).show();
+
+                Cursor cursor4 = db2.getData(String.format("SELECT psale from product_table where pid =%s ",prid));
+
+                while (cursor4.moveToNext()) {
+                    quantity = cursor4.getString(0);
+
+                }
+
+                String act_qty =String.valueOf( Integer.parseInt(quantity)+Integer.parseInt(sp_qty));
+
+
+                int update = db2.update_stock2(prid,act_qty);
 
             }
 
             private void deleteitem(String prid, String p_uid) {
                int deleteitem = db2.remove_item(prid,p_uid);
             }
+
+
 
 
 

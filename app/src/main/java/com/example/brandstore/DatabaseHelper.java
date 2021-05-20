@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   // public static final String COL_opqty = "odate";
 
 
-    //table car review
+    //table  review
 
     public static final String TABLE_REVIEW = "REVIEW";
     public static final String COL_rid = "_id";
@@ -688,7 +688,8 @@ public UserModel Authenticate(UserModel userModel) {
     }
 
     public int update_status(String scart_id,String order_id,String status)
-    { SQLiteDatabase db = this.getWritableDatabase();
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_cart_status, status);
 
@@ -705,5 +706,40 @@ public UserModel Authenticate(UserModel userModel) {
         Cursor cursor = db.rawQuery("SELECT rowid _id,* FROM " + TABLE_STATUS + " WHERE " + s_cartid + " = '" + sp_id + "'", null);
 
         return cursor;
+    }
+
+
+    //report list
+    public Cursor reportlist(String s_date) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor curso = db.rawQuery("SELECT rowid _id, * FROM " + TABLE_ORDER + " WHERE " + COL_odate + " = '" + s_date + "'" , null);
+
+        return curso;
+    }
+
+    public int update_stock(String spid, String sp_qty) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_psale, sp_qty);
+
+
+        int i = db.update(TABLE_PRODUCT, contentValues,   COL_pid + " = " + spid, null);
+        return  i;
+
+
+    }
+
+
+    public int update_stock2(String prid, String act_qty) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_psale, act_qty);
+
+
+        int i = db.update(TABLE_PRODUCT, contentValues,   COL_pid + " = " + prid, null);
+        return  i;
     }
 }

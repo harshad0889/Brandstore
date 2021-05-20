@@ -33,7 +33,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
     SharedPreferences sd;
     String uid,username,product_id;
     ListView list_size,list_size_shirts;
-    String wp_id;
+    String wp_id,quantity;
     String wu_id;
 
 
@@ -42,9 +42,9 @@ public class p_grid_selecteditem extends AppCompatActivity {
     private LinearLayout lin;
     private SimpleCursorAdapter adapter4;
 
-    final String[] from = new String[]{db.COL_pro_id,db.COL_user,db.COL_rating,db.COL_review};
+    final String[] from = new String[]{db.COL_pro_id,db.COL_user,db.COL_rating,db.COL_review,db.COL_rdate};
 
-    final int[] to = new int[]{R.id.prod_id2, R.id.user2,R.id.rating, R.id.preview2};
+    final int[] to = new int[]{R.id.prod_id2, R.id.user2,R.id.rating, R.id.preview2,R.id.r_date};
 
 
     @Override
@@ -224,7 +224,26 @@ public class p_grid_selecteditem extends AppCompatActivity {
                     Toast.makeText(p_grid_selecteditem.this, "Product added to cart ", Toast.LENGTH_LONG).show();
                     add_cart.setText("GO TO CART");
                     //go_to_cart.setVisibility(View.VISIBLE);
-                }
+
+
+                    //update stocks
+
+                    Cursor cursor4 = db.getData(String.format("SELECT psale from product_table where pid =%s ",prod_id));
+
+                    while (cursor4.moveToNext()) {
+                        quantity = cursor4.getString(0);
+
+                    }
+
+                    String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
+
+
+                   int update = db.update_stock(spid,act_qty);
+
+
+                    }
+
+
 
 
             }

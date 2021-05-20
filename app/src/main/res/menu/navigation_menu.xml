@@ -30,9 +30,9 @@
         android:icon="@drawable/ic_category"
         android:title="@string/addcat" />
 
-    <item android:id="@+id/add_shipment"
-        android:icon="@drawable/shipment"
-        android:title="@string/addshipment" />
+    <item android:id="@+id/report"
+        android:icon="@drawable/report"
+        android:title="sale report" />
 
     <item android:id="@+id/logout"
         android:icon="@drawable/ic_signout"

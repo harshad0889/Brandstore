@@ -30,7 +30,7 @@ public class view_stocks2 extends AppCompatActivity {
 
         db=new DatabaseHelper(this);
         add_stocks= findViewById(R.id.add_stocks);
-        listView= findViewById(R.id.lv_stocks);
+        listView= findViewById(R.id.lvstocks);
 
         Intent intent = getIntent();
 

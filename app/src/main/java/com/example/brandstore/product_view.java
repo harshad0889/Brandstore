@@ -181,6 +181,12 @@ public class product_view extends AppCompatActivity {
                         finish();
                         return true;
 
+                    case R.id.report:
+                        Intent r2 = new Intent(product_view.this, Sale_report.class);
+                        startActivity(r2);
+                        finish();
+                        return true;
+
 
 
 
@@ -189,6 +195,7 @@ public class product_view extends AppCompatActivity {
                         Intent main = new Intent(product_view.this, Add_category.class);
                         startActivity(main);
                         finish();
+                        return true;
 
 
                     case R.id.logout:

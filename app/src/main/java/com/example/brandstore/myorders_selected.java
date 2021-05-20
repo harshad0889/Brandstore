@@ -31,7 +31,7 @@ public class myorders_selected extends AppCompatActivity {
     String scart_id ;
     String s_order_id ;
 
-    final String[] from = new String[]{db.s_cartid,db.s_status,db.s_date};
+    final String[] from = new String[]{db.s_cartid,db.s_status,db.sdate};
 
     final int[] to = new int[]{R.id.cartid, R.id.status, R.id.s_date};
     @Override
@@ -49,7 +49,7 @@ public class myorders_selected extends AppCompatActivity {
 
         final TextView order_id = (TextView) findViewById(R.id.order_id);
         TextView uid = (TextView) findViewById(R.id.uid);
-        TextView delivery_amt = (TextView) findViewById(R.id.del_amt);
+        final TextView delivery_amt = (TextView) findViewById(R.id.del_amt);
         final TextView status = (TextView) findViewById(R.id.status);
         TextView pay_mode = (TextView) findViewById(R.id.p_mode);
         TextView o_date = (TextView) findViewById(R.id.o_date);
@@ -65,7 +65,8 @@ public class myorders_selected extends AppCompatActivity {
         TextView cart_psize = (TextView) findViewById(R.id.c_size);
         TextView p_cat = (TextView) findViewById(R.id.p_cat);
         TextView price = (TextView) findViewById(R.id.price);
-        TextView total = (TextView) findViewById(R.id.tot);
+        final TextView total = (TextView) findViewById(R.id.tot);
+        TextView bill = (TextView) findViewById(R.id.bill);
         bt_cancel =  findViewById(R.id.bt_cancel);
         bt_return =  findViewById(R.id.bt_return);
 
@@ -178,6 +179,33 @@ public class myorders_selected extends AppCompatActivity {
                 alert(view);
 
 
+
+            }
+        });
+
+        //get your bill
+
+
+        bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String ord_id = order_id.getText().toString();
+                String tot = total.getText().toString();
+                String del_c = delivery_amt.getText().toString();
+
+
+
+
+                Intent b = new Intent(myorders_selected.this, generate_bill.class);
+                b.putExtra("ord_id", ord_id);
+                b.putExtra("tot", tot);
+                b.putExtra("del_c", del_c);
+
+
+
+                startActivity(b);
+                finish();
 
             }
         });

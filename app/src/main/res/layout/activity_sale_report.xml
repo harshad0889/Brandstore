@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View_stocks">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C51717"
+        android:padding="2dp"
+
+        android:fitsSystemWindows="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text=" Sale Report.. "
+
+            android:textColor="#E6E2E2"
+            android:layout_gravity="left"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="140dp"
+            android:background="@drawable/refresh"
+
+
+
+            android:id="@+id/add_stocks"/>
+
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/refresh"
+            android:visibility="gone"
+
+            android:id="@+id/refresh_stocks"/>
+
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="pick date"
+        android:textColor="@color/black"
+        android:id="@+id/prod_list"
+        >
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/report_date"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/btn"
+        android:drawableRight="@drawable/cal"
+        android:drawableLeft="@drawable/transa_space"
+        android:hint=" Choose date "
+        android:focusableInTouchMode="false"
+
+        />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="show"
+        android:layout_marginLeft="50dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/joinbtn"
+        android:id="@+id/show_report"/>
+
+</RelativeLayout>
