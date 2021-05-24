@@ -84,8 +84,8 @@ public class viewprofile_fragment extends Fragment {
         tv_signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent m = new Intent(getContext(), verify_phno.class);
-                startActivity(m);
+                sp_manager.getInstance(getContext()).clearuser(getContext());
+
                // finish();
             }
         });

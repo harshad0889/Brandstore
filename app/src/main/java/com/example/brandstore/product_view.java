@@ -24,7 +24,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class product_view extends AppCompatActivity {
 
@@ -54,12 +57,13 @@ public class product_view extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new productListAdapter(this, R.layout.product_items, list);
         gridView.setAdapter(adapter);
+        final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
 
 
 
 
 
-        Cursor cursor = db.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
+        Cursor cursor = db.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE start_date = '%s' or end_date= '%s'",date2,date2));
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);

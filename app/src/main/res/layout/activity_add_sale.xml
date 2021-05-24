@@ -67,12 +67,36 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:textSize="18dp"
-            android:hint="  sale description"
+            android:hint="  sale Offer"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
-            android:ems="8"
+
             android:elevation="5dp"
             android:inputType="textPersonName"/>
+        <EditText
+            android:id="@+id/start_date"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:drawableRight="@drawable/cal"
+            android:hint="   sale starts "
+            android:focusableInTouchMode="false"
+
+            />
+        <EditText
+            android:id="@+id/end_date"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+
+            android:drawableRight="@drawable/cal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:hint="   sale ends "
+            android:focusableInTouchMode="false"
+
+            />
 
 
 
@@ -140,30 +164,7 @@
             android:onClick="addRecord"
             android:textColor="#fff"/>
 
-        <EditText
-            android:id="@+id/start_date"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn"
-            android:drawableRight="@drawable/cal"
-            android:hint="   sale starts "
-            android:focusableInTouchMode="false"
 
-            />
-        <EditText
-            android:id="@+id/end_date"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="20dp"
-            android:drawableRight="@drawable/cal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn"
-            android:hint="   sale ends "
-            android:focusableInTouchMode="false"
-
-            />
 
 
 

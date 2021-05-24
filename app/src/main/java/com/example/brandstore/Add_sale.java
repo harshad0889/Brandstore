@@ -88,6 +88,8 @@ public class Add_sale extends AppCompatActivity {
             }
         };
 
+
+
         //date picker dialogue
         final DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -213,17 +215,23 @@ public class Add_sale extends AppCompatActivity {
                     s_end.setError("please enter sale date ");
                 }
                 else {
+                    Cursor cursor = db.getData(String.format("SELECT * FROM sale_table  where pname = '%s' AND  start_date BETWEEN '%s' AND '%s' ",s_product,sale_sdate,sale_edate));
+                    if (cursor.getCount() > 0){
+                        Toast.makeText(Add_sale.this, "  sale already exist ", Toast.LENGTH_LONG).show();
+                    }else{
+                        byte[] newentryimg = imageViewToByte(iv);
+
+                        add_sale(stitle, sdesc,s_product,sale_sdate,sale_edate, newentryimg);
+                        Toast.makeText(Add_sale.this, "sale added succesfully ", Toast.LENGTH_LONG).show();
+
+                        Intent r = new Intent(Add_sale.this, Home.class);
+                        startActivity(r);
+                        finish();
+                    }
 
 
 
-                    byte[] newentryimg = imageViewToByte(iv);
 
-                    add_sale(stitle, sdesc,s_product,sale_sdate,sale_edate, newentryimg);
-                    Toast.makeText(Add_sale.this, "sale added succesfully ", Toast.LENGTH_LONG).show();
-
-                    Intent r = new Intent(Add_sale.this, Home.class);
-                    startActivity(r);
-                    finish();
 
                 }
 

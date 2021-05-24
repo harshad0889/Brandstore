@@ -742,4 +742,14 @@ public UserModel Authenticate(UserModel userModel) {
         int i = db.update(TABLE_PRODUCT, contentValues,   COL_pid + " = " + prid, null);
         return  i;
     }
+
+    public int delete_stock(String date2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(s_date, date2);
+
+
+        int i = db.delete(TABLE_STOCKS,s_date + " = "+'"' + date2 +'"', null);
+        return  i;
+    }
 }

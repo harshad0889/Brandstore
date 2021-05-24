@@ -1,7 +1,5 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,11 +9,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
-
-import java.util.concurrent.TimeUnit;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class verify_phno extends AppCompatActivity {
 
@@ -39,6 +33,18 @@ public class verify_phno extends AppCompatActivity {
         MyDB = new DatabaseHelper(this);
         pref = getSharedPreferences("user_details",MODE_PRIVATE);
         otplogin =  findViewById(R.id.verify_phone);
+
+        if(sp_manager.getUser2(verify_phno.this).length() == 0)
+        {
+
+        }else{
+
+            Intent homeIntent = new Intent(verify_phno.this,Home2.class);
+            startActivity(homeIntent);
+
+        }
+
+
 
 
         otplogin.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +96,7 @@ public class verify_phno extends AppCompatActivity {
                     startActivity(goToDash);
                     finish();
                     Toast.makeText(verify_phno.this, " Login Successful!", Toast.LENGTH_SHORT).show();
+                    sp_manager.setuserdetails(verify_phno.this,"uid");
 
                 }
                 else if (s_username.equals(s_admin) && s_password.equals(s_admin))

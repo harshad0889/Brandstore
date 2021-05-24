@@ -50,4 +50,11 @@ public class view_stocks2 extends AppCompatActivity {
 
         listView.setAdapter(adapter7);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(view_stocks2.this, View_stocks.class);
+        startActivity(in);
+        finish();
+    }
 }

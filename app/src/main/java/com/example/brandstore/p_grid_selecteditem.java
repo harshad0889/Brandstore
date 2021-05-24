@@ -187,7 +187,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
         String p_cat= intent.getStringExtra("p_cat");
         String p_desc= intent.getStringExtra("p_desc");
         String p_qty= intent.getStringExtra("p_sale");
-        String p_size= intent.getStringExtra("size");
+        final String p_size= intent.getStringExtra("size");
         String off= intent.getStringExtra("off");
         Bitmap bitmap = intent.getParcelableExtra("bitmap");
 
@@ -200,6 +200,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
         qty.setText(p_qty);
         offer.setText(off);
         userid.setText(uid);
+        size.setText(p_size);
 
         byte[] bytes = db.prodImage(prod_id);
         img_prod.setImageBitmap(getImage(bytes));
@@ -207,14 +208,21 @@ public class p_grid_selecteditem extends AppCompatActivity {
         product_id = pid.getText().toString();
 
         //*************ADD CART BUTTON ONCLICK***************
+
+
+
         add_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final Cursor cursor3 = db.getData(String.format("SELECT pid,_id,qty,cart_psize from cart_table where pid =%s and _id = %s and cart_psize='%s' AND order_id ISNULL ",prod_id,uid,p_size));
+
 
                 if (size.length() == 0) {
                     size.requestFocus();
                     size.setError("choose your size");
-                }else {
+                }else if(cursor3.getCount() == 0) {
+
+
                     String spid = pid.getText().toString();
                     String suid = userid.getText().toString();
                     String sp_qty = qty_value.getText().toString();
@@ -238,7 +246,12 @@ public class p_grid_selecteditem extends AppCompatActivity {
                     String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
 
 
-                   int update = db.update_stock(spid,act_qty);
+                    int update = db.update_stock(spid,act_qty);
+
+                }
+                else{
+                     Toast.makeText(p_grid_selecteditem.this, "same product ", Toast.LENGTH_LONG).show();
+
 
 
                     }

@@ -18,7 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class home_fragment  extends Fragment {
     productListAdapter adapter = null;
@@ -80,8 +83,9 @@ public class home_fragment  extends Fragment {
 
 
 
+        final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
 
-        Cursor cursor = db2.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
+        Cursor cursor = db2.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -98,6 +102,7 @@ public class home_fragment  extends Fragment {
             list.add(new product( pid,  p_name, p_category, p_desc,p_size,a_price,  p_sale,   image,p_off));
         }
         adapter.notifyDataSetChanged();
+        //SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname and ( sale_table.start_date ='%s' or sale_table.end_date='%s' )  WHERE psale>0
 
 
 

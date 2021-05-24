@@ -27,6 +27,7 @@
         <Button
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
 
             android:layout_marginLeft="140dp"
             android:background="@drawable/refresh"

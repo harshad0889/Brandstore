@@ -53,7 +53,7 @@ public class View_stocks extends AppCompatActivity {
        final String date2 = new SimpleDateFormat("YYYY-MM-dd", Locale.getDefault()).format(new Date());
 
 
-        add_stocks.setOnClickListener(new View.OnClickListener() {
+        ref_stock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -116,9 +116,12 @@ public class View_stocks extends AppCompatActivity {
         });
 
 
-        ref_stock.setOnClickListener(new View.OnClickListener() {
+        add_stocks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //int deleteitem = db.delete_stock(date2);
+                //Toast.makeText(View_stocks.this, "   deleted  ", Toast.LENGTH_LONG).show();
+
 
 
 
@@ -140,11 +143,41 @@ public class View_stocks extends AppCompatActivity {
 
                     Log.e("dat", sp_cat + "," + sp_date + "," + date2);
                     if (sp_date.equals(date2)) {
-                        Toast.makeText(View_stocks.this, "  STOCK EXIST  ", Toast.LENGTH_LONG).show();
-                        break;
+
+                         del_stock(date2);
+                         //db.getData(String.format("delete from STOCKS where s_date = 2021-05-21"));
+
+
+
+                        Toast.makeText(View_stocks.this, "  STOCK deleted  ", Toast.LENGTH_LONG).show();
+
+
+                        //adding stocks
+                        Cursor cursor = db.getData("SELECT   pname, sum(psale) from product_table group by pname");
+
+
+
+                        while (cursor.moveToNext()) {
+                            for (int i = 0; i< cursor.getColumnNames().length;i++) {
+
+                                ps_cat = cursor.getString(0);
+                                stock_qty = cursor.getString(1);
+
+                               // add_stocks.setText(ps_cat);
+                            }
+                            Log.e("added", stock_qty + ps_cat);
+
+                            db.insert_stocks(ps_cat,stock_qty,date2);
+                            Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
+
+
+
+                        }
                     }
 
+
                 }
+
 
                     //boolean insert_stocks = db.insert_stocks(ps_cat,stock_qty);
                     //dude just run the code n see what happens .LOL!
@@ -152,7 +185,7 @@ public class View_stocks extends AppCompatActivity {
 
                 if (!sp_date.equals(date2)) {
 
-                    Cursor cursor = db.getData("SELECT DISTINCT  pcategory, sum(psale) from product_table group by pcategory");
+                    Cursor cursor = db.getData("SELECT   pname, sum(psale) from product_table group by pname");
 
 
                     while (cursor.moveToNext()) {
@@ -161,16 +194,17 @@ public class View_stocks extends AppCompatActivity {
                             ps_cat = cursor.getString(0);
                             stock_qty = cursor.getString(1);
 
-                            // add_stocks.setText(ps_cat);
+                             //add_stocks.setText(ps_cat);
                         }
                         Log.e("added", stock_qty + ps_cat);
 
-                        boolean insert_stocks = db.insert_stocks(ps_cat,stock_qty,date2);
+                        db.insert_stocks(ps_cat,stock_qty,date2);
                         Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
 
 
 
                     }
+
                     //Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
                 }
 
@@ -217,6 +251,9 @@ public class View_stocks extends AppCompatActivity {
 
 
 
+            }
+            private void del_stock(String date2) {
+                int deleteitem = db.delete_stock(date2);
             }
         });
 
@@ -287,5 +324,14 @@ public class View_stocks extends AppCompatActivity {
 
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(View_stocks.this, product_view.class);
+        startActivity(in);
+        finish();
     }
 }

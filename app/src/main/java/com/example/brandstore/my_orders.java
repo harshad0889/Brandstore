@@ -40,7 +40,7 @@ public class my_orders extends AppCompatActivity {
         adapter = new MyorderlistAdapter(this, R.layout.myorder_item, myorders);
         gridView.setAdapter(adapter);
 
-        Cursor cursor = db.getData(String.format("SELECT * from (SELECT * from order_table join registrationtable where order_table._id = registrationtable._id and  registrationtable._id =%s) as x JOIN ( SELECT * from cart_table join product_table where cart_table.pid = product_table.pid and _id=%s) as y WHERE  x.order_id = y.order_id",uid,uid));
+        Cursor cursor = db.getData(String.format("SELECT * from (SELECT * from order_table join registrationtable where order_table._id = registrationtable._id and  registrationtable._id =%s) as x JOIN ( SELECT * from cart_table join product_table where cart_table.pid = product_table.pid and _id=%s) as y WHERE  x.order_id = y.order_id ORDER by order_id desc",uid,uid));
         myorders.clear();
         while (cursor.moveToNext()) {
             int order_id = cursor.getInt(0);
