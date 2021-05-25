@@ -45,6 +45,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
     final String[] from = new String[]{db.COL_pro_id,db.COL_user,db.COL_rating,db.COL_review,db.COL_rdate};
 
     final int[] to = new int[]{R.id.prod_id2, R.id.user2,R.id.rating, R.id.preview2,R.id.r_date};
+     String u_uid,u_pid,u_qty,u_amount;
 
 
     @Override
@@ -250,7 +251,46 @@ public class p_grid_selecteditem extends AppCompatActivity {
 
                 }
                 else{
-                     Toast.makeText(p_grid_selecteditem.this, "same product ", Toast.LENGTH_LONG).show();
+                    final Cursor cursorx = db.getData(String.format("SELECT * from cart_table join product_table where cart_table.pid= product_table.pid AND cart_table.pid =%s and _id = %s and cart_psize='%s' AND order_id ISNULL ",prod_id,uid,p_size));
+
+                    while (cursorx.moveToNext()) {
+                         u_pid = cursorx.getString(1);
+                         u_uid = cursorx.getString(2);
+                         u_qty = cursorx.getString(3);
+                         u_amount = cursorx.getString(12);
+
+                    }
+
+
+
+
+
+                    String spid = pid.getText().toString();
+                    String suid = userid.getText().toString();
+                    String sp_qty = qty_value.getText().toString();
+
+
+                    double total_price = 0.0;
+                     String n_qty = Integer.toString(Integer.parseInt(sp_qty)+Integer.parseInt(u_qty));
+
+                     total_price =  total_price + (Double.parseDouble(n_qty) * Double.parseDouble(u_amount));
+                     String n_amount = String.valueOf(total_price);
+                     Toast.makeText(p_grid_selecteditem.this, "same product "+n_qty+ "..."+n_amount, Toast.LENGTH_LONG).show();
+
+                     int up_cart = db.update_cart_qty(spid,suid,n_qty);
+                    //update stocks
+
+                    Cursor cursor4 = db.getData(String.format("SELECT psale from product_table where pid =%s ",prod_id));
+
+                    while (cursor4.moveToNext()) {
+                        quantity = cursor4.getString(0);
+
+                    }
+
+                    String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
+
+
+                    int update = db.update_stock(spid,act_qty);
 
 
 

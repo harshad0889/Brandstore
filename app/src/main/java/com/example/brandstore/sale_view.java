@@ -1,17 +1,20 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class sale_view extends AppCompatActivity {
 
@@ -31,6 +34,8 @@ public class sale_view extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new salelistAdapter(this, R.layout.sale_items, list);
         gridView.setAdapter(adapter);
+        final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
+
 
 
         Cursor cursor = db.getData("SELECT * FROM sale_table");
@@ -54,23 +59,33 @@ public class sale_view extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView pname = view.findViewById(R.id.s_pname);
+                TextView sdate = view.findViewById(R.id.sdate);
+                TextView edate = view.findViewById(R.id.edate);
 
                 String p_name = pname.getText().toString();
+                String s_date = sdate.getText().toString();
+                String e_date = edate.getText().toString();
+
+                Cursor cursor = db.getData(String.format("SELECT * FROM sale_table where '%s' BETWEEN '%s' and  '%s' ",date2,s_date,e_date));
+                if (cursor.getCount() == 0){
+                    Toast.makeText(sale_view.this, "  sale start on "+s_date, Toast.LENGTH_LONG).show();
+                }else{
+
+                    Intent s = new Intent(sale_view.this,sale_product_view.class);
+                    s.putExtra("spname",p_name);
 
 
-                Intent s = new Intent(sale_view.this,sale_product_view.class);
-                s.putExtra("spname",p_name);
 
+                    startActivity(s);
 
-
-                startActivity(s);
+                }
             }
         });
     }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
+        Intent in = new Intent(getApplicationContext(), product_view.class);
         startActivity(in);
         finish();
     }

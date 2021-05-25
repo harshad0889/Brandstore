@@ -752,4 +752,18 @@ public UserModel Authenticate(UserModel userModel) {
         int i = db.delete(TABLE_STOCKS,s_date + " = "+'"' + date2 +'"', null);
         return  i;
     }
+
+    public int update_cart_qty(String spid, String suid, String sp_qty) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //contentValues.put(COL_prodid, spid);
+       // contentValues.put(COL_uid, suid);
+        contentValues.put(COL_qty, sp_qty);
+
+
+        int i = db.update(TABLE_CART, contentValues,   COL_prodid + " = " + spid +" AND "+ COL_uid + " = " +suid , null);
+        return  i;
+
+    }
 }

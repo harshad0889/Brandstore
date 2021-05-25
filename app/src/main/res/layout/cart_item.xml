@@ -135,6 +135,24 @@
 
 
     <TextView
+        android:id="@+id/offc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:fontFamily="sans-serif-medium"
+
+        android:text="off"
+
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+
+    <TextView
         android:id="@+id/tv_Qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -112,7 +112,7 @@ public class product_updview extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
+        Intent in = new Intent(getApplicationContext(), product_view.class);
         startActivity(in);
         finish();
     }

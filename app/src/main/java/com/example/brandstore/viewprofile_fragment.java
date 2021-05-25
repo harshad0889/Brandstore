@@ -1,6 +1,7 @@
 package com.example.brandstore;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 public class viewprofile_fragment extends Fragment {
@@ -84,7 +87,43 @@ public class viewprofile_fragment extends Fragment {
         tv_signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sp_manager.getInstance(getContext()).clearuser(getContext());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("LOGOUT");
+                builder.setMessage("Do you want to Logout?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        sp_manager.getInstance(getContext()).clearuser(getContext());
+                        Toast.makeText(getContext(), " Logging out! ", Toast.LENGTH_LONG).show();
+                        Intent m = new Intent(getContext(), verify_phno.class);
+                        startActivity(m);
+
+
+
+
+                    }
+                });
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(), "  ", Toast.LENGTH_LONG).show();
+                        dialogInterface.dismiss();
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+
+
+
+
+
+
+
 
                // finish();
             }

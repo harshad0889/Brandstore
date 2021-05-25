@@ -17,7 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class cart_fragment extends Fragment {
     cartlistAdapter adapter = null;
@@ -76,9 +79,11 @@ public class cart_fragment extends Fragment {
         //Cart_total.setText(cartlistAdapter.ViewHolder.getPrice());
         place_order = view.findViewById(R.id.place_ord);
         //Cart_total.setText(cartlistAdapter.totalPrice);
+        final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
 
 
-       // Cart_total.setText();
+
+        // Cart_total.setText();
 
         place_order.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +114,9 @@ public class cart_fragment extends Fragment {
 
 
 
-         Cursor cursor = db2.getData(String.format("SELECT * FROM cart_table JOIN product_table on  cart_table.pid = product_table.pid WHERE _id ='%s' AND order_id ISNULL",uid));
+         Cursor cursor = db2.getData(String.format("SELECT * FROM cart_table  left JOIN (SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date   ) as x on cart_table.pid = x.pid where _id= '%s' and order_id ISNULL",date2,uid));
         cartlist.clear();
+        //SELECT * FROM cart_table JOIN product_table on  cart_table.pid = product_table.pid WHERE _id ='%s' AND order_id ISNULL",uid
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(1);
             String cart_id = cursor.getString(0);
@@ -121,14 +127,16 @@ public class cart_fragment extends Fragment {
             String p_size = cursor.getString(4);
             String uid = cursor.getString(2);
             byte[] image = cursor.getBlob(14);
+            String off = cursor.getString(17);
 
-            cartlist.add(new cart( pid,cart_id,  p_name, price, p_desc,p_qty,uid,  image,p_size));
+            cartlist.add(new cart( pid,cart_id,  p_name, price, p_desc,p_qty,uid,  image,p_size,off));
             cart_ids.add(cart_id);
         }
         adapter.notifyDataSetChanged();
 
 
     }
+
 
 
 

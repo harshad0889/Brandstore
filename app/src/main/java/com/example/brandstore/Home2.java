@@ -16,7 +16,10 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class Home2 extends AppCompatActivity {
     private Toolbar tb;
@@ -43,9 +46,11 @@ public class Home2 extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new productListAdapter(this, R.layout.product_items, list);
        // gridView.setAdapter(adapter);
+        final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
 
 
-        Cursor cursor = db2.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
+
+        Cursor cursor = db2.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
@@ -111,7 +116,7 @@ public class Home2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home2.class);
+        Intent in = new Intent(getApplicationContext(), product_view.class);
         startActivity(in);
         finish();
     }

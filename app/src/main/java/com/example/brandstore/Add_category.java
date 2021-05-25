@@ -1,8 +1,5 @@
 package com.example.brandstore;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -134,7 +134,7 @@ public class Add_category extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
+        Intent in = new Intent(getApplicationContext(), product_view.class);
         startActivity(in);
         finish();
     }

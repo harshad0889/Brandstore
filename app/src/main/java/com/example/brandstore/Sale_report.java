@@ -87,4 +87,11 @@ public class Sale_report extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent in = new Intent(getApplicationContext(), product_view.class);
+        startActivity(in);
+        finish();
+    }
 }

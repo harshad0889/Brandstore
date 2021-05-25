@@ -63,8 +63,9 @@ public class product_view extends AppCompatActivity {
 
 
 
-        Cursor cursor = db.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE start_date = '%s' or end_date= '%s'",date2,date2));
+        Cursor cursor = db.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
         list.clear();
+        //SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE start_date = '%s' or end_date= '%s'",date2,date2
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
             String p_name = cursor.getString(1);
@@ -205,8 +206,8 @@ public class product_view extends AppCompatActivity {
                     case R.id.logout:
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(product_view.this);
-                        builder.setTitle("Cancel Order..");
-                        builder.setMessage("Do you want to cancel order?");
+                        builder.setTitle("LOGOUT");
+                        builder.setMessage("Do you want to Logout?");
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -218,7 +219,7 @@ public class product_view extends AppCompatActivity {
                                 //insert status table for list
 
                                 //db.insert_status(scart_id, ustatus);
-                                Toast.makeText(product_view.this, " order canceled! ", Toast.LENGTH_LONG).show();
+                                Toast.makeText(product_view.this, " Logging out! ", Toast.LENGTH_LONG).show();
                                 Intent m = new Intent(product_view.this, verify_phno.class);
                                 startActivity(m);
                                 finish();
@@ -230,7 +231,7 @@ public class product_view extends AppCompatActivity {
                         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(product_view.this, " not canceled! ", Toast.LENGTH_LONG).show();
+                                Toast.makeText(product_view.this, "  ", Toast.LENGTH_LONG).show();
                                 dialogInterface.dismiss();
 
                             }
@@ -298,7 +299,7 @@ public class product_view extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), Home.class);
+        Intent in = new Intent(getApplicationContext(), product_view.class);
         startActivity(in);
         finish();
     }
@@ -335,4 +336,5 @@ public class product_view extends AppCompatActivity {
         dialog.show();
 
     }
+
 }
