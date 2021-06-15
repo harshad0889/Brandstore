@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,23 +49,30 @@ public class Home2 extends AppCompatActivity {
        // gridView.setAdapter(adapter);
         final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
 
+        //load default fragment
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_cotainer,new home_fragment()).commit();
 
 
-        Cursor cursor = db2.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
+
+
+
+        Cursor cursor = db2.getData(String.format("SELECT * from product_table left join sale_table on product_table.subcat = sale_table.sale_title AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
             String p_name = cursor.getString(1);
             String p_category = cursor.getString(2);
-            String p_desc = cursor.getString(3);
-            String p_size = cursor.getString(4);
-            String a_price = cursor.getString(5);
+            String p_subcat = cursor.getString(3);
+            String p_desc = cursor.getString(4);
+            String p_size = cursor.getString(5);
+            String a_price = cursor.getString(6);
            // String o_price = cursor.getString(6);
-            String p_off = cursor.getString(10);
-            String p_sale = cursor.getString(6);
-            byte[] image = cursor.getBlob(7);
+            String p_off = cursor.getString(11);
+            String p_sale = cursor.getString(7);
+            byte[] image = cursor.getBlob(8);
 
-            list.add(new product( pid,  p_name, p_category, p_desc,p_size,a_price,  p_sale,   image,p_off));
+            list.add(new product( pid,  p_name, p_category,p_subcat, p_desc,p_size,a_price,  p_sale,   image,p_off));
         }
        // adapter.notifyDataSetChanged();
 
@@ -86,20 +94,57 @@ public class Home2 extends AppCompatActivity {
 
 
                     case R.id.category_nav:
-                        selectedfrag = new cat_fragment();
-                        break;
+                        if(sp_manager.getUser2(getApplicationContext()).length() == 0)
+                        {
+                            Toast.makeText(getApplicationContext(), "Please login ", Toast.LENGTH_LONG).show();
+                            Intent homeIntent = new Intent(getApplicationContext(),verify_phno.class);
+                            startActivity(homeIntent);
+                        }else{
+
+                            selectedfrag = new cat_fragment();
+                            break;
+
+                        }
+
 
                     case R.id.sale_nav:
-                        selectedfrag = new sale_fragment();
-                        break;
+                        if(sp_manager.getUser2(getApplicationContext()).length() == 0)
+                        {
+                            Toast.makeText(getApplicationContext(), "Please login ", Toast.LENGTH_LONG).show();
+                            Intent homeIntent = new Intent(getApplicationContext(),verify_phno.class);
+                            startActivity(homeIntent);
+                        }else{
+
+                            selectedfrag = new sale_fragment();
+                            break;
+
+                        }
+
+
 
                     case R.id.cart_nav:
-                        selectedfrag = new cart_fragment();
-                        break;
+                        if(sp_manager.getUser2(getApplicationContext()).length() == 0)
+                        {
+                            Toast.makeText(getApplicationContext(), "Please login ", Toast.LENGTH_LONG).show();
+                            Intent homeIntent = new Intent(getApplicationContext(),verify_phno.class);
+                            startActivity(homeIntent);
+
+                        }else{
+
+                            selectedfrag = new cart_fragment();
+                            break;
+
+                        }
+
 
                     case R.id.profile:
-                        selectedfrag = new viewprofile_fragment();
-                        break;
+
+
+                            selectedfrag = new viewprofile_fragment();
+                            break;
+
+
+
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_cotainer,selectedfrag).commit();
                 return true;
@@ -116,7 +161,7 @@ public class Home2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent in = new Intent(getApplicationContext(), product_view.class);
+        Intent in = new Intent(getApplicationContext(), Home2.class);
         startActivity(in);
         finish();
     }

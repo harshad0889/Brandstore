@@ -12,7 +12,13 @@
         android:roundIcon="@drawable/carlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".generate_bill"></activity>
+        <activity android:name=".track_order"></activity>
+        <activity android:name=".cancel_reason" />
+        <activity android:name=".return_reason" />
+        <activity android:name=".update_sale2" />
+        <activity android:name=".Update_sale1" />
+        <activity android:name=".All_reviews" />
+        <activity android:name=".generate_bill" />
         <activity android:name=".sale_report2" />
         <activity android:name=".Sale_report" />
         <activity android:name=".view_stocks2" />

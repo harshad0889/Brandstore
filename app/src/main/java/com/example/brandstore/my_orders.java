@@ -59,10 +59,10 @@ public class my_orders extends AppCompatActivity {
             String cart_psize = cursor.getString(18);
             String p_name = cursor.getString(22);
             String p_cat = cursor.getString(23);
-            int price = cursor.getInt(26);
+            int price = cursor.getInt(27);
             int total = cursor.getInt(2);
 
-            byte[] image = cursor.getBlob(28);
+            byte[] image = cursor.getBlob(29);
 
             myorders.add(new order(  order_id,  uid,  delivery_amt,  status,  pay_mode,  o_date,  username,  phone,  address,  pin,  cart_id,  pid,  qty, cart_psize,  p_name,  p_cat,  price,  image,  total));
         }

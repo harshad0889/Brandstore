@@ -110,6 +110,7 @@ public class verify_phno extends AppCompatActivity {
 
                     Toast.makeText(verify_phno.this, "Invalid username or password.", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
@@ -200,4 +201,11 @@ public class verify_phno extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }*/
+   @Override
+   public void onBackPressed() {
+       super.onBackPressed();
+       Intent in = new Intent(verify_phno.this, verify_phno.class);
+       startActivity(in);
+       finish();
+   }
 }

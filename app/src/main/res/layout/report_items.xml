@@ -3,24 +3,34 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/report_total"
-        android:layout_width="150dp"
+    android:id="@+id/report_total"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+
+    android:layout_marginStart="170dp"
+    android:layout_marginTop="15dp"
+    android:text="stocks"
+    android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/tv_zero"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
 
-        android:layout_marginStart="200dp"
-        android:textColor="@color/black"
+        android:layout_marginStart="0dp"
+        android:layout_toRightOf="@+id/report_total"
         android:layout_marginTop="15dp"
-        android:text="stocks" />
+        android:text=".00"
+        android:textColor="@color/black" />
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="p_cat"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="@color/black"
         android:id="@+id/report_ordid"
         android:layout_marginTop="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="30dp"
         />
 
 </RelativeLayout>

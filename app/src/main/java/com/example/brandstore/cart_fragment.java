@@ -99,7 +99,7 @@ public class cart_fragment extends Fragment {
                     in.putExtra("tot", total_amount);
                     in.putStringArrayListExtra("cart_id's", cart_ids);
                     startActivity(in);
-                    Toast.makeText(getContext(), "Product added succesfully ", Toast.LENGTH_LONG).show();
+
 
                     final Toast toast = new Toast(getContext());
                     toast.setDuration(Toast.LENGTH_LONG);
@@ -114,20 +114,20 @@ public class cart_fragment extends Fragment {
 
 
 
-         Cursor cursor = db2.getData(String.format("SELECT * FROM cart_table  left JOIN (SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date   ) as x on cart_table.pid = x.pid where _id= '%s' and order_id ISNULL",date2,uid));
+         Cursor cursor = db2.getData(String.format("SELECT * FROM cart_table  left JOIN (SELECT * from product_table left join sale_table on product_table.subcat = sale_table.sale_title AND  '%s' BETWEEN start_date and  end_date   ) as x on cart_table.pid = x.pid where _id= '%s' and order_id ISNULL",date2,uid));
         cartlist.clear();
         //SELECT * FROM cart_table JOIN product_table on  cart_table.pid = product_table.pid WHERE _id ='%s' AND order_id ISNULL",uid
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(1);
             String cart_id = cursor.getString(0);
             String p_name = cursor.getString(8);
-            String price = cursor.getString(12);
-            String p_desc = cursor.getString(10);
+            String price = cursor.getString(13);
+            String p_desc = cursor.getString(11);
             String p_qty = cursor.getString(3);
             String p_size = cursor.getString(4);
             String uid = cursor.getString(2);
-            byte[] image = cursor.getBlob(14);
-            String off = cursor.getString(17);
+            byte[] image = cursor.getBlob(15);
+            String off = cursor.getString(18);
 
             cartlist.add(new cart( pid,cart_id,  p_name, price, p_desc,p_qty,uid,  image,p_size,off));
             cart_ids.add(cart_id);

@@ -36,11 +36,14 @@ public class product_view extends AppCompatActivity {
     ArrayList<product> list;
     ArrayList<category> catlists;
     productListAdapter adapter = null;
+    review_avg_adapter adapter9= null;
     catlistAadapter adapter2 = null;
     private NavigationView nv;
     private DrawerLayout dl;
     private Toolbar tb;
     DatabaseHelper db;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +66,23 @@ public class product_view extends AppCompatActivity {
 
 
 
-        Cursor cursor = db.getData(String.format("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
+        Cursor cursor = db.getData(String.format("SELECT * from product_table left join sale_table on product_table.subcat = sale_table.sale_title AND  '%s' BETWEEN start_date and  end_date  WHERE  psale>0",date2));
         list.clear();
         //SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE start_date = '%s' or end_date= '%s'",date2,date2
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
             String p_name = cursor.getString(1);
             String p_category = cursor.getString(2);
-            String p_desc = cursor.getString(3);
-            String p_size = cursor.getString(4);
-            String a_price = cursor.getString(5);
+            String p_subcat = cursor.getString(3);
+            String p_desc = cursor.getString(4);
+            String p_size = cursor.getString(5);
+            String a_price = cursor.getString(6);
            // String o_price = cursor.getString(6);
-            String p_off = cursor.getString(10);
-            String p_sale = cursor.getString(6);
-            byte[] image = cursor.getBlob(7);
+            String p_off = cursor.getString(11);
+            String p_sale = cursor.getString(7);
+            byte[] image = cursor.getBlob(8);
 
-            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image,p_off));
+            list.add(new product( pid,  p_name,p_category,p_subcat,p_desc,p_size,a_price,  p_sale,    image,p_off));
         }
         adapter.notifyDataSetChanged();
 
@@ -86,6 +90,10 @@ public class product_view extends AppCompatActivity {
         //String pname = category.getText().toString();
         //Cursor cursor1 = db.getData(String.format("SELECT pname from sale_table where pname = %s",pname));
         //Log.e("added", cursor1.toString());
+
+
+
+
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -96,6 +104,7 @@ public class product_view extends AppCompatActivity {
                 TextView prod_desc = (TextView) view.findViewById(R.id.prod_desc);
                 TextView prod_name = (TextView) view.findViewById(R.id.prod_name);
                 TextView category = (TextView) view.findViewById(R.id.category);
+                TextView tv_subcat = (TextView) view.findViewById(R.id.sub_cat);
                 TextView sale = (TextView) view.findViewById(R.id.p_sale);
                 TextView p_size = (TextView) view.findViewById(R.id.p_size);
                 TextView off = (TextView) view.findViewById(R.id.off1);
@@ -110,6 +119,7 @@ public class product_view extends AppCompatActivity {
                 String p_desc = prod_desc.getText().toString();
                 String p_name = prod_name.getText().toString();
                 String p_cat = category.getText().toString();
+                String sp_subcat = tv_subcat.getText().toString();
                 String p_sale = sale.getText().toString();
                 String size = p_size.getText().toString();
                 String offer = off.getText().toString();
@@ -122,6 +132,7 @@ public class product_view extends AppCompatActivity {
                 s.putExtra("p_desc",p_desc);
                 s.putExtra("p_name",p_name);
                 s.putExtra("p_cat",p_cat);
+                s.putExtra("psubcat",sp_subcat);
                 s.putExtra("p_sale",p_sale);
                 s.putExtra("size",size);
                 s.putExtra("off",offer);
@@ -189,6 +200,13 @@ public class product_view extends AppCompatActivity {
                     case R.id.report:
                         Intent r2 = new Intent(product_view.this, Sale_report.class);
                         startActivity(r2);
+                        finish();
+                        return true;
+
+
+                    case R.id.update_sale:
+                        Intent r8 = new Intent(product_view.this, Update_sale1.class);
+                        startActivity(r8);
                         finish();
                         return true;
 
@@ -261,12 +279,12 @@ public class product_view extends AppCompatActivity {
         rV_cat.setAdapter(catadapter);
 
 
-        Cursor cursor2 = db.getData("SELECT * FROM cate_table");
+        Cursor cursor2 = db.getData("SELECT * FROM cate_table WHERE cat_status='PRODUCT'");
 
         while (cursor2.moveToNext()) {
             int cat_id = cursor2.getInt(0);
             String cat_name = cursor2.getString(1);
-            byte[] img = cursor2.getBlob(2);
+            byte[] img = cursor2.getBlob(3);
 
             catlists.add(new category(cat_id, cat_name, img));
         }

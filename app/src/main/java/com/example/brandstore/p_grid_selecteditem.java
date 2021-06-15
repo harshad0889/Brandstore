@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class p_grid_selecteditem extends AppCompatActivity {
-    TextView pid,pname,category,price,desc,qty,size,userid,qty_value,Review,offer;
+    TextView pid,pname,category,price,desc,qty,size,userid,qty_value,Review,offer,viewall_rev,tv_off;
     ImageView img_prod;
     int qtyv = 1;
     DatabaseHelper db;
@@ -76,10 +76,13 @@ public class p_grid_selecteditem extends AppCompatActivity {
         img_prod = findViewById(R.id.img_prod);
         add_cart = findViewById(R.id.add_cart);
         offer = findViewById(R.id.off);
+        tv_off = findViewById(R.id.tv_off);
         add_whishlist = findViewById(R.id.add_whishlist);
        lin = findViewById(R.id.reviews_lin);
         Review = findViewById(R.id.prod_review);
         listView = findViewById(R.id.lv_review);
+        viewall_rev = findViewById(R.id.viewall_rev);
+        TextView rating_item=findViewById(R.id.rating_val);
 
 
 
@@ -89,13 +92,40 @@ public class p_grid_selecteditem extends AppCompatActivity {
         Review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent rs = new Intent(p_grid_selecteditem.this, Add_review.class);
-                String p_id = pid.getText().toString();
-                //String username = br.getText().toString();
-                // Intent s = new Intent(Gridselecteditem.this,confirmcar.class);
-                rs.putExtra("prodid",p_id);
+                String product_id = pid.getText().toString();
+                String status = "DELIVERED";
 
-                startActivity(rs);
+                if(sp_manager.getUser2(p_grid_selecteditem.this).length() == 0)
+                {
+                    Toast.makeText(p_grid_selecteditem.this, "Please login ", Toast.LENGTH_LONG).show();
+                    Intent homeIntent = new Intent(p_grid_selecteditem.this,verify_phno.class);
+                    startActivity(homeIntent);
+                }else{
+
+                    final Cursor cursor5 = db.getData(String.format("select * from  cart_table where _id = %s and cart_status = 'DELIVERED' and pid = %s ",uid,product_id));
+
+                    final Cursor cursor9 = db.getData(String.format("select * from  review WHERE _id = %s ",uid));
+                    if (cursor5.getCount() == 0){
+                        Toast.makeText(p_grid_selecteditem.this, "you haven't purchased the product ", Toast.LENGTH_LONG).show();
+
+                    }else if(cursor9.getCount() > 0){
+                        Toast.makeText(p_grid_selecteditem.this, "you have already reviewed product ", Toast.LENGTH_LONG).show();
+
+                    }else{
+                        Intent rs = new Intent(p_grid_selecteditem.this, Add_review.class);
+                        String p_id = pid.getText().toString();
+                        //String username = br.getText().toString();
+                        // Intent s = new Intent(Gridselecteditem.this,confirmcar.class);
+                        rs.putExtra("prodid",p_id);
+
+                        startActivity(rs);
+
+                    }
+
+                }
+
+
+
 
             }
         });
@@ -180,7 +210,7 @@ public class p_grid_selecteditem extends AppCompatActivity {
 
 
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         final String prod_id = intent.getStringExtra("pid");
         String p_name= intent.getStringExtra("p_name");
@@ -202,11 +232,34 @@ public class p_grid_selecteditem extends AppCompatActivity {
         offer.setText(off);
         userid.setText(uid);
         size.setText(p_size);
+        offer.setText(off);
 
         byte[] bytes = db.prodImage(prod_id);
         img_prod.setImageBitmap(getImage(bytes));
 
         product_id = pid.getText().toString();
+
+       // Log.e( "offer",off);
+
+        if (off.isEmpty()){
+            tv_off.setVisibility(View.GONE);
+
+        }
+
+
+
+        //all review onclick
+
+
+        viewall_rev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String product_id = pid.getText().toString();
+                Intent s = new Intent(p_grid_selecteditem.this,All_reviews.class);
+                s.putExtra("pid",prod_id);
+                startActivity(s);
+            }
+        });
 
         //*************ADD CART BUTTON ONCLICK***************
 
@@ -215,92 +268,142 @@ public class p_grid_selecteditem extends AppCompatActivity {
         add_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Cursor cursor3 = db.getData(String.format("SELECT pid,_id,qty,cart_psize from cart_table where pid =%s and _id = %s and cart_psize='%s' AND order_id ISNULL ",prod_id,uid,p_size));
 
 
-                if (size.length() == 0) {
-                    size.requestFocus();
-                    size.setError("choose your size");
-                }else if(cursor3.getCount() == 0) {
+                if(sp_manager.getUser2(p_grid_selecteditem.this).length() == 0)
+                {
+                    Toast.makeText(p_grid_selecteditem.this, "Please login ", Toast.LENGTH_LONG).show();
+                    Intent homeIntent = new Intent(p_grid_selecteditem.this,verify_phno.class);
+                    startActivity(homeIntent);
+                }else{
+
+                    final Cursor cursor3 = db.getData(String.format("SELECT pid,_id,qty,cart_psize from cart_table where pid =%s and _id = %s and cart_psize='%s' AND order_id ISNULL ",prod_id,uid,p_size));
 
 
-                    String spid = pid.getText().toString();
-                    String suid = userid.getText().toString();
-                    String sp_qty = qty_value.getText().toString();
-                    String s_psize = size.getText().toString();
-
-                    db.insert_to_cart(spid, suid, sp_qty, s_psize);
-                    Toast.makeText(p_grid_selecteditem.this, "Product added to cart ", Toast.LENGTH_LONG).show();
-                    add_cart.setText("GO TO CART");
-                    //go_to_cart.setVisibility(View.VISIBLE);
+                    if (size.length() == 0) {
+                        size.requestFocus();
+                        size.setError("choose your size");
+                    }else if(cursor3.getCount() == 0) {
 
 
-                    //update stocks
+                        String spid = pid.getText().toString();
+                        String suid = userid.getText().toString();
+                        String sp_qty = qty_value.getText().toString();
+                        String s_psize = size.getText().toString();
 
-                    Cursor cursor4 = db.getData(String.format("SELECT psale from product_table where pid =%s ",prod_id));
+                        db.insert_to_cart(spid, suid, sp_qty, s_psize);
+                        Toast.makeText(p_grid_selecteditem.this, "Product added to cart ", Toast.LENGTH_LONG).show();
+                        add_cart.setText("GO TO CART");
+                        //go_to_cart.setVisibility(View.VISIBLE);
 
-                    while (cursor4.moveToNext()) {
-                        quantity = cursor4.getString(0);
+
+                        //update stocks
+
+                        Cursor cursor4 = db.getData(String.format("SELECT psale from product_table where pid =%s ",prod_id));
+
+                        while (cursor4.moveToNext()) {
+                            quantity = cursor4.getString(0);
+
+                        }
+
+                        String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
+
+
+                        int update = db.update_stock(spid,act_qty);
 
                     }
+                    else{
+                        final Cursor cursorx = db.getData(String.format("SELECT * from cart_table join product_table where cart_table.pid= product_table.pid AND cart_table.pid =%s and _id = %s and cart_psize='%s' AND order_id ISNULL ",prod_id,uid,p_size));
 
-                    String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
+                        while (cursorx.moveToNext()) {
+                            u_pid = cursorx.getString(1);
+                            u_uid = cursorx.getString(2);
+                            u_qty = cursorx.getString(3);
+                            u_amount = cursorx.getString(13);
+
+                        }
 
 
-                    int update = db.update_stock(spid,act_qty);
+
+
+
+                        String spid = pid.getText().toString();
+                        String suid = userid.getText().toString();
+                        String sp_qty = qty_value.getText().toString();
+
+
+                        double total_price = 0.0;
+                        String n_qty = Integer.toString(Integer.parseInt(sp_qty)+Integer.parseInt(u_qty));
+
+                        total_price =  total_price + (Double.parseDouble(n_qty) * Double.parseDouble(u_amount));
+                        String n_amount = String.valueOf(total_price);
+                        //Toast.makeText(p_grid_selecteditem.this, "same product "+n_qty+ "..."+n_amount, Toast.LENGTH_LONG).show();
+
+                        int up_cart = db.update_cart_qty(spid,suid,n_qty);
+                        Toast.makeText(p_grid_selecteditem.this, "Product added to cart ", Toast.LENGTH_LONG).show();
+                        //update stocks
+
+                        Cursor cursor4 = db.getData(String.format("SELECT psale from product_table where pid =%s ",prod_id));
+
+                        while (cursor4.moveToNext()) {
+                            quantity = cursor4.getString(0);
+
+                        }
+
+                        String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
+
+
+                        int update = db.update_stock(spid,act_qty);
+
+
+
+                    }
 
                 }
-                else{
-                    final Cursor cursorx = db.getData(String.format("SELECT * from cart_table join product_table where cart_table.pid= product_table.pid AND cart_table.pid =%s and _id = %s and cart_psize='%s' AND order_id ISNULL ",prod_id,uid,p_size));
 
-                    while (cursorx.moveToNext()) {
-                         u_pid = cursorx.getString(1);
-                         u_uid = cursorx.getString(2);
-                         u_qty = cursorx.getString(3);
-                         u_amount = cursorx.getString(12);
-
-                    }
-
-
-
-
-
-                    String spid = pid.getText().toString();
-                    String suid = userid.getText().toString();
-                    String sp_qty = qty_value.getText().toString();
-
-
-                    double total_price = 0.0;
-                     String n_qty = Integer.toString(Integer.parseInt(sp_qty)+Integer.parseInt(u_qty));
-
-                     total_price =  total_price + (Double.parseDouble(n_qty) * Double.parseDouble(u_amount));
-                     String n_amount = String.valueOf(total_price);
-                     Toast.makeText(p_grid_selecteditem.this, "same product "+n_qty+ "..."+n_amount, Toast.LENGTH_LONG).show();
-
-                     int up_cart = db.update_cart_qty(spid,suid,n_qty);
-                    //update stocks
-
-                    Cursor cursor4 = db.getData(String.format("SELECT psale from product_table where pid =%s ",prod_id));
-
-                    while (cursor4.moveToNext()) {
-                        quantity = cursor4.getString(0);
-
-                    }
-
-                    String act_qty =String.valueOf( Integer.parseInt(quantity)-Integer.parseInt(sp_qty));
-
-
-                    int update = db.update_stock(spid,act_qty);
-
-
-
-                    }
 
 
 
 
             }
         });
+
+
+        //rating item
+
+        String rate_val;
+        String s_pid = pid.getText().toString();
+
+        final Cursor cursorx = db.getData(String.format("select avg(rating) from review WHERE pid ='%s'",s_pid));
+        if (cursorx != null){
+            while (cursorx.moveToNext()) {
+                rate_val = cursorx.getString(0);
+                //Float rate = (Float.parseFloat(rate_val));
+                //String rate2 = Float.toString(rate_val);
+                if (rate_val != null){
+
+                    rating_item.setText(rate_val+".0");
+
+                }else{
+                    rating_item.setText("1.0");
+
+
+                }
+
+
+
+            }
+
+
+
+
+        }else{
+            rating_item.setText("1.0");
+
+
+        }
+
+
 
         //***********add whishlist button click
 
@@ -309,49 +412,44 @@ public class p_grid_selecteditem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
-
+                if(sp_manager.getUser2(p_grid_selecteditem.this).length() == 0)
+                {
+                    Toast.makeText(p_grid_selecteditem.this, "Please login ", Toast.LENGTH_LONG).show();
+                    Intent homeIntent = new Intent(p_grid_selecteditem.this,verify_phno.class);
+                    startActivity(homeIntent);
+                }else{
 
                     Cursor cursor2 = db.getData(String.format("SELECT pid,_id from wish_table where pid =%s and _id = %s ",prod_id,uid));
-               // Log.e("samp",   cursor2);
 
 
+                    if (size.length() == 0) {
+                        size.requestFocus();
+                        size.setError("choose your size");
 
-                   /* while (cursor2.moveToNext()) {
-                        for (int i = 0; i < cursor2.getCount(); i++) {
+                    }
+                    else if (cursor2.getCount() == 0) {
+                        String spid = pid.getText().toString();
+                        String suid = userid.getText().toString();
+                        String sp_qty = qty_value.getText().toString();
+                        String s_psize = size.getText().toString();
 
-                            wp_id = cursor2.getString(0);
-                            wu_id = cursor2.getString(1);
+                        db.insert_to_wishlist(spid, suid, sp_qty, s_psize);
+                        Toast.makeText(p_grid_selecteditem.this, "Product added to wishlist ", Toast.LENGTH_LONG).show();
+                        add_whishlist.setText("GO TO WISHLIST");
 
+                    }
+                    else {
+                        Toast.makeText(p_grid_selecteditem.this, "already in wishlist ", Toast.LENGTH_LONG).show();
 
-                            // add_stocks.setText(ps_cat);
-                        }
-                        Log.e("samp", wp_id + "," + wu_id);
+                    }
 
-
-                    }*/
-
-                if (size.length() == 0) {
-                    size.requestFocus();
-                    size.setError("choose your size");
 
                 }
-                else if (cursor2.getCount() == 0) {
-                    String spid = pid.getText().toString();
-                    String suid = userid.getText().toString();
-                    String sp_qty = qty_value.getText().toString();
-                    String s_psize = size.getText().toString();
 
-                    db.insert_to_wishlist(spid, suid, sp_qty, s_psize);
-                    Toast.makeText(p_grid_selecteditem.this, "Product added to wishlist ", Toast.LENGTH_LONG).show();
-                    add_whishlist.setText("GO TO WISHLIST");
 
-                        }
-                else {
-                    Toast.makeText(p_grid_selecteditem.this, "already in wishlist ", Toast.LENGTH_LONG).show();
 
-                        }
+
+
 
 
             }

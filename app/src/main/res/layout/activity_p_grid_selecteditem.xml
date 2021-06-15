@@ -162,6 +162,7 @@
                 android:id="@+id/p_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
 
                 android:layout_marginStart="260dp"
                 android:layout_marginTop="300dp"
@@ -177,6 +178,7 @@
                 android:id="@+id/u_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
 
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="340dp"
@@ -199,9 +201,27 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="210dp"
                 android:stepSize="0"
+                android:id="@+id/rating_item"
+                android:visibility="gone"
                 android:numStars="5"
                 android:rating="3"
                 />
+            <TextView
+                android:id="@+id/rating_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="210dp"
+
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn2"
+                android:padding="2dp"
+
+                android:hint="1.0"
+                android:textColor="@color/black"
+                android:drawableRight="@drawable/star"
+                android:textSize="16sp" />
+
 
             <TextView
                 android:id="@+id/p_name"
@@ -225,7 +245,7 @@
                 android:layout_marginTop="210dp"
 
 
-                android:text=""
+                android:text="0"
                 android:textColor="@color/green"
                 android:textStyle="bold"
                 android:textSize="18sp" />
@@ -235,6 +255,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/off"
                 android:layout_marginStart="0dp"
+                android:id="@+id/tv_off"
 
                 android:layout_marginTop="210dp"
 
@@ -251,12 +272,13 @@
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="230dp"
                 android:layout_marginTop="240dp"
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="43dp"
-                android:drawableLeft="@drawable/rupees"
+                android:drawableLeft="@drawable/rup8"
+
                 android:hint="price"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -267,10 +289,10 @@
             <View
                 android:id="@+id/divider5"
                 android:layout_width="wrap_content"
-                android:layout_height="2dp"
+                android:layout_height="8dp"
                 android:layout_marginTop="480dp"
 
-                android:background="@android:color/darker_gray" />
+                android:background="#E1DDDD" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -296,13 +318,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20sp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="41dp"
                     android:layout_below="@+id/pro_desc_tv"
                     android:layout_marginRight="53dp"
                     android:layout_marginBottom="10dp"
                     android:textAlignment="textStart"
-                    android:text="this section includes details of product above.....       "
+                    android:text="this section includes  product above....this section includes details of product .....       "
                     android:textColor="#423F3F"
                     android:textSize="16sp"
                     android:textStyle="normal" />
@@ -314,8 +336,8 @@
                 android:id="@+id/qty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="33dp"
-                android:layout_marginTop="620dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="600dp"
 
 
                 android:text="quantity"
@@ -329,7 +351,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/qty"
-                android:layout_marginTop="620dp"
+                android:layout_marginTop="600dp"
                 android:layout_marginEnd="41dp"
                 android:layout_marginRight="43dp"
                 android:text=" items left       "
@@ -340,17 +362,45 @@
             <View
                 android:id="@+id/div6"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="690dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="630dp"
 
-                android:background="@android:color/darker_gray" />
+                android:background="#E1DDDD" />
             <TextView
 
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="700dp"
+                android:layout_marginTop="640dp"
+                android:layout_marginStart="5dp"
+                android:text="  7 Days Return policy "
+                android:drawableLeft="@drawable/return_arrow"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+            <TextView
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="670dp"
+                android:layout_marginStart="5dp"
+                android:text="  Free Delivery "
+                android:drawableLeft="@drawable/ship_blue"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+            <TextView
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="705dp"
                 android:layout_marginStart="5dp"
                 android:text=" Ratings &amp; Reviews "
                 android:textColor="@color/black"
@@ -364,7 +414,7 @@
                 android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="230dp"
-                android:layout_marginTop="700dp"
+                android:layout_marginTop="705dp"
                 android:fontFamily="sans-serif-black"
                 android:focusable="false"
 
@@ -381,11 +431,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
 
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="5dp"
 
                 android:layout_marginTop="740dp"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="sans-serif-medium"
                 android:focusable="false"
+                android:background="@drawable/btn2"
+                android:padding="3dp"
+                android:layout_marginRight="5dp"
+
                 android:drawableRight="@drawable/arrow_right"
 
                 android:text="  View all"
@@ -397,7 +451,7 @@
                 android:textStyle="normal" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="300dp"
                 android:orientation="vertical"
                 android:layout_marginTop="780dp">
                 <ScrollView
@@ -408,8 +462,9 @@
             <ListView
                 android:id="@+id/lv_review"
                 android:elevation="5dp"
+                android:layout_margin="3dp"
                 android:layout_marginStart="0dp"
-                android:background="@color/white"
+                android:background="@drawable/btn2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
@@ -423,7 +478,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1400dp"
+                android:layout_marginTop="1000dp"
                 android:id="@+id/reviews_lin"
                 android:orientation="vertical"/>
 
@@ -440,7 +495,7 @@
 
         android:ems="10"
         android:textStyle="bold"
-        android:background="@color/orange"
+        android:background="@drawable/joinbtn"
         android:text="ADD TO WISHLIST"
 
         android:textColor="#fff"/>
@@ -456,7 +511,7 @@
 
         android:ems="10"
         android:textStyle="bold"
-        android:background="@color/orange"
+        android:background="@drawable/joinbtn"
         android:text="ADD TO CART"
 
         android:textColor="#fff"/>

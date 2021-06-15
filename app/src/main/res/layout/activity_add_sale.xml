@@ -17,38 +17,25 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F10A0A"
-            android:padding="2dp"
+            android:background="@color/orange"
+            android:fitsSystemWindows="true"
 
-            android:fitsSystemWindows="true">
-
-            <ImageView
-                android:id="@+id/left_arrow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/left_arrow"
-                android:maxWidth="25dp"
+            android:padding="2dp">
 
 
-                android:textColor="@color/white"
-                android:textSize="20dp"
 
-                android:textStyle="italic" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
 
+                android:layout_gravity="center_horizontal"
                 android:text="ADD SALE"
                 android:textColor="#E6E2E2"
-                android:layout_gravity="center_horizontal"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
-
-
 
         <EditText
             android:id="@+id/sale_title"
@@ -56,7 +43,9 @@
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
+            android:padding="3dp"
             android:ems="8"
+            android:textAllCaps="true"
             android:hint="  Sale title"
             android:inputType="textPersonName"
             android:elevation="5dp"
@@ -68,6 +57,7 @@
             android:layout_height="40dp"
             android:textSize="18dp"
             android:hint="  sale Offer"
+            android:padding="3dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
 
@@ -77,6 +67,7 @@
             android:id="@+id/start_date"
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:padding="3dp"
 
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
@@ -85,21 +76,21 @@
             android:focusableInTouchMode="false"
 
             />
+
+
         <EditText
             android:id="@+id/end_date"
             android:layout_width="250dp"
             android:layout_height="40dp"
 
-            android:drawableRight="@drawable/cal"
             android:layout_marginTop="20dp"
+            android:padding="5dp"
             android:background="@drawable/btn"
-            android:hint="   sale ends "
+            android:drawableRight="@drawable/cal"
             android:focusableInTouchMode="false"
+            android:hint="   sale ends "
 
             />
-
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -139,11 +130,15 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="240dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:text="products"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:text="Choose category"
+            android:visibility="gone"
+
+            android:focusableInTouchMode="false"
             android:id="@+id/prod_list"
             >
 
@@ -159,8 +154,32 @@
             android:layout_marginStart="45dp"
             android:ems="10"
             android:textStyle="bold"
+            android:visibility="gone"
             android:background="@drawable/joinbtn"
-            android:text="CHOOSE PRODUCTS"
+            android:text="CHOOSE CATEGORY"
+            android:onClick="addRecord"
+            android:textColor="#fff"/>
+        <TextView
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="items"
+            android:id="@+id/product_items"
+            android:visibility="gone"
+            />
+        <Button
+            android:id="@+id/choose_sitems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="45dp"
+            android:ems="10"
+            android:textStyle="bold"
+            android:background="@drawable/joinbtn"
+            android:text="CHOOSE items"
+            android:visibility="gone"
             android:onClick="addRecord"
             android:textColor="#fff"/>
 
@@ -171,16 +190,20 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="240dp"
+
+            android:padding="5dp"
             >
 
             <Button
                 android:id="@+id/add_sale"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:padding="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:ems="10"
                 android:textStyle="bold"
                 android:background="@drawable/joinbtn"
@@ -201,6 +224,7 @@
                 android:onClick="addRecord"
                 android:text="CANCEL"
                 android:textColor="#fff"
+                android:visibility="gone"
                 android:textStyle="bold" />
         </RelativeLayout>
 

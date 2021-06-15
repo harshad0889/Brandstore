@@ -2,6 +2,11 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/baloo</item>
+        <item>@font/baloo_tamma</item>
         <item>@font/duru_sans</item>
+        <item>@font/fira_sans_thin</item>
+        <item>@font/padauk</item>
+        <item>@font/stalemate</item>
+        <item>@font/teko_light</item>
     </array>
 </resources>

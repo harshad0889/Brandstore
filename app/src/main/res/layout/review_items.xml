@@ -14,12 +14,13 @@
         android:visibility="gone"
         />
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:hint="user2"
+        android:hint="user2  "
         android:drawableLeft="@drawable/person2"
         android:gravity="center_vertical"
         android:id="@+id/user2"
+        android:textStyle="bold"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         >
@@ -55,9 +56,9 @@
         android:hint="review"
         android:id="@+id/preview2"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:layout_marginTop="50dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="40dp"
         >
 
     </TextView>

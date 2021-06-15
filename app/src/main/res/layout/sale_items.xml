@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:background="@drawable/btn"
     android:elevation="5dp"
-    android:padding="10dp"
+    android:padding="5dp"
 
-    android:layout_margin="20dp"
+    android:layout_margin="30dp"
 
     >
 
@@ -114,7 +115,7 @@
 
 
         android:elevation="5dp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-condensed"
         android:text="sdate"
         android:textAlignment="center"
         android:textColor="#090303"
@@ -130,7 +131,8 @@
 
 
         android:layout_marginTop="100dp"
-        android:layout_marginStart="210dp"
+        android:layout_marginStart="5dp"
+        android:layout_toRightOf="@+id/sdate"
 
         android:id="@+id/hiphen"
 
@@ -151,13 +153,13 @@
         android:id="@+id/edate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_marginStart="220dp"
+       android:layout_marginStart="225dp"
 
 
         android:layout_marginTop="100dp"
 
         android:elevation="5dp"
-        android:fontFamily="monospace"
+        android:fontFamily="sans-serif-condensed"
         android:text="edate"
         android:textAlignment="center"
         android:textColor="#090303"
@@ -197,7 +199,7 @@
         android:layout_marginRight="0dp"
         android:fontFamily="sans-serif-condensed"
 
-        android:text="title descri"
+        android:text="title "
         android:textStyle="bold"
         android:textAlignment="textStart"
         android:textColor="#000000"

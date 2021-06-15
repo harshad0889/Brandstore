@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -47,12 +46,12 @@ public class cat_fragment extends Fragment {
         rV_cat.setAdapter(catadapter);
 
 
-        Cursor cursor2 = db2.getData("SELECT * FROM cate_table");
+        Cursor cursor2 = db2.getData("SELECT * FROM cate_table WHERE cat_status='PRODUCT'");
 
         while (cursor2.moveToNext()) {
             int cat_id = cursor2.getInt(0);
             String cat_name = cursor2.getString(1);
-            byte[] img = cursor2.getBlob(2);
+            byte[] img = cursor2.getBlob(3);
 
             catlists.add(new category(cat_id, cat_name, img));
         }

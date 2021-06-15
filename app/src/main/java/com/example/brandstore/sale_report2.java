@@ -20,7 +20,7 @@ public class sale_report2 extends AppCompatActivity {
 
     private SimpleCursorAdapter adapter7;
 
-    final String[] from = new String[]{db.COL_ordid,db.COL_total};
+    final String[] from = new String[]{db.COL_ordid,"x"};
 
     final int[] to = new int[]{R.id.report_ordid, R.id.report_total};
 

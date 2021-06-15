@@ -1,6 +1,7 @@
 package com.example.brandstore;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -70,6 +72,7 @@ protected void onCreate(Bundle savedInstanceState) {
     Log.e(s_total + "", "=");
 
     sub_total.setText(String.valueOf(s_total));
+    String subto = sub_total.getText().toString();
     pay.setText("PAY "+String.valueOf(s_total));
 
 
@@ -93,11 +96,32 @@ protected void onCreate(Bundle savedInstanceState) {
                     //insert order table values
                     addorder(uid,total_amt,delivery_charge,quantity,order_status,p_mode);
 
-                    Intent r = new Intent(choose_payment.this, Home2.class);
-                    startActivity(r);
-                    finish();
 
-                    Toast.makeText(choose_payment.this, ""+p_mode, Toast.LENGTH_SHORT).show();
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(choose_payment.this);
+                    builder.setTitle("Order placed");
+                    builder.setMessage("order placed successfully!");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            Toast.makeText(choose_payment.this, " order placed successfully ", Toast.LENGTH_LONG).show();
+                            Intent r = new Intent(choose_payment.this, Home2.class);
+                            startActivity(r);
+                            finish();
+
+
+
+
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
+
 
                 }else
                 {

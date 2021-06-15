@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".All_reviews">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C51717"
+        android:padding="2dp"
+
+        android:fitsSystemWindows="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:text="REVIEWS "
+
+            android:textColor="#E6E2E2"
+            android:layout_gravity="start"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+    <ListView
+        android:id="@+id/lv_review2"
+        android:elevation="5dp"
+        android:layout_marginStart="0dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:smoothScrollbar="true"
+        android:scrollingCache="false"
+        android:layout_marginTop="60dp"/>
+
+</RelativeLayout>

@@ -48,13 +48,26 @@
             android:id="@+id/refresh_stocks"/>
 
     </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+
+        android:padding="10dp"
+
+        android:background="@drawable/btn3">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="70dp"
+
+        android:padding="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
-        android:text="pick date"
+        android:text="choose date"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:id="@+id/prod_list"
         >
@@ -66,9 +79,12 @@
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/btn"
         android:drawableRight="@drawable/cal"
+
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:drawableLeft="@drawable/transa_space"
         android:hint=" Choose date "
         android:focusableInTouchMode="false"
@@ -82,8 +98,10 @@
         android:layout_marginLeft="50dp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
-        android:layout_marginTop="300dp"
+
+        android:layout_marginTop="190dp"
         android:background="@drawable/joinbtn"
         android:id="@+id/show_report"/>
+    </RelativeLayout>
 
 </RelativeLayout>

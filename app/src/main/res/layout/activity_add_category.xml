@@ -59,6 +59,18 @@
             android:ems="8"
             android:hint="  category name"
             android:inputType="textPersonName"
+            android:textAllCaps="true"
+            android:elevation="5dp"
+            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/cat_status"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:ems="8"
+            android:hint="  category status"
+            android:inputType="textPersonName"
             android:elevation="5dp"
             android:textSize="18dp" />
 

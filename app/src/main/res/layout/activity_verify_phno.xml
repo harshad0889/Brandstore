@@ -15,7 +15,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F10A0A"
+        android:background="@color/orange"
         android:padding="2dp"
 
         android:fitsSystemWindows="true">
@@ -33,17 +33,26 @@
     </androidx.appcompat.widget.Toolbar>
 
 
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:visibility="gone"
+        android:background="@drawable/bs_logo98" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="100dp"
         android:layout_gravity="center_horizontal"
         android:text="BRAND STORE"
         android:fontFamily="sans-serif-medium"
         android:shadowColor="@color/orange"
-        android:textColor="#C61C1C"
+        android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -57,7 +66,7 @@
         android:hint="   username"
         android:layout_gravity="center_horizontal"
         android:drawableLeft="@drawable/username"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/btn"
         android:elevation="10dp"
         android:ems="8"
@@ -103,6 +112,7 @@
         android:textColor="#938C8C"
         android:layout_gravity="center_horizontal"
         android:textSize="20dp"
+        android:visibility="gone"
         android:textStyle="bold" />
 
     <Button
@@ -113,6 +123,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/joinbtn"
         android:ems="10"
+        android:visibility="gone"
 
         android:text="LOGIN WITH OTP"
         android:textColor="#fff"
@@ -123,7 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="150dp"
         android:text="New User?"
         android:textColor="#938C8C"
         android:layout_gravity="center_horizontal"

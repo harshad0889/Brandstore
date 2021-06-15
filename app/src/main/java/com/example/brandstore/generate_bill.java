@@ -9,21 +9,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.brandstore.DatabaseHelper.COL_paprice;
-
 public class generate_bill extends AppCompatActivity {
 
 
-    TextView total,del_a,gst,sub_total;
+    TextView total,del_a,gst,sub_total,total3;
     DatabaseHelper db;
     String ps_cat,stock_qty;
     private ListView listView;
 
     private SimpleCursorAdapter adapter7;
 
-    final String[] from = new String[]{db.COL_cartid,db.COL_pname,COL_paprice};
+    final String[] from = new String[]{db.COL_cartid,db.COL_pname,db.COL_paprice,db.COL_qty};
 
-    final int[] to = new int[]{R.id.cart_id, R.id.pname,R.id.bill_amount};
+    final int[] to = new int[]{R.id.cart_id, R.id.pname,R.id.bill_amount,R.id.qty};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +32,7 @@ public class generate_bill extends AppCompatActivity {
         db=new DatabaseHelper(this);
         listView= findViewById(R.id.lv_bill);
         total= findViewById(R.id.tot_amount2);
+        total3= findViewById(R.id.tot_amount3);
         del_a= findViewById(R.id.del_amount2);
         gst= findViewById(R.id.gst_amount2);
         sub_total= findViewById(R.id.sub_total2);
@@ -75,11 +74,11 @@ public class generate_bill extends AppCompatActivity {
 
 
 
-        Cursor cursor2 = db.getData(String.format("SELECT sum(act_price) from cart_table left join product_table where order_id = %s and cart_table.pid= product_table.pid",ord_id));
+        Cursor cursor2 = db.getData(String.format("SELECT sum(qty*act_price) from cart_table left join product_table where order_id = %s and cart_table.pid= product_table.pid",ord_id));
         while (cursor2.moveToNext()) {
 
            final String total_amt = cursor2.getString(0);
-           // total.setText(total_amt);
+            total3.setText(total_amt);
 
         }
 

@@ -70,17 +70,38 @@ public class viewprofile_fragment extends Fragment {
         whishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(sp_manager.getUser2(getContext()).length() == 0)
+                {
+                    Toast.makeText(getContext(), "Please login ", Toast.LENGTH_LONG).show();
+                    Intent homeIntent = new Intent(getContext(),verify_phno.class);
+                    startActivity(homeIntent);
+                }else{
 
-                Intent regIntent = new Intent(getContext(),whishlist.class);
-                startActivity(regIntent);
+                    Intent regIntent = new Intent(getContext(),whishlist.class);
+                    startActivity(regIntent);
+
+                }
+
+
 
             }
         });
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(getContext(),upadate_profile.class);
-                startActivity(in);
+
+                if(sp_manager.getUser2(getContext()).length() == 0)
+                {
+                    Toast.makeText(getContext(), "Please login ", Toast.LENGTH_LONG).show();
+                    Intent homeIntent = new Intent(getContext(),verify_phno.class);
+                    startActivity(homeIntent);
+                }else{
+
+                    Intent in = new Intent(getContext(),upadate_profile.class);
+                    startActivity(in);
+
+                }
+
             }
         });
 
@@ -133,9 +154,20 @@ public class viewprofile_fragment extends Fragment {
         my_orders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent m = new Intent(getContext(), my_orders.class);
-                startActivity(m);
-                // finish();
+
+                if(sp_manager.getUser2(getContext()).length() == 0)
+                {
+                    Toast.makeText(getContext(), "Please login ", Toast.LENGTH_LONG).show();
+                    Intent homeIntent = new Intent(getContext(),verify_phno.class);
+                    startActivity(homeIntent);
+                }else{
+
+                    Intent m = new Intent(getContext(), my_orders.class);
+                    startActivity(m);
+                    // finish();
+
+                }
+
             }
         });
 

@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/orange"
+            android:background="@drawable/grad2"
             android:padding="2dp"
 
             android:fitsSystemWindows="true">
@@ -83,6 +83,19 @@
             android:layout_height="40dp"
             android:textSize="18dp"
             android:hint="  category"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn"
+            android:drawableLeft="@drawable/transa_space"
+            android:focusableInTouchMode="false"
+            android:ems="8"
+            android:elevation="5dp"
+            android:inputType="textPersonName"/>
+        <EditText
+            android:id="@+id/P_subcategory"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint=" sub category"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn"
             android:drawableLeft="@drawable/transa_space"

@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_psale = "psale";
     public static final String COL_poff = "p_off";
     public static final String COL_iv = "iv";
-   // public static final String COL_cuid = "_id";
+   public static final String COL_subcat = "subcat";
 
 
     //sale details
@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_sid = "sid";
     public static final String COL_stitle = "sale_title";
     public static final String COL_sdesc = "sale_desc";
-    public static final String COL_sprodname = "pname";
+    //public static final String COL_sprodname = "pname";
     public static final String COL_sdate = "start_date";
     public static final String COL_edate = "end_date";
     public static final String COL_siv = "siv";
@@ -52,6 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_CATEGORY = "cate_table";
     public static final String COL_catid = "ctid";
     public static final String COL_ctname = "cat_name";
+    public static final String COL_cstatus = "cat_status";
+
     public static final String COL_ctiv = "ctiv";
 
 
@@ -124,6 +126,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String s_cartid = "cartid";
 
 
+    //table return reason
+
+    public static final String TABLE_RETURN = "RETURN";
+    public static final String return_id = "ret_id";
+    public static final String reason = "reason";
+    public static final String ret_pid = "ret_pid";
+    public static final String ret_uid = "ret_uid";
+    public static final String ret_oid = "ret_oid";
+
+    //table return reason
+
+    public static final String TABLE_CANCEL = "CANCEL";
+    public static final String cancel_id = "can_id";
+    public static final String can_reason = "can_reason";
+    public static final String can_pid = "can_pid";
+    public static final String can_uid = "can_uid";
+    public static final String can_oid = "can_oid";
+
+
+
+
+
 
 
 
@@ -142,6 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_pid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_pname + " TEXT,"
             + COL_pcat + " TEXT,"
+             + COL_subcat + " TEXT,"
             + COL_pdesc + " TEXT,"
             + COL_psize + " TEXT,"
             + COL_paprice + " INTEGER,"
@@ -156,7 +181,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_sid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_stitle + " TEXT,"
             + COL_sdesc + " TEXT,"
-            + COL_sprodname + " TEXT,"
             + COL_sdate + " TEXT,"
             + COL_edate + " TEXT,"
             + COL_dtime + " date default CURRENT_DATE, "
@@ -166,6 +190,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String CREATE_CATEGORY_TABLE = "CREATE TABLE " + TABLE_CATEGORY + "("
             + COL_catid + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COL_ctname + " TEXT,"
+            + COL_cstatus + " TEXT,"
             + COL_ctiv + " BLOB " + ")";
 
 
@@ -239,6 +264,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + s_cartid + " TEXT,"
             + sdate + " date default CURRENT_DATE " + ")";
 
+
+
+    //return reason table
+    private String CREATE_RETURN_TABLE = "CREATE TABLE " + TABLE_RETURN + "("
+            + return_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + reason + " TEXT,"
+            + ret_pid + " TEXT,"
+            + ret_uid + " TEXT, "
+            + ret_oid + " TEXT" + ")";
+
+    //return reason table
+    private String CREATE_CANCEL_TABLE = "CREATE TABLE " + TABLE_CANCEL + "("
+            + cancel_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + can_reason + " TEXT,"
+            + can_pid + " TEXT,"
+            + can_uid + " TEXT, "
+            + can_oid + " TEXT" + ")";
+
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -256,6 +299,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_REVIEW);
         db.execSQL(CREATE_STOCKS_TABLE);
         db.execSQL(CREATE_STATUS_TABLE);
+        db.execSQL(CREATE_RETURN_TABLE);
+        db.execSQL(CREATE_CANCEL_TABLE);
 
     }
 
@@ -272,6 +317,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_REVIEW);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STOCKS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATUS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RETURN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CANCEL);
 
 
 
@@ -344,7 +391,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //INSERT PRODUCT DATA
 
-    public boolean insert_prod_data(String cname, String c_cat, String cdesc, String
+    public boolean insert_prod_data(String cname, String c_cat,String c_subcat, String cdesc, String
             csize, String cact_price,  String csale,
                                  byte[] newentryimg) {
 
@@ -353,10 +400,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         contentValues.put(COL_pname, cname);
         contentValues.put(COL_pcat, c_cat);
+        contentValues.put(COL_subcat, c_subcat);
         contentValues.put(COL_pdesc, cdesc);
         contentValues.put(COL_psize, csize);
         contentValues.put(COL_paprice, cact_price);
-       // contentValues.put(COL_pofprice, cof_price);
+       //
         contentValues.put(COL_psale, csale);
        // contentValues.put(COL_poff, coff);
         contentValues.put(COL_iv, newentryimg);
@@ -403,7 +451,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //**************update product data*************************
 
 
-    public int updateproduct(String prodid,String cname, String c_cat, String cdesc, String
+    public int updateproduct(String prodid,String cname, String c_cat,String c_subcat, String cdesc, String
             csize, String cact_price,  String csale,
                              byte[] newentryimg) {
 
@@ -411,6 +459,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_pname, cname);
         contentValues.put(COL_pcat, c_cat);
+        contentValues.put(COL_subcat, c_subcat);
         contentValues.put(COL_pdesc, cdesc);
         contentValues.put(COL_psize, csize);
         contentValues.put(COL_paprice, cact_price);
@@ -458,13 +507,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //***************INSERT SALE DATA*********************
-    public boolean insert_sale_data(String stitle, String sdesc,String prod_name,String sdate, String edate, byte[] siv) {
+    public boolean insert_sale_data(String stitle, String sdesc,String sdate, String edate, byte[] siv) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_stitle, stitle);
         contentValues.put(COL_sdesc, sdesc);
-        contentValues.put(COL_sprodname, prod_name);
+
         contentValues.put(COL_sdate, sdate);
         contentValues.put(COL_edate, edate);
         contentValues.put(COL_siv, siv);
@@ -481,11 +530,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //***************INSERT CATEGORY DATA*********************
-    public boolean add_cate(String ctname, byte[] ctiv) {
+    public boolean add_cate(String ctname,String ctstatus, byte[] ctiv) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_ctname, ctname);
+        contentValues.put(COL_cstatus, ctstatus);
 
         contentValues.put(COL_ctiv, ctiv);
 
@@ -714,7 +764,7 @@ public UserModel Authenticate(UserModel userModel) {
 
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor curso = db.rawQuery("SELECT rowid _id, * FROM " + TABLE_ORDER + " WHERE " + COL_odate + " = '" + s_date + "'" , null);
+        Cursor curso = db.rawQuery("SELECT rowid _id, total+total*5/100 as x,* FROM " + TABLE_ORDER + " WHERE " + COL_odate + " = '" + s_date + "'" , null);
 
         return curso;
     }
@@ -765,5 +815,82 @@ public UserModel Authenticate(UserModel userModel) {
         int i = db.update(TABLE_CART, contentValues,   COL_prodid + " = " + spid +" AND "+ COL_uid + " = " +suid , null);
         return  i;
 
+    }
+
+    public int delete_sale(String sale_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_sid, sale_id);
+
+
+        int i = db.delete(TABLE_SALE,COL_sid + " = "+'"' + sale_id +'"', null);
+        return  i;
+
+    }
+
+    public boolean in_ret_reason(String s_order_id, String uid, String s_pid_ret,String p_mode) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ret_pid, s_pid_ret);
+        contentValues.put(ret_uid, uid);
+        contentValues.put(ret_oid, s_order_id);
+        contentValues.put(reason, p_mode);
+
+
+
+
+
+        long result = db.insert(TABLE_RETURN, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean in_can_reason(String s_order_id, String uid, String s_pid_ret, String p_mode) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(can_pid, s_pid_ret);
+        contentValues.put(can_uid, uid);
+        contentValues.put(can_oid, s_order_id);
+        contentValues.put(can_reason, p_mode);
+
+
+
+
+
+        long result = db.insert(TABLE_CANCEL, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public int delete_product(String prodid) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_pid, prodid);
+
+
+        int i = db.delete(TABLE_PRODUCT,COL_pid+ " = "+'"' + prodid +'"', null);
+        return  i;
+    }
+
+    public int updatesale_data(String sid,String stitle, String sdesc, String sale_sdate, String sale_edate, byte[] newentryimg) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_sid, sid);
+        contentValues.put(COL_stitle, stitle);
+        contentValues.put(COL_sdesc, sdesc);
+
+        contentValues.put(COL_sdate, sale_sdate);
+        contentValues.put(COL_edate, sale_edate);
+        contentValues.put(COL_siv, newentryimg);
+
+        int i = db.update(TABLE_SALE, contentValues,   COL_sid + " = " + sid, null);
+
+            return i;
     }
 }

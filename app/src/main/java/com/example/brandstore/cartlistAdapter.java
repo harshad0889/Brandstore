@@ -54,7 +54,7 @@ public class cartlistAdapter extends BaseAdapter {
     static class ViewHolder{
 
         ImageView imageView;
-        TextView p_id, p_name,a_price,p_qty,p_desc,uid,total_cprice,tot,cart_id,size,off;
+        TextView p_id, p_name,a_price,p_qty,p_desc,uid,total_cprice,tot,cart_id,size,off,tv_off;
         Button rmv,pl_ord;
     }
 
@@ -86,6 +86,7 @@ public class cartlistAdapter extends BaseAdapter {
             holder.tot = (TextView) row.findViewById(R.id.tot);
             holder.cart_id = (TextView) row.findViewById(R.id.cart_id);
             holder.size = (TextView) row.findViewById(R.id.size);
+            holder.tv_off = (TextView) row.findViewById(R.id.tv_off);
 
 
 
@@ -112,11 +113,18 @@ public class cartlistAdapter extends BaseAdapter {
 
        // getPrice();
         totalPrice = getPrice();
+        String offer_p = getofPrice();
        // holder.tot.setText(totalPrice);
+        //holder.a_price.setText(offer_p);
         fragment.Cart_total.setText(totalPrice);
 
 
         //offer price setup in cart
+        if (carts.getOff() == null){
+            holder.off.setVisibility(View.GONE);
+            holder.tv_off.setVisibility(View.GONE);
+
+        }
 
 
 
@@ -192,6 +200,7 @@ public class cartlistAdapter extends BaseAdapter {
                     String q = cartlist.get(j).getP_qty();
                     total_price = total_price + (Double.parseDouble(q) * offer_price);
                     Log.e(total_price + "total", q + "*" + offer_price);
+                   // a_price.setText(carts.getA_price());
 
                 }else{
                     String per = "100";
@@ -213,4 +222,50 @@ public class cartlistAdapter extends BaseAdapter {
 
 
     }
+
+    // second
+
+
+    public  String getofPrice()
+    {
+        double total_price = 0.0;
+        double offer_price = 0.0;
+
+        for(int j =0;j <cartlist.size();j++) {
+            String d =   cartlist.get(j).getA_price();
+
+
+            String off =  cartlist.get(j).getOff();
+            if (cartlist.get(j).getOff() == null){
+                off = "0";
+                String per = "100";
+                Log.e("sample", offer_price + off);
+                offer_price = (Double.parseDouble(d) - (Double.parseDouble(d) * Double.parseDouble(off) / Double.parseDouble(per)));
+               // String q = cartlist.get(j).getP_qty();
+                //total_price = total_price + (Double.parseDouble(q) * offer_price);
+                //Log.e(total_price + "total", q + "*" + offer_price);
+                // a_price.setText(carts.getA_price());
+
+            }else{
+                String per = "100";
+                Log.e("sample", offer_price + off);
+                offer_price = (Double.parseDouble(d) - (Double.parseDouble(d) * Double.parseDouble(off) / Double.parseDouble(per)));
+               // String q = cartlist.get(j).getP_qty();
+                //total_price = total_price + (Double.parseDouble(q) * offer_price);
+                //Log.e(total_price + "total", q + "*" + offer_price);
+
+            }
+
+
+
+        }
+        return String.valueOf(offer_price);
+
+
+
+
+
+    }
+
+
 }

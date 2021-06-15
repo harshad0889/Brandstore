@@ -41,21 +41,22 @@ public class product_updview extends AppCompatActivity {
 
 
 
-        Cursor cursor = db.getData("SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname");
+        Cursor cursor = db.getData("SELECT * from product_table left join sale_table on product_table.subcat = sale_table.sale_title");
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
             String p_name = cursor.getString(1);
             String p_category = cursor.getString(2);
-            String p_desc = cursor.getString(3);
-            String p_size = cursor.getString(4);
-            String a_price = cursor.getString(5);
+            String p_subcat = cursor.getString(3);
+            String p_desc = cursor.getString(4);
+            String p_size = cursor.getString(5);
+            String a_price = cursor.getString(6);
            // String o_price = cursor.getString(6);
-            String p_off = cursor.getString(10);
-            String p_sale = cursor.getString(6);
-            byte[] image = cursor.getBlob(7);
+            String p_off = cursor.getString(11);
+            String p_sale = cursor.getString(7);
+            byte[] image = cursor.getBlob(8);
 
-            list.add(new product( pid,  p_name,p_category,p_desc,p_size,a_price,  p_sale,    image,p_off));
+            list.add(new product( pid,  p_name,p_category,p_subcat,p_desc,p_size,a_price,  p_sale,    image,p_off));
         }
         adapter.notifyDataSetChanged();
 
@@ -72,6 +73,7 @@ public class product_updview extends AppCompatActivity {
                 TextView tv_pid = (TextView) view.findViewById(R.id.prod_id);
                 TextView tv_pname = (TextView) view.findViewById(R.id.prod_name);
                 TextView tv_cat = (TextView) view.findViewById(R.id.category);
+                TextView tv_subcat = (TextView) view.findViewById(R.id.sub_cat);
                 TextView tv_desc = (TextView) view.findViewById(R.id.prod_desc);
                 TextView tv_size = (TextView) view.findViewById(R.id.p_size);
                 TextView tv_actprice = (TextView) view.findViewById(R.id.act_Price);
@@ -85,6 +87,7 @@ public class product_updview extends AppCompatActivity {
                 String sp_id = tv_pid.getText().toString();
                 String sp_name = tv_pname.getText().toString();
                 String sp_cat = tv_cat.getText().toString();
+                String sp_subcat = tv_subcat.getText().toString();
                 String sp_desc = tv_desc.getText().toString();
                 String sp_size = tv_size.getText().toString();
                 String sp_actprice = tv_actprice.getText().toString();
@@ -96,6 +99,7 @@ public class product_updview extends AppCompatActivity {
                 s.putExtra("pid",sp_id);
                 s.putExtra("pname",sp_name);
                 s.putExtra("pcat",sp_cat);
+                s.putExtra("psubcat",sp_subcat);
                 s.putExtra("pdesc",sp_desc);
                 s.putExtra("psize",sp_size);
                 s.putExtra("pactprice",sp_actprice);

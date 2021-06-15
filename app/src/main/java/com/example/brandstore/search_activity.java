@@ -3,7 +3,10 @@ package com.example.brandstore;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +23,7 @@ import java.util.List;
 public class search_activity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     SearchView searchview;
     ListView search_list;
+    EditText search_edit;
     DatabaseHelper db2;
     String [] values= {"shirts","pants","trousers"};
     ArrayAdapter<String> adapter;
@@ -59,17 +63,24 @@ public class search_activity extends AppCompatActivity implements SearchView.OnQ
         builder.setView(search_list);
         final  AlertDialog dialog = builder.create();
         //searchlist.contains(query);
+        //search_edit.setText(adapter);
+       // searchlist.get(onOptionsItemSelected());
 
 
-        /*
-        final ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,searchlist);
-        search_list.setAdapter(adapter3);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-         builder.setCancelable(true);
-        builder.setView(search_list);
-         final  AlertDialog dialog = builder.create();*/
-    }
+        search_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                searchview.setQuery(adapter.getItem(i),false);
+            }
+        });
 
+
+
+
+
+
+
+}
     @Override
     public boolean onQueryTextSubmit(String query) {
         Intent s1 = new Intent(this,cat_prod_view.class);

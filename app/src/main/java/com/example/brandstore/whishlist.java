@@ -50,12 +50,12 @@ public class whishlist extends AppCompatActivity {
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(1);
             String p_name = cursor.getString(6);
-            String price = cursor.getString(10);
-            String p_desc = cursor.getString(8);
+            String price = cursor.getString(11);
+            String p_desc = cursor.getString(9);
             String p_qty = cursor.getString(3);
             String p_size = cursor.getString(4);
             String uid = cursor.getString(2);
-            byte[] image = cursor.getBlob(12);
+            byte[] image = cursor.getBlob(13);
 
             wishlist.add(new wish( pid,  p_name, price, p_desc,p_size,p_qty,uid,  image));
         }

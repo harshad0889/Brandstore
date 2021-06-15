@@ -13,7 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class sale_product_view extends AppCompatActivity {
     GridView gvcat_prodview;
@@ -29,6 +32,8 @@ public class sale_product_view extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_product_view);
+        final String date2 = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault()).format(new Date());
+
 
 
         db=new DatabaseHelper(this);
@@ -48,23 +53,26 @@ public class sale_product_view extends AppCompatActivity {
         String spnames = "casual shirts";
 
         // Bitmap bitmap = intent.getParcelableExtra("catimage");
+        //code previous
+        //SELECT  * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE pcategory ="+ '"'+spname+'"'
 
 
-        Cursor cursor = db.getData("SELECT  * from product_table left join sale_table on product_table.pcategory = sale_table.pname WHERE pcategory ="+ '"'+spname+'"');
+        Cursor cursor = db.getData(String.format("SELECT  * from product_table left join sale_table on product_table.subcat = sale_table.sale_title WHERE subcat ="+ '"'+spname+'"'));
         list.clear();
         while (cursor.moveToNext()) {
             int pid = cursor.getInt(0);
             String p_name = cursor.getString(1);
             String p_category = cursor.getString(2);
-            String p_desc = cursor.getString(3);
-            String p_size = cursor.getString(4);
-            String a_price = cursor.getString(5);
+            String p_subcat = cursor.getString(3);
+            String p_desc = cursor.getString(4);
+            String p_size = cursor.getString(5);
+            String a_price = cursor.getString(6);
             // String o_price = cursor.getString(6);
-            String p_off = cursor.getString(10);
-            String p_sale = cursor.getString(6);
-            byte[] image = cursor.getBlob(7);
+            String p_off = cursor.getString(11);
+            String p_sale = cursor.getString(7);
+            byte[] image = cursor.getBlob(8);
 
-            list.add(new product( pid,  p_name,p_category,p_desc, p_size,a_price, p_sale,   image,p_off));
+            list.add(new product( pid,  p_name,p_category,p_subcat,p_desc, p_size,a_price, p_sale,   image,p_off));
         }
         adapter.notifyDataSetChanged();
 
@@ -77,6 +85,7 @@ public class sale_product_view extends AppCompatActivity {
                 TextView prod_desc = (TextView) view.findViewById(R.id.prod_desc);
                 TextView prod_name = (TextView) view.findViewById(R.id.prod_name);
                 TextView category = (TextView) view.findViewById(R.id.category);
+                TextView tv_subcat = (TextView) view.findViewById(R.id.sub_cat);
                 TextView sale = (TextView) view.findViewById(R.id.p_sale);
                 TextView p_size = (TextView) view.findViewById(R.id.p_size);
 
@@ -89,6 +98,7 @@ public class sale_product_view extends AppCompatActivity {
                 String p_desc = prod_desc.getText().toString();
                 String p_name = prod_name.getText().toString();
                 String p_cat = category.getText().toString();
+                String sp_subcat = tv_subcat.getText().toString();
                 String p_sale = sale.getText().toString();
                 String size = p_size.getText().toString();
 
@@ -99,6 +109,7 @@ public class sale_product_view extends AppCompatActivity {
                 s.putExtra("p_desc",p_desc);
                 s.putExtra("p_name",p_name);
                 s.putExtra("p_cat",p_cat);
+                s.putExtra("psubcat",sp_subcat);
                 s.putExtra("p_sale",p_sale);
                 s.putExtra("size",size);
 

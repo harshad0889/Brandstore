@@ -10,11 +10,11 @@ public class sale {
     private byte[] image;
 
 
-    public sale(int sid, String s_title, String s_desc, String prod_name, String sdate, String edate, byte[] image) {
+    public sale(int sid, String s_title, String s_desc,  String sdate, String edate, byte[] image) {
         this.sid = sid;
         this.s_title = s_title;
         this.s_desc = s_desc;
-        this.prod_name = prod_name;
+
         this.sdate = sdate;
         this.edate = edate;
         this.image = image;

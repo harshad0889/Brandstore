@@ -92,25 +92,27 @@ public class sale_fragment extends Fragment {
             int sid = cursor.getInt(0);
             String s_title = cursor.getString(1);
             String s_desc = cursor.getString(2);
-            String prod_name = cursor.getString(3);
-            String sdate = cursor.getString(4);
-            String edate = cursor.getString(5);
-            byte[] image = cursor.getBlob(7);
+           // String prod_name = cursor.getString(3);
+            String sdate = cursor.getString(3);
+            String edate = cursor.getString(4);
+            byte[] image = cursor.getBlob(6);
 
-            list.add(new sale( sid,  s_title,s_desc, prod_name,  sdate,  edate, image));
+            list.add(new sale( sid,  s_title,s_desc,  sdate,  edate, image));
         }
         adapter.notifyDataSetChanged();
 
         gridview_sale.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView pname = view.findViewById(R.id.s_pname);
+                //TextView pname = view.findViewById(R.id.s_pname);
                 TextView sdate = view.findViewById(R.id.sdate);
                 TextView edate = view.findViewById(R.id.edate);
+                TextView s_title = view.findViewById(R.id.s_title);
 
-                String p_name = pname.getText().toString();
+               // String p_name = pname.getText().toString();
                 String s_date = sdate.getText().toString();
                 String e_date = edate.getText().toString();
+                String stitle = s_title.getText().toString();
 
                Cursor cursor = db.getData(String.format("SELECT * FROM sale_table where '%s' BETWEEN '%s' and  '%s' ",date2,s_date,e_date));
                 if (cursor.getCount() == 0){
@@ -118,7 +120,7 @@ public class sale_fragment extends Fragment {
                 }else{
 
                     Intent s = new Intent(getContext(),sale_product_view.class);
-                    s.putExtra("spname",p_name);
+                    s.putExtra("spname",stitle);
 
 
 

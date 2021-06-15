@@ -12,28 +12,64 @@
         android:layout_marginStart="215dp"
         android:visibility="gone"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text=""
+        android:drawableStart="@drawable/ship_dot"
+        android:textSize="18sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:id="@+id/dot"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        />
+    <View
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="15.5dp"
+        android:background="#1FA800"
+        android:orientation="vertical"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="status"
-        android:drawableLeft="@drawable/done"
+        android:drawableLeft="@drawable/tick_filled"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textAllCaps="true"
+        android:textStyle="normal"
         android:id="@+id/status"
         android:layout_marginTop="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="35dp"
         >
 
     </TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
         android:id="@+id/s_date"
-        android:textStyle="italic"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="25dp"
+        android:textStyle="normal"
+        android:layout_toRightOf="@+id/on_tv"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="2dp"
+        android:textSize="16sp"
         />
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=" on "
+        android:drawableLeft="@drawable/right_sign"
+    android:id="@+id/on_tv"
+    android:textStyle="normal"
+        android:textSize="16sp"
+    android:layout_marginTop="50dp"
+    android:layout_marginStart="35dp"
+    />
 
 
 </RelativeLayout>

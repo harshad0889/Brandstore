@@ -48,7 +48,7 @@ public class Allorders_selected extends AppCompatActivity {
         username  = sd.getString("username",null);
         final TextView order_id = (TextView) findViewById(R.id.order_id);
         TextView uid = (TextView) findViewById(R.id.uid);
-        TextView delivery_amt = (TextView) findViewById(R.id.del_amt);
+        final TextView delivery_amt = (TextView) findViewById(R.id.del_amt);
         final TextView status = (TextView) findViewById(R.id.status);
         TextView pay_mode = (TextView) findViewById(R.id.p_mode);
         TextView o_date = (TextView) findViewById(R.id.o_date);
@@ -64,8 +64,17 @@ public class Allorders_selected extends AppCompatActivity {
         TextView cart_psize = (TextView) findViewById(R.id.c_size);
         TextView p_cat = (TextView) findViewById(R.id.p_cat);
         TextView price = (TextView) findViewById(R.id.price);
-        TextView total = (TextView) findViewById(R.id.tot);
+        final TextView total = (TextView) findViewById(R.id.tot);
          listview =  findViewById(R.id.lv_status);
+        TextView track_ord = (TextView) findViewById(R.id.track_ord);
+        TextView bill = (TextView) findViewById(R.id.bill);
+
+
+
+        TextView can_reason = (TextView) findViewById(R.id.reason);
+        TextView tv_can_reason = (TextView) findViewById(R.id.tv_reason);
+        TextView ret_reason = (TextView) findViewById(R.id.ret_reason);
+        TextView tv_ret_reason = (TextView) findViewById(R.id.tv_ret_reason);
 
 
 
@@ -115,6 +124,27 @@ public class Allorders_selected extends AppCompatActivity {
 
         byte[] bytes = db.prodImage(s_pid);
         imageView.setImageBitmap(getImage(bytes));
+
+
+        //reason view
+        if (s_status.equals("CANCELLED" )){
+            can_reason.setVisibility(View.VISIBLE);
+            tv_can_reason.setVisibility(View.VISIBLE);
+            ret_reason.setVisibility(View.GONE);
+            tv_ret_reason.setVisibility(View.GONE);
+
+        }else if (s_status.equals("RETURN" )){
+            ret_reason.setVisibility(View.VISIBLE);
+            tv_ret_reason.setVisibility(View.VISIBLE);
+            can_reason.setVisibility(View.GONE);
+            tv_can_reason.setVisibility(View.GONE);
+        }else{
+            can_reason.setVisibility(View.GONE);
+            tv_can_reason.setVisibility(View.GONE);
+            ret_reason.setVisibility(View.GONE);
+            tv_ret_reason.setVisibility(View.GONE);
+
+        }
 
 
 
@@ -178,6 +208,53 @@ public class Allorders_selected extends AppCompatActivity {
 
 
 
+
+            }
+        });
+
+        //get your bill
+
+
+        bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String ord_id = order_id.getText().toString();
+                String tot = total.getText().toString();
+                String del_c = delivery_amt.getText().toString();
+
+
+
+
+                Intent b = new Intent(Allorders_selected.this, generate_bill.class);
+                b.putExtra("ord_id", ord_id);
+                b.putExtra("tot", tot);
+                b.putExtra("del_c", del_c);
+
+
+
+                startActivity(b);
+                finish();
+
+            }
+        });
+
+        //track order
+
+        track_ord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String statuss_cart_id = cart_id.getText().toString();
+
+                Intent b = new Intent(Allorders_selected.this, track_order.class);
+                b.putExtra("statuss_cart_id", statuss_cart_id);
+
+
+
+
+                startActivity(b);
+                finish();
 
             }
         });

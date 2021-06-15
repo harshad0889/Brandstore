@@ -52,12 +52,12 @@
     <TextView
         android:id="@+id/act_Price"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginStart="2dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
 
 
         android:layout_marginTop="185dp"
-        android:drawableLeft="@drawable/rupees"
+        android:drawableLeft="@drawable/rup8"
 
         android:elevation="5dp"
         android:text=" price"
@@ -150,6 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/off1"
         android:layout_marginStart="0dp"
+        android:id="@+id/off_tv"
 
 
         android:layout_marginTop="175dp"
@@ -214,10 +215,11 @@
         android:layout_height="20dp"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_marginStart="80dp"
+        android:id="@+id/rating"
         android:layout_marginTop="150dp"
         android:stepSize="0"
         android:numStars="5"
-        android:rating="3"
+        android:rating="2.5"
         />
 
     <TextView
@@ -236,6 +238,22 @@
         android:visibility="gone"
        />
 
+    <TextView
+        android:id="@+id/sub_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prod_desc"
+
+
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="subcat"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:visibility="gone"
+
+        />
     <TextView
     android:id="@+id/p_sale"
     android:layout_width="wrap_content"

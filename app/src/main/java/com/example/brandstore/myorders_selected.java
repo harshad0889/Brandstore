@@ -29,7 +29,7 @@ public class myorders_selected extends AppCompatActivity {
     private SimpleCursorAdapter adapter2;
     String ustatus = "CANCELED";
     String scart_id ;
-    String s_order_id ;
+    String s_order_id,s_pid_ret,s_r_uid ;
 
     final String[] from = new String[]{db.s_cartid,db.s_status,db.sdate};
 
@@ -58,7 +58,7 @@ public class myorders_selected extends AppCompatActivity {
         TextView address = (TextView) findViewById(R.id.address);
         TextView pin = (TextView) findViewById(R.id.pin);
         final TextView cart_id = (TextView) findViewById(R.id.cart_id);
-        TextView pid = (TextView)findViewById(R.id.pid);
+        final TextView pid = (TextView)findViewById(R.id.pid);
         TextView qty = (TextView)findViewById(R.id.qty);
         ImageView imageView = (ImageView) findViewById(R.id.img_product);
         TextView p_name = (TextView) findViewById(R.id.prod_name);
@@ -69,6 +69,12 @@ public class myorders_selected extends AppCompatActivity {
         TextView bill = (TextView) findViewById(R.id.bill);
         bt_cancel =  findViewById(R.id.bt_cancel);
         bt_return =  findViewById(R.id.bt_return);
+        TextView track_ord = (TextView) findViewById(R.id.track_ord);
+
+        TextView can_reason = (TextView) findViewById(R.id.reason);
+        TextView tv_can_reason = (TextView) findViewById(R.id.tv_reason);
+        TextView ret_reason = (TextView) findViewById(R.id.ret_reason);
+        TextView tv_ret_reason = (TextView) findViewById(R.id.tv_ret_reason);
 
 
 
@@ -131,6 +137,33 @@ public class myorders_selected extends AppCompatActivity {
             bt_cancel.setVisibility(View.GONE);
         }
 
+
+        scart_id = cart_id.getText().toString();
+        s_order_id =order_id.getText().toString();
+        s_pid_ret = pid.getText().toString();
+        s_r_uid = uid.getText().toString();
+
+        Cursor cursor2 = db.getData(String.format("SELECT * from return where ret_uid =%s and ret_pid =%s AND ret_oid =%s",s_r_uid,s_pid_ret,s_order_id));
+        while (cursor2.moveToNext()) {
+
+            String reason = cursor2.getString(1);
+            ret_reason.setText(reason);
+
+
+
+        }
+
+        Cursor cursor7 = db.getData(String.format("SELECT * from CANCEL where can_uid =%s and can_pid =%s AND can_oid =%s",s_r_uid,s_pid_ret,s_order_id));
+        while (cursor7.moveToNext()) {
+
+            String canc_reason = cursor7.getString(1);
+            can_reason.setText(canc_reason);
+
+
+
+        }
+
+
         //status if cancelled button visibility is gone
 
 
@@ -144,6 +177,26 @@ public class myorders_selected extends AppCompatActivity {
             bt_return.setVisibility(View.GONE);
         }
 
+
+        //reason view
+        if (s_status.equals("CANCELLED" )){
+            can_reason.setVisibility(View.VISIBLE);
+            tv_can_reason.setVisibility(View.VISIBLE);
+            ret_reason.setVisibility(View.GONE);
+            tv_ret_reason.setVisibility(View.GONE);
+
+        }else if (s_status.equals("RETURN" )){
+            ret_reason.setVisibility(View.VISIBLE);
+            tv_ret_reason.setVisibility(View.VISIBLE);
+            can_reason.setVisibility(View.GONE);
+            tv_can_reason.setVisibility(View.GONE);
+        }else{
+            can_reason.setVisibility(View.GONE);
+            tv_can_reason.setVisibility(View.GONE);
+            ret_reason.setVisibility(View.GONE);
+            tv_ret_reason.setVisibility(View.GONE);
+
+        }
 
         //listing of tracking details
 
@@ -170,15 +223,43 @@ public class myorders_selected extends AppCompatActivity {
                  ustatus = "CANCELLED";
                  scart_id = cart_id.getText().toString();
                  s_order_id =order_id.getText().toString();
+                s_pid_ret = pid.getText().toString();
                 //update status
                // int update = db.update_status(scart_id,s_order_id,ustatus);
                 //insert status table for list
 
                 //db.insert_status(scart_id, ustatus);
 
-                alert(view);
+                Intent in = new Intent(myorders_selected.this,cancel_reason.class);
+                in.putExtra("scart_id",scart_id);
+                in.putExtra("s_order_id",s_order_id);
+                in.putExtra("s_pid_ret",s_pid_ret);
+                startActivity(in);
+
+               // alert(view);
 
 
+
+            }
+        });
+
+
+        //track order
+
+        track_ord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String statuss_cart_id = cart_id.getText().toString();
+
+                Intent b = new Intent(myorders_selected.this, track_order.class);
+                b.putExtra("statuss_cart_id", statuss_cart_id);
+
+
+
+
+                startActivity(b);
+                finish();
 
             }
         });
@@ -219,13 +300,19 @@ public class myorders_selected extends AppCompatActivity {
                 ustatus = "RETURN";
                 scart_id = cart_id.getText().toString();
                 s_order_id =order_id.getText().toString();
+                 s_pid_ret = pid.getText().toString();
                 //update status
-                 int update = db.update_status(scart_id,s_order_id,ustatus);
+                // int update = db.update_status(scart_id,s_order_id,ustatus);
                 //insert status table for list
 
-                db.insert_status(scart_id, ustatus);
+                //db.insert_status(scart_id, ustatus);
 
-                alert2(view);
+               // alert2(view);
+                Intent in = new Intent(myorders_selected.this,return_reason.class);
+               in.putExtra("scart_id",scart_id);
+                in.putExtra("s_order_id",s_order_id);
+                in.putExtra("s_pid_ret",s_pid_ret);
+                startActivity(in);
 
 
 

@@ -9,6 +9,7 @@ public class product {
     private String p_desc;
     private String p_off;
     private String p_category;
+    private String p_subcat;
     private String p_size;
 
     private byte[] image;
@@ -30,7 +31,15 @@ public class product {
         this.p_size = p_size;
     }
 
-    public product(int pid, String p_name,String p_category,String p_desc,String p_size , String a_price,  String p_sale,     byte[] image,String p_off) {
+    public String getP_subcat() {
+        return p_subcat;
+    }
+
+    public void setP_subcat(String p_subcat) {
+        this.p_subcat = p_subcat;
+    }
+
+    public product(int pid, String p_name, String p_category,String p_subcat, String p_desc,  String p_size , String a_price, String p_sale, byte[] image, String p_off) {
         this.pid = pid;
         this.p_name = p_name;
         this.a_price = a_price;
@@ -38,6 +47,7 @@ public class product {
         this.p_sale = p_sale;
         this.p_size = p_size;
         this.p_desc = p_desc;
+        this.p_subcat = p_subcat;
         this.p_off = p_off;
         this.p_category = p_category;
         this.image = image;

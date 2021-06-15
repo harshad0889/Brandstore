@@ -75,6 +75,7 @@
 
         android:layout_marginStart="300dp"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
 
         android:fontFamily="sans-serif-medium"
 
@@ -90,6 +91,7 @@
 
         android:layout_marginStart="300dp"
         android:layout_marginTop="37dp"
+        android:visibility="gone"
 
 
         android:fontFamily="sans-serif-medium"
@@ -111,7 +113,7 @@
         android:fontFamily="sans-serif-medium"
 
         android:text="price"
-        android:drawableLeft="@drawable/rupees"
+        android:drawableLeft="@drawable/rup8"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp" />

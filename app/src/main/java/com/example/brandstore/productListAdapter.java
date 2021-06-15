@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class productListAdapter extends BaseAdapter {
     private Context context;
     private  int layout;
     private ArrayList<product> prodlist;
+
     DatabaseHelper db;
     String pname = "SHIRTS";
 
@@ -49,7 +51,8 @@ public class productListAdapter extends BaseAdapter {
 
     static class ViewHolder{
         ImageView imageView;
-        TextView p_id, p_name,a_price,o_price,p_sale,p_desc,p_off,p_category,p_size,off,off_sprice;
+        TextView p_id, p_name,a_price,o_price,p_sale,p_desc,p_off,p_category,p_size,off,off_sprice,off_tv,p_subcat;
+        RatingBar rating_bar;
     }
 
     @Override
@@ -73,9 +76,12 @@ public class productListAdapter extends BaseAdapter {
             holder.p_desc = (TextView) row.findViewById(R.id.prod_desc);
             holder.p_off = (TextView) row.findViewById(R.id.off1);
             holder.p_category = (TextView) row.findViewById(R.id.category);
+            holder.p_subcat = (TextView) row.findViewById(R.id.sub_cat);
             holder.p_size = (TextView) row.findViewById(R.id.p_size);
             holder.off = (TextView) row.findViewById(R.id.off1);
             holder.off_sprice = (TextView) row.findViewById(R.id.off_sprice);
+            holder.off_tv = (TextView) row.findViewById(R.id.off_tv);
+            holder.rating_bar =  (RatingBar) row.findViewById(R.id.rating);
 
             row.setTag(holder);
         }
@@ -87,6 +93,7 @@ public class productListAdapter extends BaseAdapter {
 
 
         product prod = prodlist.get(position);
+
 
 
         holder.p_id.setText(Integer.toString(prod.getPid()));
@@ -107,6 +114,8 @@ public class productListAdapter extends BaseAdapter {
         String per = "100";
         Log.e("sample", offerprice + off);
             oprice = (Double.parseDouble(offerprice) - (Double.parseDouble(offerprice) * Double.parseDouble(off)/Double.parseDouble(per)));
+            holder.off_tv.setVisibility(View.GONE);
+
         }
        // oprice = (Double.parseDouble(offerprice) - (Double.parseDouble(offerprice) * Double.parseDouble(off)/Double.parseDouble(per)));
 
@@ -117,6 +126,10 @@ public class productListAdapter extends BaseAdapter {
         holder.p_desc.setText(prod.getP_desc());
         holder.p_off.setText(prod.getP_off());
         holder.p_category.setText(prod.getP_category());
+        holder.p_subcat.setText(prod.getP_subcat());
+        //holder.rating_bar.setRating(Float.parseFloat(revav.getRating()));
+        //holder.rating_bar.setRating(Float.parseFloat(db.getData(String.format("select avg(rating) from review WHERE pid ='%s'"))));
+        //String rat = toString().(db.getData(String.format("select avg(rating) from review WHERE pid ='%s'"));
 
 
 
@@ -129,8 +142,7 @@ public class productListAdapter extends BaseAdapter {
 
 
 
-       // Cursor cursor2 = db.getData(String.format("SELECT pname from sale_table where pname = 'SHIRTS'"));
-        //SELECT * from product_table left join sale_table on product_table.pcategory = sale_table.pname
+
         //this above code should be added or replaced in select * from product and try it
     }
 

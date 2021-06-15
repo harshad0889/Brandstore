@@ -25,6 +25,9 @@
     <item android:id="@+id/sales"
         android:icon="@drawable/tag"
         android:title="@string/sale" />
+    <item android:id="@+id/update_sale"
+        android:icon="@drawable/edit"
+        android:title="Update sale" />
 
     <item android:id="@+id/add_cat"
         android:icon="@drawable/ic_category"

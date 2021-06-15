@@ -18,16 +18,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(sp_manager.getUser2(MainActivity.this).length() == 0)
-        {
-            Intent homeIntent = new Intent(MainActivity.this,verify_phno.class);
-            startActivity(homeIntent);
-        }else{
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
 
-            Intent homeIntent = new Intent(MainActivity.this,Home2.class);
-            startActivity(homeIntent);
+        Thread splash=new Thread(){
+            public void run() {
+                try {
+                    sleep(3 * 1000);
+                    Intent homeIntent = new Intent(MainActivity.this, Home2.class);
+                    startActivity(homeIntent);
+                    finish();
+                } catch (Exception e) {
+                }
+            }
+        };
+        splash.start();
 
-        }
+
+
+
+
 
         start1 =  findViewById(R.id.start);
 
@@ -48,3 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+
+/*if(sp_manager.getUser2(MainActivity.this).length() == 0)
+        {
+            Intent homeIntent = new Intent(MainActivity.this,verify_phno.class);
+            startActivity(homeIntent);
+        }else{
+
+            Intent homeIntent = new Intent(MainActivity.this,Home2.class);
+            startActivity(homeIntent);
+
+        }*/

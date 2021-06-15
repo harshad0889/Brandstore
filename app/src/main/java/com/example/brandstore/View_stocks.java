@@ -128,63 +128,8 @@ public class View_stocks extends AppCompatActivity {
 
 
                 Cursor cursor2 = db.getData("select pcat,s_date from stocks ");
-
-
-                while (cursor2.moveToNext()) {
-                    for (int i = 0; i < cursor2.getColumnNames().length; i++) {
-
-                        sp_cat = cursor2.getString(0);
-                        sp_date = cursor2.getString(1);
-
-
-                        // add_stocks.setText(ps_cat);
-                    }
-                    Log.e("dates", sp_cat + "," + sp_date + "," + date2);
-
-                    Log.e("dat", sp_cat + "," + sp_date + "," + date2);
-                    if (sp_date.equals(date2)) {
-
-                         del_stock(date2);
-                         //db.getData(String.format("delete from STOCKS where s_date = 2021-05-21"));
-
-
-
-                        Toast.makeText(View_stocks.this, "  STOCK deleted  ", Toast.LENGTH_LONG).show();
-
-
-                        //adding stocks
-                        Cursor cursor = db.getData("SELECT   pname, sum(psale) from product_table group by pname");
-
-
-
-                        while (cursor.moveToNext()) {
-                            for (int i = 0; i< cursor.getColumnNames().length;i++) {
-
-                                ps_cat = cursor.getString(0);
-                                stock_qty = cursor.getString(1);
-
-                               // add_stocks.setText(ps_cat);
-                            }
-                            Log.e("added", stock_qty + ps_cat);
-
-                            db.insert_stocks(ps_cat,stock_qty,date2);
-                            Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
-
-
-
-                        }
-                    }
-
-
-                }
-
-
-                    //boolean insert_stocks = db.insert_stocks(ps_cat,stock_qty);
-                    //dude just run the code n see what happens .LOL!
-                    //Log.e("samp", stock_qty + ps_cat);
-
-                if (!sp_date.equals(date2)) {
-
+                if (cursor2.getCount() == 0){
+                    Toast.makeText(View_stocks.this, "  STOCK empty  ", Toast.LENGTH_LONG).show();
                     Cursor cursor = db.getData("SELECT   pname, sum(psale) from product_table group by pname");
 
 
@@ -194,7 +139,7 @@ public class View_stocks extends AppCompatActivity {
                             ps_cat = cursor.getString(0);
                             stock_qty = cursor.getString(1);
 
-                             //add_stocks.setText(ps_cat);
+                            //add_stocks.setText(ps_cat);
                         }
                         Log.e("added", stock_qty + ps_cat);
 
@@ -204,9 +149,91 @@ public class View_stocks extends AppCompatActivity {
 
 
                     }
+                }else{
 
-                    //Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
+
+                    while (cursor2.moveToNext()) {
+                        for (int i = 0; i < cursor2.getColumnNames().length; i++) {
+
+                            sp_cat = cursor2.getString(0);
+                            sp_date = cursor2.getString(1);
+
+
+                            // add_stocks.setText(ps_cat);
+                        }
+                        Log.e("dates", sp_cat + "," + sp_date + "," + date2);
+
+                        Log.e("dat", sp_cat + "," + sp_date + "," + date2);
+                        if (sp_date.equals(date2)) {
+
+                            del_stock(date2);
+                            //db.getData(String.format("delete from STOCKS where s_date = 2021-05-21"));
+
+
+
+                            Toast.makeText(View_stocks.this, "  stock updated  ", Toast.LENGTH_LONG).show();
+
+
+                            //adding stocks
+                            Cursor cursor = db.getData("SELECT   pname, sum(psale) from product_table group by pname");
+
+
+
+                            while (cursor.moveToNext()) {
+                                for (int i = 0; i< cursor.getColumnNames().length;i++) {
+
+                                    ps_cat = cursor.getString(0);
+                                    stock_qty = cursor.getString(1);
+
+                                    // add_stocks.setText(ps_cat);
+                                }
+                                Log.e("added", stock_qty + ps_cat);
+
+                                db.insert_stocks(ps_cat,stock_qty,date2);
+                                Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
+
+
+
+                            }
+                        }
+
+
+                    }
+
+
+                    //boolean insert_stocks = db.insert_stocks(ps_cat,stock_qty);
+                    //dude just run the code n see what happens .LOL!
+                    //Log.e("samp", stock_qty + ps_cat);
+
+                    if (!sp_date.equals(date2)) {
+
+                        Cursor cursor = db.getData("SELECT   pname, sum(psale) from product_table group by pname");
+
+
+                        while (cursor.moveToNext()) {
+                            for (int i = 0; i< cursor.getColumnNames().length;i++) {
+
+                                ps_cat = cursor.getString(0);
+                                stock_qty = cursor.getString(1);
+
+                                //add_stocks.setText(ps_cat);
+                            }
+                            Log.e("added", stock_qty + ps_cat);
+
+                            db.insert_stocks(ps_cat,stock_qty,date2);
+                            Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
+
+
+
+                        }
+
+                        //Toast.makeText(View_stocks.this, "  stock added  ", Toast.LENGTH_LONG).show();
+                    }
+
                 }
+
+
+
 
 
 
